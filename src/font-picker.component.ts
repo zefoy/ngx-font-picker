@@ -18,8 +18,8 @@ import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
 
 @Component({
   selector: 'font-picker',
-  template: require('./font-picker.component.html'),
-  styles: [require('./font-picker.component.scss')]
+  template: require('font-picker.component.html'),
+  styles: [require('font-picker.component.scss')]
 })
 export class FontPickerComponent implements OnInit {
   PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
