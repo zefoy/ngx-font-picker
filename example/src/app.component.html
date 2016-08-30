@@ -1,0 +1,31 @@
+<div class="box-container">
+  <div class="app-title">{{title}}</div>
+
+  <div class="info-container">
+    You can select a font by clicking the upper button and toggle showing list of preset fonts by clicking the bottom button.
+  </div>
+
+  <div class="horizontal-container">
+    <div class="vertical-container">
+      <div class="box-title">Settings</div>
+
+      <div class="content-container">
+        <div class="action-toggle-button" [(fontPicker)]="font" [fpWidth]="'275px'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts">
+          {{font.family}} {{font.style | FontStyles}} {{font.size}}px
+        </div>
+
+        <div class="action-toggle-button" (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
+      </div>
+    </div>
+
+    <div class="vertical-container">
+      <div class="box-title">Preview</div>
+
+      <div class="content-container">
+        <div class="box" [ngStyle]="font.getStyles()">
+          <p class="font-preview-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

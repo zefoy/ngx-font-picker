@@ -1,0 +1,41 @@
+<div class="font-picker" *ngIf="show" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
+  <div class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
+
+  <div class="search-box">
+    <input class="search-field" placeholder="Search from Google Web Fonts..." [disabled]="fpPresetFonts?.length" [formControl]="searchTerm" />
+
+    <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
+  </div>
+
+	<perfect-scrollbar class="font-list" [config]="PERFECT_SCROLLBAR_CONFIG">
+    <div class="list-label">{{listLabel}}</div>
+
+  	<div *ngFor="let fontItem of currentFonts | StatefulSlice:0:loadedFonts" class="font-item" (click)="onSelectFont(fontItem)" [ngClass]="{selected: fontItem.family.toLowerCase() == font.family.toLowerCase() }">
+  	  <div class="font-info">
+        <span class="font-name">{{fontItem.family}}</span>
+
+        <div *ngIf="!fontItem.files" class="not-available-label">Not a Google Font</div>
+      </div>
+
+      <div class="font-text" [ngStyle]="{'font-family': fontItem.family}">ABCDEabcde12345@€!?-</div>
+  	</div>
+	</perfect-scrollbar>
+
+  <div class="options-box">
+  	<div class="font-options">
+   		<div class="left">
+     		<select class="select-style" (change)="onFontStyleChange($event, font)" [(ngModel)]="font.style" [disabled]="!font.styles">
+   	 	  	<option *ngFor="let style of font.styles" [value]="style">{{style | FontStyles}}</option>
+   			</select>
+  		</div>
+
+   		<div class="right">
+     		<input class="size-input" type="number" pattern="[0-9]*" min="1" max="100" [(ngModel)]="font.size" />
+   	  </div>
+   	</div>
+  </div>
+
+  <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="uploadFontFiles()">{{fpUploadButtonText}}</button>
+
+  <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="cancelFontSelect()">{{fpCancelButtonText}}</button>
+</div>

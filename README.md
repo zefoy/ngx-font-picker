@@ -1,2 +1,3 @@
 # angular2-font-picker
-Google fonts font picker widget for Angular 2
+
+This is a simple font picker based on cool angular2-color-picker by Alberplz.
