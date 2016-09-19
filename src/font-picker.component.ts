@@ -13,7 +13,6 @@ import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'angu
 
 import { FontPickerService } from './font-picker.service';
 
-import { FontStylesPipe, StatefulSlicePipe} from './pipes';
 import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
 
 @Component({
@@ -22,7 +21,7 @@ import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
   styles: [require('font-picker.component.scss')]
 })
 export class FontPickerComponent implements OnInit {
-  PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  private config: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
   };
 
@@ -62,8 +61,6 @@ export class FontPickerComponent implements OnInit {
 
   private fpPresetLabel: string;
   private fpPresetFonts: Array<any>;
-
-  private fpIgnoredElements: any;
 
   private fpCancelButton: boolean;
   private fpCancelButtonText: string;
@@ -121,7 +118,7 @@ export class FontPickerComponent implements OnInit {
       ].join(' !important;');
   }
 
-  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string, fpIgnoredElements: any) {
+  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
     this.font = font;
     this.initialFont = font;
     this.styles = font.styles;
@@ -150,7 +147,7 @@ export class FontPickerComponent implements OnInit {
     this.fpWidth = parseInt(fpWidth);
     this.fpHeight = parseInt(fpHeight);
 
-    this.fpIgnoredElements = fpIgnoredElements;
+    this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
 
     this.listLabel = "Loading fonts...";
 
@@ -197,6 +194,8 @@ export class FontPickerComponent implements OnInit {
 
     this.fpPresetLabel = fpPresetLabel;
     this.fpPresetFonts = fpPresetFonts;
+
+    this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
 
     this.setDisplayedFontSource();
   }

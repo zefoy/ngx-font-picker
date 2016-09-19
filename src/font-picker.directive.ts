@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs/Rx';
 
-import { Compiler, Directive, OnInit, Input, Output, EventEmitter, ElementRef, ReflectiveInjector, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
+import { Directive, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerComponent } from './font-picker.component';
-import { DynamicFontPickerModule } from './font-picker.modules';
 
 import { Font } from './interfaces';
 
@@ -34,8 +33,6 @@ export class FontPickerDirective implements OnInit {
   @Input('fpPresetLabel') fpPresetLabel: string;
   @Input('fpPresetFonts') fpPresetFonts: Array<string>;
 
-  @Input('fpIgnoredElements') fpIgnoredElements: any = [];
-
   @Input('fpPosition') fpPosition: string = 'right';
   @Input('fpPositionOffset') fpPositionOffset: string = '0%';
   @Input('fpPositionRelativeToArrow') fpPositionRelativeToArrow: boolean = false;
@@ -50,7 +47,7 @@ export class FontPickerDirective implements OnInit {
 
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<Font>();
 
-  constructor( private compiler: Compiler, private el: ElementRef, private vc: ViewContainerRef, private cd : ChangeDetectorRef, private service: FontPickerService ) { }
+  constructor( private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef, private cd : ChangeDetectorRef, private service: FontPickerService ) { }
 
   ngOnInit() {
 		var fontPicker = this.fontPicker;
@@ -67,29 +64,20 @@ export class FontPickerDirective implements OnInit {
   }
 
   onClick() {
-    if (this.fpIgnoredElements.filter((item: any) => item === this.el.nativeElement).length === 0) {
-      this.openDialog();
-    }
-  }
-
-  openDialog() {
     if (!this.created) {
       this.created = true;
 
-      this.compiler.compileModuleAndAllComponentsAsync(DynamicFontPickerModule)
-        .then((factory) => {
-          const compFactory = factory.componentFactories.find(x => x.componentType === FontPickerComponent);
-          const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
-          const cmpRef = this.vc.createComponent(compFactory, 0, injector, []);
+      let factory = this.resolver.resolveComponentFactory(FontPickerComponent);
 
-          cmpRef.instance.setDialog(this, this.el, this.fontPicker, this.fpPosition, this.fpPositionOffset,
-            this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts,
-            this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, 
-            this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, 
-            this.fpHeight, this.fpWidth, this.fpIgnoredElements);
+      let component = this.vc.createComponent(factory, 0);
 
-          this.dialog = cmpRef.instance;
-        });
+      component.instance.setDialog(this, this.el, this.fontPicker, this.fpPosition,
+        this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
+        this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass,
+        this.fpUploadButtonText, this.fpCancelButton, this.fpCancelButtonClass,
+        this.fpCancelButtonText, this.fpHeight, this.fpWidth);
+
+        this.dialog = component.instance;
     } else if (this.dialog) {
       this.dialog.updateDialog(this.fontPicker, this.fpPresetLabel, this.fpPresetFonts)
 

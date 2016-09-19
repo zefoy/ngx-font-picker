@@ -2,12 +2,12 @@
   <div class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
 
   <div class="search-box">
-    <input class="search-field" placeholder="Search from Google Web Fonts..." [disabled]="fpPresetFonts?.length" [formControl]="searchTerm" />
+    <input class="search-field" placeholder="Search from Google Web Fonts..." [formControl]="searchTerm" />
 
     <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
   </div>
 
-	<perfect-scrollbar class="font-list" [config]="PERFECT_SCROLLBAR_CONFIG">
+	<perfect-scrollbar class="font-list" [config]="config">
     <div class="list-label">{{listLabel}}</div>
 
   	<div *ngFor="let fontItem of currentFonts | StatefulSlice:0:loadedFonts" class="font-item" (click)="onSelectFont(fontItem)" [ngClass]="{selected: fontItem.family.toLowerCase() == font.family.toLowerCase() }">
