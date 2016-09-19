@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from '
 
 import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
@@ -16,9 +17,10 @@ import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule],
-    declarations: [FontPickerComponent, FontPickerDirective, FontStylesPipe, StatefulSlicePipe],
-    exports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, FontPickerComponent, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ]
+  imports: [CommonModule],
+  providers: [FontPickerService],
+  declarations: [FontPickerDirective],
+  exports: [FontPickerDirective]
 })
 export class FontPickerModule {
   constructor (@Optional() @SkipSelf() parentModule: FontPickerModule) {
@@ -56,3 +58,9 @@ export function provideFontPickerConfig(configInterface: FontPickerConfigInterfa
 
   return config;
 }
+
+@NgModule({
+  imports: [BrowserModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule],
+  declarations: [FontPickerComponent, FontStylesPipe, StatefulSlicePipe]
+})
+export class DynamicFontPickerModule { }

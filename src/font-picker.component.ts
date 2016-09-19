@@ -63,6 +63,8 @@ export class FontPickerComponent implements OnInit {
   private fpPresetLabel: string;
   private fpPresetFonts: Array<any>;
 
+  private fpIgnoredElements: any;
+
   private fpCancelButton: boolean;
   private fpCancelButtonText: string;
   private fpCancelButtonClass: string;
@@ -119,8 +121,7 @@ export class FontPickerComponent implements OnInit {
       ].join(' !important;');
   }
 
-  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
-
+  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string, fpIgnoredElements: any) {
     this.font = font;
     this.initialFont = font;
     this.styles = font.styles;
@@ -148,6 +149,8 @@ export class FontPickerComponent implements OnInit {
 
     this.fpWidth = parseInt(fpWidth);
     this.fpHeight = parseInt(fpHeight);
+
+    this.fpIgnoredElements = fpIgnoredElements;
 
     this.listLabel = "Loading fonts...";
 
@@ -296,10 +299,10 @@ export class FontPickerComponent implements OnInit {
 
     this.font.family = font.family;
     this.font.styles = font.styles;
-    this.font.files  = font.files;
-    this.font.size   = size;
+    this.font.files = font.files;
+    this.font.size = size;
 
-    this.font.style  = font.styles.indexOf("regular") > -1 ? "regular" : font.styles[0];
+    this.font.style = font.styles.indexOf("regular") > -1 ? "regular" : font.styles[0];
   }
 
   loadMoreFonts() {
@@ -315,7 +318,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   onSearchReset(event?: any) {
-    this.searchTerm.updateValue('');
+    this.searchTerm.setValue('');
     this.setcurrentFonts(this.googleFonts);
   }
 
@@ -356,7 +359,7 @@ export class FontPickerComponent implements OnInit {
     if (!this.show) {
       this.setDialogPosition();
 
-      this.searchTerm.updateValue('');
+      this.searchTerm.setValue('');
 
       window.addEventListener('resize', this.listenerResize);
       document.addEventListener('mousedown', this.listenerMouseDown);
