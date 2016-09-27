@@ -83,39 +83,6 @@ export class FontPickerComponent implements OnInit {
 
   constructor( private el: ElementRef, private service: FontPickerService ) {
     this.loading = true;
-
-    this.searchTerm
-      .valueChanges
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .subscribe((text) => {
-        if (this.fpPresetFonts && this.fpPresetFonts.length) {
-          this.listLabel = this.fpPresetLabel;
-        } else {
-          if (!text) {
-            this.listLabel = "Popular fonts";
-          } else {
-            this.listLabel = "Search results";
-          }
-
-          this.searchGoogleFonts(text);
-        }
-      });
-
-      // Used to handle font loading. Don't allow too many loading requests in a short time span.
-      const scrollEndStream = Observable.fromEvent(el.nativeElement, 'ps-y-reach-end').debounceTime(150);
-
-      scrollEndStream.subscribe(_ => { this.loadMoreFonts() });
-
-      this.testContainer = document.createElement('span');
-      this.testContainer.innerHTML = Array(100).join('wi');
-
-      this.testContainer.style.cssText = [
-        'position:absolute',
-        'width:auto',
-        'font-size:128px',
-        'left:-99999px'
-      ].join(' !important;');
   }
 
   setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
@@ -274,6 +241,39 @@ export class FontPickerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchTerm
+      .valueChanges
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((text) => {
+        if (this.fpPresetFonts && this.fpPresetFonts.length) {
+          this.listLabel = this.fpPresetLabel;
+        } else {
+          if (!text) {
+            this.listLabel = "Popular fonts";
+          } else {
+            this.listLabel = "Search results";
+          }
+
+          this.searchGoogleFonts(text);
+        }
+      });
+
+      // Used to handle font loading. Don't allow too many loading requests in a short time span.
+      const scrollEndStream = Observable.fromEvent(this.el.nativeElement, 'ps-y-reach-end').debounceTime(150);
+
+      scrollEndStream.subscribe(_ => { this.loadMoreFonts() });
+
+      this.testContainer = document.createElement('span');
+      this.testContainer.innerHTML = Array(100).join('wi');
+
+      this.testContainer.style.cssText = [
+        'position:absolute',
+        'width:auto',
+        'font-size:128px',
+        'left:-99999px'
+      ].join(' !important;');
+
     this.listenerResize = () => { this.onResize() };
     this.listenerMouseDown = (event: any) => { this.onMouseDown(event) };
 
