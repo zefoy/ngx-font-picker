@@ -28,6 +28,7 @@ export class FontPickerComponent implements OnInit {
   private show: boolean;
 
   private loading: boolean;
+  private presetVisible: boolean;
 
   private top: number;
   private left: number;
@@ -83,6 +84,7 @@ export class FontPickerComponent implements OnInit {
 
   constructor( private el: ElementRef, private service: FontPickerService ) {
     this.loading = true;
+    this.presetVisible = true;
   }
 
   setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
@@ -246,17 +248,15 @@ export class FontPickerComponent implements OnInit {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((text) => {
-        if (this.fpPresetFonts && this.fpPresetFonts.length) {
-          this.listLabel = this.fpPresetLabel;
+        if (!text) {
+          this.presetVisible = true;
+          this.listLabel = "Popular fonts";
         } else {
-          if (!text) {
-            this.listLabel = "Popular fonts";
-          } else {
-            this.listLabel = "Search results";
-          }
-
-          this.searchGoogleFonts(text);
+          this.presetVisible = false;
+          this.listLabel = "Search results";
         }
+
+        this.searchGoogleFonts(text);
       });
 
       // Used to handle font loading. Don't allow too many loading requests in a short time span.
