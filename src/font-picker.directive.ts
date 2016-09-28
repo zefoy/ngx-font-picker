@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs/Rx';
 
-import { Directive, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-
+import { Directive, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef, ViewContainerRef, ComponentFactoryResolver, Compiler, ReflectiveInjector } from '@angular/core';
 import { FontPickerService } from './font-picker.service';
 import { FontPickerComponent } from './font-picker.component';
 
 import { Font } from './interfaces';
+
+import {DynamicFpModule} from "./dynamic-fp.module";
 
 @Directive({
   selector: '[fontPicker]',
@@ -17,6 +18,7 @@ export class FontPickerDirective implements OnInit {
   private dialog: any;
 
   private created: boolean = false;
+  private closed: boolean = false;
 
   @Input('fontPicker') fontPicker: Font;
 
@@ -47,7 +49,8 @@ export class FontPickerDirective implements OnInit {
 
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<Font>();
 
-  constructor( private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef, private cd : ChangeDetectorRef, private service: FontPickerService ) { }
+  constructor( private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef,
+    private cd : ChangeDetectorRef, private service: FontPickerService, private compiler: Compiler ) { }
 
   ngOnInit() {
 		var fontPicker = this.fontPicker;
@@ -64,24 +67,26 @@ export class FontPickerDirective implements OnInit {
   }
 
   onClick() {
-    if (!this.created) {
-      this.created = true;
-
-      let factory = this.resolver.resolveComponentFactory(FontPickerComponent);
-
-      let component = this.vc.createComponent(factory, 0);
-
-      component.instance.setDialog(this, this.el, this.fontPicker, this.fpPosition,
-        this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
-        this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass,
-        this.fpUploadButtonText, this.fpCancelButton, this.fpCancelButtonClass,
-        this.fpCancelButtonText, this.fpHeight, this.fpWidth);
-
-        this.dialog = component.instance;
-    } else if (this.dialog) {
-      this.dialog.updateDialog(this.fontPicker, this.fpPresetLabel, this.fpPresetFonts)
-
+    if(this.closed){
       this.dialog.openFontPicker();
+      this.closed = false;
+    } else if (!this.created) {
+        this.created = true;
+        this.compiler.compileModuleAndAllComponentsAsync(DynamicFpModule)
+            .then(factory => {
+                const compFactory = factory.componentFactories.find(x => x.componentType === FontPickerComponent);
+                const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
+                let component = this.vc.createComponent(compFactory, 0, injector, []);
+                  component.instance.setDialog(this, this.el, this.fontPicker, this.fpPosition,
+                    this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
+                    this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass,
+                    this.fpUploadButtonText, this.fpCancelButton, this.fpCancelButtonClass,
+                    this.fpCancelButtonText, this.fpHeight, this.fpWidth);
+                this.dialog = component.instance;
+            });
+    } else if (this.dialog) {
+        this.dialog.closeFontPicker();
+        this.closed = true;
     }
   }
 }

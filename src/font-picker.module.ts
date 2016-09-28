@@ -4,22 +4,18 @@ import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
-
 import { FontPickerService } from './font-picker.service';
-import { FontPickerComponent } from './font-picker.component';
 import { FontPickerDirective } from './font-picker.directive';
 
-import { FontStylesPipe, StatefulSlicePipe } from './pipes';
+import { FontStylesPipe } from './pipes';
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule],
-    declarations: [FontPickerComponent, FontPickerDirective, FontStylesPipe, StatefulSlicePipe],
-    exports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ],
-    entryComponents: [ FontPickerComponent ]
+    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule],
+    declarations: [ FontPickerDirective, FontStylesPipe],
+    exports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, FontPickerDirective, FontStylesPipe ]
 })
 export class FontPickerModule {
   constructor (@Optional() @SkipSelf() parentModule: FontPickerModule) {
