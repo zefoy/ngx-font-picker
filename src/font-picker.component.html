@@ -39,20 +39,6 @@
   	</div>
 	</perfect-scrollbar>
 
-  <div class="options-box">
-  	<div class="font-options">
-   		<div class="left">
-     		<select class="select-style" (change)="onFontStyleChange($event, font)" [(ngModel)]="font.style" [disabled]="!font.styles">
-   	 	  	<option *ngFor="let style of font.styles" [value]="style">{{style | FontStyles}}</option>
-   			</select>
-  		</div>
-
-   		<div class="right">
-     		<input class="size-input" type="number" pattern="[0-9]*" min="1" max="100" [(ngModel)]="font.size" />
-   	  </div>
-   	</div>
-  </div>
-
   <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="uploadFontFiles()">{{fpUploadButtonText}}</button>
 
   <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="cancelFontSelect()">{{fpCancelButtonText}}</button>
