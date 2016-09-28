@@ -95,6 +95,7 @@
         }
 
         .not-available-label {
+          float: right;
           position: relative;
           text-transform: none;
           color: lighten(#e74c3c, 15%);
@@ -106,7 +107,7 @@
 
             position: absolute;
             top: 16px;
-            left: 0;
+            right: 0;
 
             width: 230px;
             height: auto;
@@ -194,21 +195,40 @@
     text-align: center;
   }
 
-  .list-label {
-    overflow: hidden;
-    box-sizing: border-box;
+  .wrapper-label {
+    display: flex;
 
-    width: 100%;
-    max-width: 100%;
-    padding: 8px 16px;
-    border-bottom: 1px solid #cfcfcf;
+    .line-label {
+      margin-top: 16px;
+      margin-left: 15px;
+      flex: 1 1 auto;
+      height: 2px;
 
-    color: #555;
-    font-size: 11px;
-    text-align: left;
-    font-weight: bold;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+      background: red;
+
+       &.black {
+         background: black;
+       }
+    }
+
+    .list-label {
+      overflow: hidden;
+      box-sizing: border-box;
+
+      max-width: 70%;
+      padding: 8px 16px;
+
+      color: red;
+      font-size: 11px;
+      text-align: left;
+      font-weight: bold;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &.black {
+        color: black;
+      }
+    }
   }
 
   .search-box {
