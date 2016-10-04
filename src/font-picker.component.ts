@@ -29,6 +29,7 @@ export class FontPickerComponent implements OnInit {
 
   private loading: boolean;
   private presetVisible: boolean;
+  private selectedFont: boolean;
 
   private top: number;
   private left: number;
@@ -63,6 +64,9 @@ export class FontPickerComponent implements OnInit {
   private fpPresetLabel: string;
   private fpPresetFonts: Array<any>;
 
+  private fpStyleSelect:boolean;
+  private fpSizeSelect:boolean;
+
   private fpCancelButton: boolean;
   private fpCancelButtonText: string;
   private fpCancelButtonClass: string;
@@ -85,9 +89,10 @@ export class FontPickerComponent implements OnInit {
   constructor( private el: ElementRef, private service: FontPickerService ) {
     this.loading = true;
     this.presetVisible = true;
+    this.selectedFont = false;
   }
 
-  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
+  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect:boolean, fpSizeSelect:boolean,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
     this.font = font;
     this.initialFont = font;
     this.styles = font.styles;
@@ -104,6 +109,9 @@ export class FontPickerComponent implements OnInit {
 
     this.fpPresetLabel = fpPresetLabel;
     this.fpPresetFonts = fpPresetFonts;
+
+    this.fpStyleSelect = fpStyleSelect;
+    this.fpSizeSelect = fpSizeSelect;
 
     this.fpCancelButton = fpCancelButton;
     this.fpCancelButtonText = fpCancelButtonText;
@@ -294,6 +302,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   onSelectFont(font: any) {
+    this.selectedFont = true;
     var size = this.font.size;
 
     this.font.family = font.family;
@@ -400,6 +409,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   cancelFontSelect() {
+    this.selectedFont = false;
     this.font = this.initialFont;
 
     this.closeFontPicker();

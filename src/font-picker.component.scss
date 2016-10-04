@@ -98,18 +98,19 @@
           position: relative;
           text-transform: none;
           color: lighten(#e74c3c, 15%);
-          font-size: 12px;
-          font-weight: 600;
+          font-size: 24px;
+          font-weight: 900;
+          margin-top: -5px;
 
           &::after {
             content: 'This font is not from Google Fonts. If you select it, you might have to inject it in your website';
 
             position: absolute;
-            top: 16px;
+            top: 0;
             right: 0;
 
-            width: 230px;
-            height: auto;
+            width: 250px;
+            height: 250px;
             padding: 2px 4px;
             border-radius: 2px;
 
@@ -251,10 +252,10 @@
     top: 0;
     right: 0;
 
-    padding: 12px 16px;
+    padding: 0px 16px;
 
     color: #777;
-    font-size: 16px;
+    font-size: 31px;
     cursor: pointer;
 
     transition: color 0.3s ease;

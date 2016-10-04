@@ -39,6 +39,9 @@ export class FontPickerDirective implements OnInit {
   @Input('fpPositionOffset') fpPositionOffset: string = '0%';
   @Input('fpPositionRelativeToArrow') fpPositionRelativeToArrow: boolean = false;
 
+  @Input('fpStyleSelect') fpStyleSelect:boolean = true;
+  @Input('fpSizeSelect') fpSizeSelect:boolean = true;
+
   @Input('fpCancelButton') fpCancelButton: boolean = false;
   @Input('fpCancelButtonText') fpCancelButtonText: string = 'Cancel';
   @Input('fpCancelButtonClass') fpCancelButtonClass: string = 'fp-cancel-button-class';
@@ -80,7 +83,7 @@ export class FontPickerDirective implements OnInit {
                   component.instance.setDialog(this, this.el, this.fontPicker, this.fpPosition,
                     this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
                     this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass,
-                    this.fpUploadButtonText, this.fpCancelButton, this.fpCancelButtonClass,
+                    this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect ,this.fpCancelButton, this.fpCancelButtonClass,
                     this.fpCancelButtonText, this.fpHeight, this.fpWidth);
                 this.dialog = component.instance;
             });
