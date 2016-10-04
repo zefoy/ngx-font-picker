@@ -2,10 +2,12 @@ import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from '
 
 import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
-import { PipesModule } from "./pipes-module";
+
+import { PipesModule } from "./pipes.module";
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerDirective } from './font-picker.directive';
+
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');

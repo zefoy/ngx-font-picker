@@ -6,4 +6,4 @@ import { StatefulSlicePipe, FontStylesPipe } from './pipes';
     declarations: [ StatefulSlicePipe, FontStylesPipe ],
     exports: [ StatefulSlicePipe, FontStylesPipe ]
 })
-export class PipesModule { };
+export class PipesModule {};

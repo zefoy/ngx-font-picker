@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'FontStyles', pure: true })
+@Pipe({
+  name: 'FontStyles',
+  pure: true
+})
 export class FontStylesPipe implements PipeTransform {
   transform(value: string): string {
     let lookup = {
@@ -18,7 +21,7 @@ export class FontStylesPipe implements PipeTransform {
     for (let style in lookup) {
       let found = value.search(style);
 
-      if(found >= 0) {
+      if (found >= 0) {
         value = value.replace(style, lookup[style] + " ");
 
         break;
@@ -29,15 +32,19 @@ export class FontStylesPipe implements PipeTransform {
   }
 }
 
-@Pipe({ name: 'StatefulSlice', pure: false })
+@Pipe({
+  name: 'StatefulSlice',
+  pure: false
+})
 export class StatefulSlicePipe implements PipeTransform {
   private slicedArray = [];
   private previousArrayRef = []
   private previousEndValue = null;
 
-  transform(arr:any[], start:number, end:number): any {
+  transform(arr: any[], start: number, end: number): any {
     if(arr && (this.previousEndValue != end || this.previousArrayRef !== arr)) {
       this.slicedArray = arr.slice(start, end);
+
       this.previousArrayRef = arr;
       this.previousEndValue = end;
     }

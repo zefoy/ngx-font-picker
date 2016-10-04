@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { PipesModule } from "./pipes-module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from "./pipes.module";
 
-import { FontPickerComponent } from "./font-picker.component";
+import { DialogComponent } from "./dialog.component";
 
 @NgModule({
     imports: [BrowserModule, PerfectScrollbarModule, FormsModule, ReactiveFormsModule, PipesModule],
-    declarations: [FontPickerComponent],
+    declarations: [DialogComponent],
     exports: [FormsModule, ReactiveFormsModule]
 })
-export class DynamicFpModule { };
+export class DialogModule {}
