@@ -2,20 +2,18 @@ import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from '
 
 import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from "./pipes-module";
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerDirective } from './font-picker.directive';
-
-import { FontStylesPipe } from './pipes';
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule],
-    declarations: [ FontPickerDirective, FontStylesPipe],
-    exports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, FontPickerDirective, FontStylesPipe ]
+    imports: [CommonModule, HttpModule, PipesModule],
+    declarations: [FontPickerDirective],
+    exports: [FontPickerDirective, PipesModule]
 })
 export class FontPickerModule {
   constructor (@Optional() @SkipSelf() parentModule: FontPickerModule) {
