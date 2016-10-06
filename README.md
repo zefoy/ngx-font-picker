@@ -4,6 +4,8 @@
 
 This is a simple font picker based on the cool angular2-color-picker by Alberplz.
 
+See a live example application <a href="https://zefoy.github.io/angular2-font-picker/">here</a>.
+
 ### Building the library
 
     npm install
