@@ -36,7 +36,7 @@ export class FontPickerDirective implements OnInit {
   @Input('fpSizeSelect') fpSizeSelect:boolean = true;
   @Input('fpStyleSelect') fpStyleSelect:boolean = true;
 
-  @Input('fpPosition') fpPosition: string = 'right';
+  @Input('fpPosition') fpPosition: string = 'bottom';
   @Input('fpPositionOffset') fpPositionOffset: string = '0%';
   @Input('fpPositionRelativeToArrow') fpPositionRelativeToArrow: boolean = false;
 

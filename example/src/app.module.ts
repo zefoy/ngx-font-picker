@@ -8,7 +8,8 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular
 import { AppComponent } from './app.component';
 
 const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
-  apiKey: '' // INSERT YOUR GOOGLE API KEY HERE
+  // Change this to your Google API key
+  apiKey: 'AIzaSyA9S7DY0khhn9JYcfyRWb1F6Rd2rwtF_mA'
 };
 
 @NgModule({
