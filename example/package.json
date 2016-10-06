@@ -15,6 +15,19 @@
     "deploy": "rm -rf dist >/dev/null 2>&1; deploy-to-git",
     "lint": "tslint 'src/**/*.ts' ; stylelint 'src/**/*.css' --syntax css"
   },
+  "config": {
+    "deployToGit": {
+      "repository": "git@github.com:zefoy/angular2-font-picker.git",
+      "branch": "gh-pages",
+      "folder": "dist",
+      "script": "npm run build",
+      "commit": "Publishing $npm_package_version",
+      "user": {
+        "name": "ZEF Devel",
+        "email": "devel@zef.fi"
+      }
+    }
+  },
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
