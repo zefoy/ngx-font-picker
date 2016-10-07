@@ -10,8 +10,6 @@ import { Font } from 'angular2-font-picker';
 export class AppComponent {
   private _presetFonts = ['Arial', 'Serif', 'Helvetica', 'Sans-Serif', 'Open Sans', 'Roboto Slab'];
 
-  private title = 'Simple example app for the angular2-font-picker';
-
   private font: Font = new Font({
     family: 'Roboto',
     styles: ['regular'],
