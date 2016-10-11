@@ -7,7 +7,7 @@
     <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
   </div>
 
-	<perfect-scrollbar class="font-list" [config]="config">
+  <perfect-scrollbar class="font-list" [config]="config">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
         <div class="group-line"></div>
@@ -28,12 +28,12 @@
       <div class="group-text black">{{listLabel}}</div>
     </div>
 
-  	<div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
-  	  <div class="font-info">
+    <div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
+      <div class="font-info">
         <span class="font-name">{{fontItem.family}}</span>
       </div>
-  	</div>
-	</perfect-scrollbar>
+    </div>
+  </perfect-scrollbar>
 
   <div *ngIf="selectedFont && (fpStyleSelect || fpSizeSelect)">
     <div  class="font-options">
