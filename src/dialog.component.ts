@@ -312,7 +312,7 @@ export class DialogComponent implements OnInit {
         return;
       }
 
-      if (exactMatch == false && font.family.toLowerCase().includes(searchVal)) {
+      if (exactMatch == false && font.family.toLowerCase().indexOf(searchVal) > -1) {
         candidateFonts.push(font);
       }
     });
