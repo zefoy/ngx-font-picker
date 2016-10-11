@@ -30,7 +30,7 @@ export class FontPickerService {
       requestUrl = requestUrl.concat('&sort=' + sort)
     }
 
-    return this.http.get(requestUrl)
+    return <Observable<GoogleFonts>> this.http.get(requestUrl)
       .map((res) => res.json())
       .catch(this.handleHttpError);
   }
@@ -42,7 +42,7 @@ export class FontPickerService {
   public getRequestedFont(family: string): Observable<Font>{
     let requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
 
-    return this.http.get(requestUrl)
+    return <Observable<Font>> this.http.get(requestUrl)
       .map(res => res.json())
       .catch(this.handleHttpError);
   }
