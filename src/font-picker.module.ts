@@ -29,27 +29,27 @@ export class FontPickerModule {
     return {
       ngModule: FontPickerModule,
       providers: [
-				FontPickerService,
-				{
-					provide: FONT_PICKER_CONFIG,
-					useValue: config ? config : {}
-				},
-				{
-					provide: FontPickerConfig,
-			    useFactory: provideFontPickerConfig,
-					deps: [
-						FONT_PICKER_CONFIG
-					]
-				}
-			]
+        FontPickerService,
+        {
+          provide: FONT_PICKER_CONFIG,
+          useValue: config ? config : {}
+        },
+        {
+          provide: FontPickerConfig,
+          useFactory: provideFontPickerConfig,
+          deps: [
+            FONT_PICKER_CONFIG
+          ]
+        }
+      ]
     };
   }
 }
 
 export function provideFontPickerConfig(configInterface: FontPickerConfigInterface = {}) {
-	const config = new FontPickerConfig();
+  const config = new FontPickerConfig();
 
-	config.apiKey = configInterface.apiKey || '';
+  config.apiKey = configInterface.apiKey || '';
 
   return config;
 }

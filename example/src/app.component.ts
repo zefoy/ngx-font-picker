@@ -17,8 +17,8 @@ export class AppComponent {
     size: 14
   });
 
-	private sizeSelect: boolean = true;
-	private styleSelect: boolean = true;
+  private sizeSelect: boolean = true;
+  private styleSelect: boolean = true;
 
   private presetFonts = this._presetFonts;
 
@@ -28,8 +28,8 @@ export class AppComponent {
     this.presetFonts = this.presetFonts.length ? [] : this._presetFonts;
   }
 
-	toggleExtraOptions() {
-		this.sizeSelect = !this.sizeSelect;
-		this.styleSelect = !this.styleSelect;
-	}
+  toggleExtraOptions() {
+    this.sizeSelect = !this.sizeSelect;
+    this.styleSelect = !this.styleSelect;
+  }
 }

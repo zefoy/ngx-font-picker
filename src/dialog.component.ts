@@ -136,7 +136,7 @@ export class DialogComponent implements OnInit {
     this.directiveInstance = instance;
     this.directiveElementRef = elementRef;
 
-	  this.updateDialog(font, fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText, fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText, fpHeight, fpWidth);
+    this.updateDialog(font, fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText, fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText, fpHeight, fpWidth);
 
     this.service.getAllFonts('popularity').subscribe((data) => {
       this.loading = false;
@@ -193,7 +193,7 @@ export class DialogComponent implements OnInit {
     this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
 
     this.setDisplayedFontSource();
-	}
+  }
 
   openFontPicker() {
     if (!this.open) {

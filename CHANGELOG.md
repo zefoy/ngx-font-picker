@@ -1,3 +1,7 @@
+0.8.0 Bug fix release
+
+  - Code cleanups and bug fixes
+
 0.3.0 Packaging updates
 
   - Added live demo url into the readme
@@ -8,8 +12,7 @@
 
 0.1.0 Feature release
 
-  - Added more config options and a
-  nicer look
+  - Added more config options and a nicer look
 
 0.0.2 Version updates
 

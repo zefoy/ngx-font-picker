@@ -53,15 +53,15 @@ export class FontPickerDirective implements OnInit {
   constructor( private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef, private cd : ChangeDetectorRef, private service: FontPickerService, private compiler: Compiler ) {}
 
   ngOnInit() {
-		var fontPicker = this.fontPicker;
+    var fontPicker = this.fontPicker;
 
-		if (!this.fontPicker) {
-			this.fontPicker = this.fpFallbackFont;
-		}
+    if (!this.fontPicker) {
+      this.fontPicker = this.fpFallbackFont;
+    }
 
     this.fontPickerChange.emit(this.fontPicker);
 
-		if (fontPicker != this.fontPicker) {
+    if (fontPicker != this.fontPicker) {
       this.cd.detectChanges();
     }
   }
