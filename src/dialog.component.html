@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="button-area">
+  <div *ngIf="fpCancelButton || fpUploadButton" class="button-area">
     <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFiles()">{{fpUploadButtonText}}</button>
 
     <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect()">{{fpCancelButtonText}}</button>

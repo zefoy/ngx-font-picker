@@ -285,7 +285,9 @@
 
     .fp-upload-button-class,
     .fp-cancel-button-class {
+      display: inline-block;
       margin: 8px;
+
       text-align: center;
       text-transform: uppercase;
     }
