@@ -141,7 +141,7 @@ export class DialogComponent implements OnInit {
     this.service.getAllFonts('popularity').subscribe((data) => {
       this.loading = false;
 
-      this.googleFonts = data.items.map(font => this.convertGoogleFont(font));
+      this.googleFonts = data.items.map((font) => this.convertGoogleFont(font));
 
       // Find styles for initial font
       let searchFont = this.findFont(this.initialFont.family, true);
@@ -154,7 +154,7 @@ export class DialogComponent implements OnInit {
       }
 
       // Load Open Sans if available
-      let openSans = this.googleFonts.find(font => font.family == "Open sans");
+      let openSans = this.googleFonts.find((font) => font.family == "Open sans");
 
       this.loadGoogleFonts([openSans]);
     },
@@ -163,8 +163,9 @@ export class DialogComponent implements OnInit {
 
   updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect:boolean, fpSizeSelect:boolean,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
     this.font = font;
-    this.initialFont = font;
     this.styles = font.styles;
+
+    this.initialFont = new Font(font);
 
     this.fpPosition = fpPosition;
     this.fpPositionOffset = parseInt(fpPositionOffset);
@@ -215,16 +216,6 @@ export class DialogComponent implements OnInit {
     document.removeEventListener('mouseup', this.listenerMouseDown);
   }
 
-  uploadFontFiles() {
-  }
-
-  cancelFontSelect() {
-    this.selectedFont = false;
-    this.font = this.initialFont;
-
-    this.closeFontPicker();
-  }
-
   isFontAvailable(font: Font) {
     if (!this.testWidth) {
       this.testContainer.style.fontFamily = 'monospace';
@@ -251,7 +242,7 @@ export class DialogComponent implements OnInit {
     var presetFonts = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
-      this.fpPresetFonts.forEach(font => {
+      this.fpPresetFonts.forEach((font) => {
         let fontClass = this.findFont(font, true);
 
         if (!fontClass) {
@@ -305,7 +296,7 @@ export class DialogComponent implements OnInit {
     let fullmatchFonts: Font[] = [];
     let candidateFonts: Font[] = [];
 
-    this.googleFonts.forEach(font => {
+    this.googleFonts.forEach((font) => {
       if (searchVal === font.family.toLowerCase()) {
         fullmatchFonts.push(font);
 
@@ -394,6 +385,21 @@ export class DialogComponent implements OnInit {
       event.target != this.directiveElementRef.nativeElement) {
       this.closeFontPicker();
     }
+  }
+
+  onUploadFiles() {
+  }
+
+  onCancelSelect() {
+    this.selectedFont = false;
+
+    this.font.family = this.initialFont.family;
+    this.font.size = this.initialFont.size;
+    this.font.files = this.initialFont.files;
+    this.font.style = this.initialFont.style;
+    this.font.styles = this.initialFont.styles;
+
+    this.closeFontPicker();
   }
 
   onSelectFont(font: any) {

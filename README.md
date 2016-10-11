@@ -54,9 +54,12 @@ const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [fpWidth]           // Width of the font picker (Default: '280px').
 [fpHeight]          // Height of the font picker (Default: 'auto').
 [fpPosition]        // Position of the font picker (Default: 'bottom').
-[fpPresetLabel]     // Label for the preset fonts (Default: undefined).
-[fpPresetFonts]     // Array of preset fonts to show (Default: undefined).
+[fpSizeSelect]      // Show size selector in the font picker (Default: false).
+[fpStyleSelect]     // Show style selector in the font picker (Default: false).
+[fpPresetLabel]     // Label for the preset fonts list (Default: undefined).
+[fpPresetFonts]     // Listing of preset fonts to show (Default: undefined).
 [fpFallbackFont]    // Fallback font (Default: {family: 'Roboto', size: 14}).
+[fpCancelButton]    // Show cancel button in the font picker (Default: false).
 
 (fontPickerChange)  // Event handler for the font / size / style change.
 ```

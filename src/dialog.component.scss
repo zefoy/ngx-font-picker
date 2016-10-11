@@ -276,10 +276,18 @@
       }
     }
   }
-}
 
-.fp-upload-button-class,
-.fp-cancel-button-class {
-  text-align: center;
-  text-transform: uppercase;
+  .button-area {
+    padding: 0 4px 4px;
+    border-top: 1px solid #aaa;
+
+    text-align: right;
+
+    .fp-upload-button-class,
+    .fp-cancel-button-class {
+      margin: 8px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 0.8.0 Bug fix release
 
-  - Code cleanups and bug fixes
+  - Fixed search and cancel button
 
 0.3.0 Packaging updates
 
