@@ -16,9 +16,11 @@
   border-radius: 4px;
 
   color: #555;
-  background-color: #eee;
   font-family: sans-serif;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18), 0 6px 6px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.18),
+    0 6px 6px rgba(0, 0, 0, 0.25);
+  background-color: #eee;
 }
 
 .info-container {
@@ -30,7 +32,7 @@
   display: flex;
   overflow: auto;
   align-items: stretch;
-  flex: auto 1 1;
+  flex: 1 1 auto;
   flex-direction: column;
   padding: 16px 24px;
   border-radius: 4px;
