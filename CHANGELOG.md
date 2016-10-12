@@ -1,3 +1,7 @@
+0.8.1 Bug fix release
+
+  - Small styling / template fixes
+
 0.8.0 Bug fix release
 
   - Fixed search and cancel button
