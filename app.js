@@ -46825,7 +46825,7 @@ exports.noop = noop;
 		exports["angular2-font-picker"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"), require("@angular/http"), require("rxjs/Rx"));
 	else
 		root["angular2-font-picker"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/forms"], root["@angular/http"], root["rxjs/Rx"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_42__, __WEBPACK_EXTERNAL_MODULE_43__, __WEBPACK_EXTERNAL_MODULE_84__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_42__, __WEBPACK_EXTERNAL_MODULE_43__, __WEBPACK_EXTERNAL_MODULE_84__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -48255,8 +48255,8 @@ var Font = (function () {
         return {
             'font-size': this.size.toString() + 'px',
             'font-family': this.family || 'monospace',
-            'font-weight': this.style.includes('regular') || isNaN(Number(this.style.slice(0, 3))) ? 'normal' : this.style.slice(0, 3),
-            'font-style': this.style.includes('i') || this.style.includes('italic') ? 'italic' : 'normal'
+            'font-style': this.style.includes('italic') ? 'italic' : 'normal',
+            'font-weight': isNaN(Number(this.style.slice(0, 3))) ? 'normal' : this.style.slice(0, 3)
         };
     };
     return Font;
@@ -48272,78 +48272,6 @@ exports.GoogleFonts = GoogleFonts;
 
 /***/ },
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-__webpack_require__(68);
-__webpack_require__(65);
-var Observable_1 = __webpack_require__(5);
-var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(43);
-var interfaces_1 = __webpack_require__(8);
-var FontPickerService = (function () {
-    function FontPickerService(config, http) {
-        this.config = config;
-        this.http = http;
-        this.apiKey = "";
-        this.baseUrl = 'https://www.googleapis.com/webfonts/v1/webfonts';
-        this.apiKey = config.apiKey;
-    }
-    /*
-      Return all fonts avaliable from google fonts, may have sort parameter:
-      date || alpha || style || trending || popularity
-    */
-    FontPickerService.prototype.getAllFonts = function (sort) {
-        var requestUrl = this.baseUrl + '?key=' + this.apiKey;
-        if (sort) {
-            requestUrl = requestUrl.concat('&sort=' + sort);
-        }
-        return this.http.get(requestUrl)
-            .map(function (res) { return res.json(); })
-            .catch(this.handleHttpError);
-    };
-    /*
-      Return observable of the requested font
-    */
-    FontPickerService.prototype.getRequestedFont = function (family) {
-        var requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
-        return this.http.get(requestUrl)
-            .map(function (res) { return res.json(); })
-            .catch(this.handleHttpError);
-    };
-    /*
-      Handler for possible http request errors
-    */
-    FontPickerService.prototype.handleHttpError = function (error) {
-        var errMsg = (error.message) ? error.message :
-            error.status ? error.status + " - " + error.statusText : 'Server error';
-        return Observable_1.Observable.throw(errMsg);
-    };
-    FontPickerService = __decorate([
-        core_1.Injectable(),
-        __param(0, core_1.Inject(interfaces_1.FontPickerConfig)), 
-        __metadata('design:paramtypes', [interfaces_1.FontPickerConfig, http_1.Http])
-    ], FontPickerService);
-    return FontPickerService;
-}());
-exports.FontPickerService = FontPickerService;
-
-
-/***/ },
-/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48370,13 +48298,13 @@ var DOCUMENT = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('D
 //# sourceMappingURL=dom_tokens.js.map
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48397,7 +48325,7 @@ var Rx_1 = __webpack_require__(84);
 var forms_1 = __webpack_require__(42);
 var core_1 = __webpack_require__(0);
 var angular2_perfect_scrollbar_1 = __webpack_require__(34);
-var font_picker_service_1 = __webpack_require__(9);
+var font_picker_service_1 = __webpack_require__(12);
 var interfaces_1 = __webpack_require__(8);
 var DialogComponent = (function () {
     function DialogComponent(el, service) {
@@ -48443,10 +48371,10 @@ var DialogComponent = (function () {
         this.testContainer = document.createElement('span');
         this.testContainer.innerHTML = Array(100).join('wi');
         this.testContainer.style.cssText = [
-            'position:absolute',
-            'width:auto',
-            'font-size:128px',
-            'left:-99999px'
+            'position: absolute',
+            'width: auto',
+            'font-size: 128px',
+            'left: -99999px'
         ].join(' !important;');
         this.listenerResize = function () { return _this.onResize(); };
         this.listenerMouseDown = function (event) { return _this.onMouseDown(event); };
@@ -48639,6 +48567,9 @@ var DialogComponent = (function () {
         if (this.position === 'fixed') {
             this.setDialogPosition();
         }
+        else {
+            this.closeFontPicker();
+        }
     };
     DialogComponent.prototype.onMouseDown = function (event) {
         if (!this.isDescendant(this.el.nativeElement, event.target) &&
@@ -48697,7 +48628,10 @@ var DialogComponent = (function () {
         };
     };
     DialogComponent.prototype.setDialogPosition = function () {
-        var node = this.directiveElementRef.nativeElement, parentNode = null, position = 'static';
+        var parentNode = null;
+        var position = 'static';
+        var node = this.directiveElementRef.nativeElement;
+        var dialogHeight = this.dialogElement.nativeElement.offsetHeight;
         while (node !== null && node.tagName !== 'HTML') {
             position = window.getComputedStyle(node).getPropertyValue("position");
             if (position !== 'static' && parentNode === null) {
@@ -48723,14 +48657,20 @@ var DialogComponent = (function () {
             this.left = boxDirective.left;
             this.position = 'fixed';
         }
+        if (!this.fpWidth) {
+            this.fpWidth = boxDirective.width;
+        }
+        if (!this.fpHeight) {
+            this.fpHeight = boxDirective.height;
+        }
         if (this.fpPosition === 'left') {
             this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
             this.left -= this.fpWidth + this.dialogArrowSize;
         }
         else if (this.fpPosition === 'top') {
-            this.top -= this.fpHeight + this.dialogArrowSize;
+            this.top -= dialogHeight + this.dialogArrowSize;
             this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
-            this.arrowTop = this.fpHeight - 1;
+            this.arrowTop = dialogHeight - 1;
         }
         else if (this.fpPosition === 'bottom') {
             this.top += boxDirective.height + this.dialogArrowSize;
@@ -48742,7 +48682,11 @@ var DialogComponent = (function () {
         }
     };
     __decorate([
-        core_1.ViewChild(angular2_perfect_scrollbar_1.PerfectScrollbarComponent), 
+        core_1.ViewChild('dialogPopup'), 
+        __metadata('design:type', Object)
+    ], DialogComponent.prototype, "dialogElement", void 0);
+    __decorate([
+        core_1.ViewChild('dialogScrollbar'), 
         __metadata('design:type', angular2_perfect_scrollbar_1.PerfectScrollbarComponent)
     ], DialogComponent.prototype, "scrollbar", void 0);
     DialogComponent = __decorate([
@@ -48756,6 +48700,78 @@ var DialogComponent = (function () {
     return DialogComponent;
 }());
 exports.DialogComponent = DialogComponent;
+
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+__webpack_require__(68);
+__webpack_require__(65);
+var Observable_1 = __webpack_require__(5);
+var core_1 = __webpack_require__(0);
+var http_1 = __webpack_require__(43);
+var interfaces_1 = __webpack_require__(8);
+var FontPickerService = (function () {
+    function FontPickerService(config, http) {
+        this.config = config;
+        this.http = http;
+        this.apiKey = "";
+        this.baseUrl = 'https://www.googleapis.com/webfonts/v1/webfonts';
+        this.apiKey = config.apiKey;
+    }
+    /*
+      Return all fonts avaliable from google fonts, may have sort parameter:
+      date || alpha || style || trending || popularity
+    */
+    FontPickerService.prototype.getAllFonts = function (sort) {
+        var requestUrl = this.baseUrl + '?key=' + this.apiKey;
+        if (sort) {
+            requestUrl = requestUrl.concat('&sort=' + sort);
+        }
+        return this.http.get(requestUrl)
+            .map(function (res) { return res.json(); })
+            .catch(this.handleHttpError);
+    };
+    /*
+      Return observable of the requested font
+    */
+    FontPickerService.prototype.getRequestedFont = function (family) {
+        var requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
+        return this.http.get(requestUrl)
+            .map(function (res) { return res.json(); })
+            .catch(this.handleHttpError);
+    };
+    /*
+      Handler for possible http request errors
+    */
+    FontPickerService.prototype.handleHttpError = function (error) {
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+        return Observable_1.Observable.throw(errMsg);
+    };
+    FontPickerService = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(interfaces_1.FontPickerConfig)), 
+        __metadata('design:paramtypes', [interfaces_1.FontPickerConfig, http_1.Http])
+    ], FontPickerService);
+    return FontPickerService;
+}());
+exports.FontPickerService = FontPickerService;
 
 
 /***/ },
@@ -48916,7 +48932,7 @@ var ELEMENT_PROBE_PROVIDERS_PROD_MODE = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__animation_driver__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_adapter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dom_tokens__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dom_tokens__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__events_event_manager__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_styles_host__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util__ = __webpack_require__(31);
@@ -49320,7 +49336,7 @@ var HammerGesturesPlugin = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_adapter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_tokens__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_tokens__ = __webpack_require__(9);
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return SharedStylesHost; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DomSharedStylesHost; });
 /**
@@ -49495,7 +49511,7 @@ var platform_browser_1 = __webpack_require__(45);
 var forms_1 = __webpack_require__(42);
 var angular2_perfect_scrollbar_1 = __webpack_require__(34);
 var pipes_module_1 = __webpack_require__(13);
-var dialog_component_1 = __webpack_require__(12);
+var dialog_component_1 = __webpack_require__(11);
 var DialogModule = (function () {
     function DialogModule() {
     }
@@ -49530,24 +49546,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var interfaces_1 = __webpack_require__(8);
 var dialog_module_1 = __webpack_require__(21);
-var dialog_component_1 = __webpack_require__(12);
-var font_picker_service_1 = __webpack_require__(9);
+var dialog_component_1 = __webpack_require__(11);
 var FontPickerDirective = (function () {
-    function FontPickerDirective(resolver, el, vc, cd, service, compiler) {
+    function FontPickerDirective(resolver, compiler, el, vc) {
         this.resolver = resolver;
+        this.compiler = compiler;
         this.el = el;
         this.vc = vc;
-        this.cd = cd;
-        this.service = service;
-        this.compiler = compiler;
-        this.created = false;
         this.fpWidth = '280px';
         this.fpHeight = '320px';
         this.fpFallbackFont = new interfaces_1.Font({
             family: 'Roboto',
-            styles: ['regular'],
+            size: 14,
             style: 'regular',
-            size: 14
+            styles: ['regular']
         });
         this.fpSizeSelect = true;
         this.fpStyleSelect = true;
@@ -49567,31 +49579,26 @@ var FontPickerDirective = (function () {
         if (!this.fontPicker) {
             this.fontPicker = this.fpFallbackFont;
         }
-        this.fontPickerChange.emit(this.fontPicker);
         if (fontPicker != this.fontPicker) {
-            this.cd.detectChanges();
+            this.fontPickerChange.emit(this.fontPicker);
         }
     };
     FontPickerDirective.prototype.onClick = function () {
         var _this = this;
         if (!this.dialog) {
-            this.created = true;
             this.compiler.compileModuleAndAllComponentsAsync(dialog_module_1.DialogModule).then(function (factory) {
                 var compFactory = factory.componentFactories.find(function (x) { return x.componentType === dialog_component_1.DialogComponent; });
                 var injector = core_1.ReflectiveInjector.fromResolvedProviders([], _this.vc.parentInjector);
-                var component = _this.vc.createComponent(compFactory, 0, injector, []);
-                component.instance.setDialog(_this, _this.el, _this.fontPicker, _this.fpPosition, _this.fpPositionOffset, _this.fpPositionRelativeToArrow, _this.fpPresetLabel, _this.fpPresetFonts, _this.fpUploadButton, _this.fpUploadButtonClass, _this.fpUploadButtonText, _this.fpStyleSelect, _this.fpSizeSelect, _this.fpCancelButton, _this.fpCancelButtonClass, _this.fpCancelButtonText, _this.fpHeight, _this.fpWidth);
-                _this.dialog = component.instance;
+                _this.dialog = _this.vc.createComponent(compFactory, 0, injector, []).instance;
+                _this.dialog.setDialog(_this, _this.el, _this.fontPicker, _this.fpPosition, _this.fpPositionOffset, _this.fpPositionRelativeToArrow, _this.fpPresetLabel, _this.fpPresetFonts, _this.fpUploadButton, _this.fpUploadButtonClass, _this.fpUploadButtonText, _this.fpStyleSelect, _this.fpSizeSelect, _this.fpCancelButton, _this.fpCancelButtonClass, _this.fpCancelButtonText, _this.fpHeight, _this.fpWidth);
             });
         }
-        else if (this.dialog) {
-            if (this.dialog.open) {
-                this.dialog.closeFontPicker();
-            }
-            else {
-                this.dialog.updateDialog(this.fontPicker, this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect, this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
-                this.dialog.openFontPicker();
-            }
+        else if (!this.dialog.open) {
+            this.dialog.updateDialog(this.fontPicker, this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect, this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
+            this.dialog.openFontPicker();
+        }
+        else {
+            this.dialog.closeFontPicker();
         }
     };
     __decorate([
@@ -49673,7 +49680,7 @@ var FontPickerDirective = (function () {
                 '(click)': 'onClick()'
             }
         }), 
-        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ElementRef, core_1.ViewContainerRef, core_1.ChangeDetectorRef, font_picker_service_1.FontPickerService, core_1.Compiler])
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.Compiler, core_1.ElementRef, core_1.ViewContainerRef])
     ], FontPickerDirective);
     return FontPickerDirective;
 }());
@@ -49761,7 +49768,7 @@ exports.StatefulSlicePipe = StatefulSlicePipe;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_common__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
@@ -49774,7 +49781,7 @@ exports.StatefulSlicePipe = StatefulSlicePipe;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_debug_ng_probe__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dom_dom_adapter__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dom_dom_renderer__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dom_dom_tokens__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dom_dom_tokens__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dom_events_dom_events__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dom_events_hammer_gestures__ = __webpack_require__(17);
@@ -50367,7 +50374,7 @@ function parseCookieValue(cookieStr, name) {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_common__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
@@ -51022,7 +51029,7 @@ var SafeResourceUrlImpl = (function (_super) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(11), __webpack_require__(0));
+		module.exports = factory(__webpack_require__(10), __webpack_require__(0));
 	else if(typeof define === 'function' && define.amd)
 		define("angular2-perfect-scrollbar", ["@angular/common", "@angular/core"], factory);
 	else if(typeof exports === 'object')
@@ -53241,9 +53248,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(43);
-var common_1 = __webpack_require__(11);
+var common_1 = __webpack_require__(10);
 var pipes_module_1 = __webpack_require__(13);
-var font_picker_service_1 = __webpack_require__(9);
+var font_picker_service_1 = __webpack_require__(12);
 var font_picker_directive_1 = __webpack_require__(22);
 var interfaces_1 = __webpack_require__(8);
 exports.FONT_PICKER_CONFIG = new core_1.OpaqueToken('FONT_PICKER_CONFIG');
@@ -54013,7 +54020,7 @@ var EventListener = win['EventListener'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_animation_driver__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dom_debug_by__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_debug_ng_probe__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dom_dom_tokens__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dom_dom_tokens__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dom_events_event_manager__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_events_hammer_gestures__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__security_dom_sanitization_service__ = __webpack_require__(33);
@@ -54484,13 +54491,13 @@ function sanitizeStyle(value) {
 /* 59 */
 /***/ function(module, exports) {
 
-module.exports = ".font-picker {\n  position: absolute;\n  z-index: 1000;\n  top: 250px;\n  left: 30px;\n  display: flex;\n  flex-direction: column;\n  width: 230px;\n  height: 280px;\n  border: #777 solid 1px;\n  cursor: default;\n  user-select: none;\n  background-color: #fff;\n  font-family: 'Open Sans', sans-serif; }\n  .font-picker input,\n  .font-picker select {\n    width: 100%;\n    padding: 4px;\n    outline: none;\n    border: none;\n    border-bottom: 2px solid #cfcfcf;\n    font-size: 14px;\n    text-align: left;\n    line-height: 18px;\n    background: none;\n    transition: border 300ms ease; }\n    .font-picker input:hover, .font-picker input:focus, .font-picker input:active,\n    .font-picker select:hover,\n    .font-picker select:focus,\n    .font-picker select:active {\n      border-bottom: 2px solid #999; }\n    .font-picker input:invalid,\n    .font-picker select:invalid {\n      box-shadow: none;\n      border-bottom: 2px solid #e74c3c; }\n    .font-picker input::-webkit-inner-spin-button, .font-picker input::-webkit-outer-spin-button,\n    .font-picker select::-webkit-inner-spin-button,\n    .font-picker select::-webkit-outer-spin-button {\n      margin: 0;\n      -webkit-appearance: none; }\n  .font-picker .arrow {\n    position: absolute;\n    z-index: 999999;\n    width: 0;\n    height: 0;\n    border-style: solid; }\n  .font-picker .arrow-right {\n    top: 10px;\n    left: -20px;\n    border-width: 5px 10px;\n    border-color: transparent #777 transparent transparent; }\n  .font-picker .arrow-left {\n    top: 10px;\n    left: 231px;\n    border-width: 5px 10px;\n    border-color: transparent transparent transparent #777; }\n  .font-picker .arrow-bottom {\n    top: -20px;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: transparent transparent #777 transparent; }\n  .font-picker .arrow-top {\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: #777 transparent transparent transparent; }\n  .font-picker .search-box {\n    position: relative; }\n  .font-picker .search-field {\n    box-sizing: border-box;\n    padding: 12px 48px 12px 16px; }\n    .font-picker .search-field:disabled {\n      opacity: 0.5;\n      cursor: not-allowed;\n      background-color: #888; }\n  .font-picker .search-reset {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 16px;\n    cursor: pointer;\n    font-size: 31px;\n    color: #777;\n    transition: color 300ms ease; }\n    .font-picker .search-reset:hover {\n      color: #555; }\n  .font-picker .font-list {\n    position: relative;\n    overflow: hidden;\n    flex: 1 1 auto; }\n    .font-picker .font-list .font-item {\n      position: relative;\n      padding: 8px 16px;\n      cursor: pointer; }\n      .font-picker .font-list .font-item.active {\n        font-weight: bold; }\n        .font-picker .font-list .font-item.active.selected {\n          cursor: default;\n          font-weight: normal;\n          background: #e6e6e6; }\n      .font-picker .font-list .font-item .font-info {\n        margin: 4px 0; }\n        .font-picker .font-list .font-item .font-info .font-name {\n          font-size: 14px;\n          text-transform: capitalize;\n          color: #555; }\n        .font-picker .font-list .font-item .font-info .not-available {\n          float: right;\n          width: 24px;\n          margin: -8px -8px 0 0;\n          font-size: 24px;\n          font-weight: 900;\n          font-family: 'Open Sans', sans-serif;\n          text-align: center;\n          text-transform: none;\n          color: #ef8b80; }\n          .font-picker .font-list .font-item .font-info .not-available::after {\n            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';\n            position: absolute;\n            z-index: 10;\n            top: 0;\n            right: 12px;\n            left: 12px;\n            padding: 12px 16px;\n            margin: 0 auto;\n            border-radius: 2px;\n            opacity: 0;\n            font-size: 13px;\n            font-weight: normal;\n            text-align: left;\n            pointer-events: none;\n            color: white;\n            background: rgba(60, 60, 60, 0.8);\n            transition: opacity 150ms ease; }\n          .font-picker .font-list .font-item .font-info .not-available:hover {\n            color: #ea6153; }\n            .font-picker .font-list .font-item .font-info .not-available:hover::after {\n              opacity: 1; }\n      .font-picker .font-list .font-item .font-text {\n        padding: 4px 0;\n        font-size: 16px;\n        text-align: right;\n        color: #999; }\n    .font-picker .font-list .font-group {\n      display: flex; }\n      .font-picker .font-list .font-group .group-line {\n        flex: 1 1 auto;\n        height: 2px;\n        margin-top: 16px;\n        margin-left: 8px;\n        background: #e74c3c; }\n        .font-picker .font-list .font-group .group-line.black {\n          background: #000; }\n      .font-picker .font-list .font-group .group-text {\n        overflow: hidden;\n        box-sizing: border-box;\n        max-width: 75%;\n        padding: 8px 16px;\n        font-size: 11px;\n        font-weight: bold;\n        text-align: left;\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        color: #e74c3c; }\n        .font-picker .font-list .font-group .group-text.black {\n          color: #000; }\n  .font-picker .font-options {\n    display: flex;\n    box-sizing: border-box;\n    padding: 8px;\n    border-top: 2px solid #cfcfcf; }\n    .font-picker .font-options .left {\n      flex: 1 1 auto;\n      padding: 0 2px; }\n      .font-picker .font-options .left .style-select {\n        text-transform: capitalize; }\n        .font-picker .font-options .left .style-select:disabled {\n          background-color: #777; }\n    .font-picker .font-options .right {\n      padding: 0 2px; }\n      .font-picker .font-options .right .size-select {\n        width: 48px;\n        text-align: center; }\n  .font-picker .button-area {\n    padding: 0 4px 4px;\n    border-top: 1px solid #aaa;\n    text-align: right; }\n    .font-picker .button-area .fp-upload-button-class,\n    .font-picker .button-area .fp-cancel-button-class {\n      display: inline-block;\n      margin: 8px;\n      text-align: center;\n      text-transform: uppercase; }\n"
+module.exports = ".font-picker {\n  position: absolute;\n  z-index: 1000;\n  top: 250px;\n  left: 30px;\n  display: flex;\n  flex-direction: column;\n  width: 280px;\n  height: 320px;\n  min-width: 200px;\n  min-height: 240px;\n  max-width: 100%;\n  max-height: 100%;\n  border: #777 solid 1px;\n  cursor: default;\n  user-select: none;\n  font-family: 'Open Sans', sans-serif;\n  background-color: #fff; }\n  .font-picker[hidden] {\n    display: none; }\n  .font-picker input,\n  .font-picker select {\n    width: 100%;\n    padding: 4px;\n    outline: none;\n    border: none;\n    border-bottom: 2px solid #cfcfcf;\n    font-size: 14px;\n    line-height: 18px;\n    text-align: left;\n    background: none;\n    transition: border 300ms ease; }\n    .font-picker input:hover, .font-picker input:focus, .font-picker input:active,\n    .font-picker select:hover,\n    .font-picker select:focus,\n    .font-picker select:active {\n      border-bottom: 2px solid #999; }\n    .font-picker input:invalid,\n    .font-picker select:invalid {\n      border-bottom: 2px solid #e74c3c;\n      box-shadow: none; }\n    .font-picker input::-webkit-inner-spin-button, .font-picker input::-webkit-outer-spin-button,\n    .font-picker select::-webkit-inner-spin-button,\n    .font-picker select::-webkit-outer-spin-button {\n      margin: 0;\n      -webkit-appearance: none; }\n  .font-picker .arrow {\n    position: absolute;\n    z-index: 999999;\n    width: 0;\n    height: 0;\n    border-style: solid; }\n  .font-picker .arrow-left {\n    top: 10px;\n    left: 231px;\n    border-width: 5px 10px;\n    border-color: transparent transparent transparent #777; }\n  .font-picker .arrow-right {\n    top: 10px;\n    left: -20px;\n    border-width: 5px 10px;\n    border-color: transparent #777 transparent transparent; }\n  .font-picker .arrow-top {\n    top: 0;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: #777 transparent transparent transparent; }\n  .font-picker .arrow-bottom {\n    top: -20px;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: transparent transparent #777 transparent; }\n  .font-picker .search-box {\n    position: relative; }\n  .font-picker .search-field {\n    box-sizing: border-box;\n    padding: 12px 48px 12px 16px; }\n    .font-picker .search-field:disabled {\n      opacity: 0.5;\n      cursor: not-allowed;\n      background-color: #888; }\n  .font-picker .search-reset {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 16px;\n    cursor: pointer;\n    color: #777;\n    font-size: 31px;\n    transition: color 300ms ease; }\n    .font-picker .search-reset:hover {\n      color: #555; }\n  .font-picker .font-list {\n    position: relative;\n    overflow: hidden;\n    flex: 1 1 auto; }\n    .font-picker .font-list .font-item {\n      position: relative;\n      padding: 8px 16px;\n      cursor: pointer; }\n      .font-picker .font-list .font-item.active {\n        font-weight: bold; }\n        .font-picker .font-list .font-item.active.selected {\n          cursor: default;\n          font-weight: normal;\n          background: #e6e6e6; }\n      .font-picker .font-list .font-item .font-info {\n        margin: 4px 0; }\n        .font-picker .font-list .font-item .font-info .font-name {\n          color: #555;\n          font-size: 14px;\n          text-transform: capitalize; }\n        .font-picker .font-list .font-item .font-info .not-available {\n          float: right;\n          width: 24px;\n          margin: -8px -8px 0 0;\n          color: #ef8b80;\n          font-size: 24px;\n          font-weight: 900;\n          font-family: 'Open Sans', sans-serif;\n          text-align: center;\n          text-transform: none; }\n          .font-picker .font-list .font-item .font-info .not-available::after {\n            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';\n            position: absolute;\n            z-index: 10;\n            top: 0;\n            right: 12px;\n            left: 12px;\n            opacity: 0;\n            padding: 12px 16px;\n            margin: 0 auto;\n            border-radius: 2px;\n            pointer-events: none;\n            color: #fff;\n            font-size: 13px;\n            font-weight: normal;\n            text-align: left;\n            background: rgba(60, 60, 60, 0.8);\n            transition: opacity 150ms ease; }\n          .font-picker .font-list .font-item .font-info .not-available:hover {\n            color: #ea6153; }\n            .font-picker .font-list .font-item .font-info .not-available:hover::after {\n              opacity: 1; }\n      .font-picker .font-list .font-item .font-text {\n        padding: 4px 0;\n        color: #999;\n        font-size: 16px;\n        text-align: right; }\n    .font-picker .font-list .font-group {\n      display: flex; }\n      .font-picker .font-list .font-group .group-line {\n        flex: 1 1 auto;\n        height: 2px;\n        margin-top: 16px;\n        margin-left: 8px;\n        background: #e74c3c; }\n        .font-picker .font-list .font-group .group-line.black {\n          background: #000; }\n      .font-picker .font-list .font-group .group-text {\n        overflow: hidden;\n        box-sizing: border-box;\n        max-width: 75%;\n        padding: 8px 16px;\n        color: #e74c3c;\n        font-size: 11px;\n        font-weight: bold;\n        text-align: left;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        .font-picker .font-list .font-group .group-text.black {\n          color: #000; }\n  .font-picker .font-options {\n    display: flex;\n    box-sizing: border-box;\n    padding: 8px;\n    border-top: 2px solid #cfcfcf; }\n    .font-picker .font-options .left {\n      flex: 1 1 auto;\n      padding: 0 2px; }\n      .font-picker .font-options .left .style-select {\n        text-transform: capitalize; }\n        .font-picker .font-options .left .style-select:disabled {\n          background-color: #777; }\n    .font-picker .font-options .right {\n      padding: 0 2px; }\n      .font-picker .font-options .right .size-select {\n        width: 48px;\n        text-align: center; }\n  .font-picker .button-area {\n    padding: 0 4px 4px;\n    border-top: 1px solid #aaa;\n    text-align: right; }\n    .font-picker .button-area .fp-upload-button-class,\n    .font-picker .button-area .fp-cancel-button-class {\n      display: inline-block;\n      margin: 8px;\n      text-align: center;\n      text-transform: uppercase; }\n"
 
 /***/ },
 /* 60 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"font-picker\" *ngIf=\"open\" [style.height.px]=\"fpHeight\" [style.width.px]=\"fpWidth\" [style.top.px]=\"top\" [style.left.px]=\"left\" [style.position]=\"position\">\n  <div class=\"arrow arrow-{{fpPosition}}\" [style.top.px]=\"arrowTop\"></div>\n\n  <div class=\"search-box\">\n    <input class=\"search-field\" placeholder=\"Search from Google Web Fonts...\" [formControl]=\"searchTerm\" />\n\n    <div class=\"search-reset\" [hidden]=\"!searchTerm.value\" (click)=\"onSearchReset($event)\">×</div>\n  </div>\n\n  <perfect-scrollbar class=\"font-list\" [config]=\"config\">\n    <div *ngIf=\"presetVisible && fpPresetFonts.length\">\n      <div class=\"font-group\">\n        <div class=\"group-line\"></div>\n        <div class=\"group-text\">{{fpPresetLabel}}</div>\n      </div>\n\n      <div *ngFor=\"let fontItem of presetFonts | StatefulSlice:0:loadedFonts\" class=\"font-item\" [ngClass]=\"{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n        <div class=\"font-info\">\n          <span class=\"font-name\">{{fontItem.family}}</span>\n\n          <div *ngIf=\"!fontItem.files\" class=\"not-available\">!</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"font-group\">\n      <div class=\"group-line black\"></div>\n      <div class=\"group-text black\">{{listLabel}}</div>\n    </div>\n\n    <div *ngFor=\"let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)\" class=\"font-item\" [ngClass]=\"{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n      <div class=\"font-info\">\n        <span class=\"font-name\">{{fontItem.family}}</span>\n      </div>\n    </div>\n  </perfect-scrollbar>\n\n  <div *ngIf=\"selectedFont && (fpStyleSelect || fpSizeSelect)\">\n    <div  class=\"font-options\">\n      <div *ngIf=\"fpStyleSelect\" class=\"left\">\n        <select class=\"style-select\" [disabled]=\"!font.styles\" (change)=\"onFontStyleChange($event, font)\" [(ngModel)]=\"font.style\">\n          <option *ngFor=\"let style of font.styles\" [value]=\"style\">{{style | FontStyles}}</option>\n        </select>\n      </div>\n\n      <div *ngIf=\"fpSizeSelect\" class=\"right\">\n        <input [ngClass]=\"{'size-select': fpStyleSelect}\" type=\"number\" pattern=\"[0-9]*\" min=\"1\" max=\"100\" [(ngModel)]=\"font.size\" />\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"fpCancelButton || fpUploadButton\" class=\"button-area\">\n    <button *ngIf=\"fpUploadButton\" type=\"button\" class=\"{{fpUploadButtonClass}}\" (click)=\"onUploadFiles()\">{{fpUploadButtonText}}</button>\n\n    <button *ngIf=\"fpCancelButton\" type=\"button\" class=\"{{fpCancelButtonClass}}\" (click)=\"onCancelSelect()\">{{fpCancelButtonText}}</button>\n  </div>\n</div>\n"
+module.exports = "<div #dialogPopup [hidden]=\"!open\" class=\"font-picker\" [style.height.px]=\"fpHeight\" [style.width.px]=\"fpWidth\" [style.top.px]=\"top\" [style.left.px]=\"left\" [style.position]=\"position\">\n  <div class=\"arrow arrow-{{fpPosition}}\" [style.top.px]=\"arrowTop\"></div>\n\n  <div class=\"search-box\">\n    <input class=\"search-field\" placeholder=\"Search from Google Web Fonts...\" [formControl]=\"searchTerm\" />\n\n    <div class=\"search-reset\" [hidden]=\"!searchTerm.value\" (click)=\"onSearchReset($event)\">×</div>\n  </div>\n\n  <perfect-scrollbar #dialogScrollbar class=\"font-list\" [config]=\"config\">\n    <div *ngIf=\"presetVisible && fpPresetFonts.length\">\n      <div class=\"font-group\">\n        <div class=\"group-line\"></div>\n        <div class=\"group-text\">{{fpPresetLabel}}</div>\n      </div>\n\n      <div *ngFor=\"let fontItem of presetFonts | StatefulSlice:0:loadedFonts\" class=\"font-item\" [ngClass]=\"{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n        <div class=\"font-info\">\n          <span class=\"font-name\">{{fontItem.family}}</span>\n\n          <div *ngIf=\"!fontItem.files\" class=\"not-available\">!</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"font-group\">\n      <div class=\"group-line black\"></div>\n      <div class=\"group-text black\">{{listLabel}}</div>\n    </div>\n\n    <div *ngFor=\"let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)\" class=\"font-item\" [ngClass]=\"{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n      <div class=\"font-info\">\n        <span class=\"font-name\">{{fontItem.family}}</span>\n      </div>\n    </div>\n  </perfect-scrollbar>\n\n  <div *ngIf=\"selectedFont && (fpStyleSelect || fpSizeSelect)\">\n    <div  class=\"font-options\">\n      <div *ngIf=\"fpStyleSelect\" class=\"left\">\n        <select class=\"style-select\" [disabled]=\"!font.styles\" (change)=\"onFontStyleChange($event, font)\" [(ngModel)]=\"font.style\">\n          <option *ngFor=\"let style of font.styles\" [value]=\"style\">{{style | FontStyles}}</option>\n        </select>\n      </div>\n\n      <div *ngIf=\"fpSizeSelect\" class=\"right\">\n        <input type=\"number\" pattern=\"[0-9]*\" min=\"1\" max=\"100\" [ngClass]=\"{'size-select': fpStyleSelect}\" [(ngModel)]=\"font.size\" />\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"fpUploadButton || fpCancelButton\" class=\"button-area\">\n    <button *ngIf=\"fpUploadButton\" type=\"button\" class=\"{{fpUploadButtonClass}}\" (click)=\"onUploadFiles()\">{{fpUploadButtonText}}</button>\n\n    <button *ngIf=\"fpCancelButton\" type=\"button\" class=\"{{fpCancelButtonClass}}\" (click)=\"onCancelSelect()\">{{fpCancelButtonText}}</button>\n  </div>\n</div>\n"
 
 /***/ },
 /* 61 */
@@ -55556,11 +55563,11 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_84__;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(12));
+__export(__webpack_require__(11));
 __export(__webpack_require__(21));
 __export(__webpack_require__(22));
 __export(__webpack_require__(44));
-__export(__webpack_require__(9));
+__export(__webpack_require__(12));
 __export(__webpack_require__(8));
 __export(__webpack_require__(23));
 __export(__webpack_require__(13));
@@ -69691,13 +69698,13 @@ metadata.exp({metadata: function metadata(metadataKey, metadataValue){
 /* 637 */
 /***/ function(module, exports) {
 
-module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-title {\n  font-size: 20px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 12px 16px;\n\n  line-height: 24px;\n}\n\n.content-container {\n  display: flex;\n  overflow: auto;\n  flex: 1 1 auto;\n  flex-direction: column;\n  align-items: stretch;\n  padding: 16px 24px;\n  margin: 8px 16px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n\n.vertical-container {\n  display: flex;\n  flex: 1 1 50%;\n  flex-direction: column;\n  align-items: stretch;\n}\n\n.horizontal-container {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  align-items: stretch;\n}\n\n@media all and (max-width: 800px) {\n  .horizontal-container {\n    flex-direction: column;\n  }\n}\n\n.action-toggle-button {\n  display: flex;\n  box-sizing: border-box;\n  flex: 1 1 auto;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  padding: 16px;\n  margin: 8px 0;\n  border-radius: 4px;\n  border: 1px solid #555;\n\n  cursor: pointer;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n}\n\n.action-toggle-button:hover {\n  padding: 8px;\n\n  color: #fff;\n  background-color: #555;\n}\n\n.font-preview-content {\n  color: #888;\n  line-height: 1.3;\n}\n"
+module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-title {\n  font-size: 20px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 12px 16px;\n\n  line-height: 24px;\n}\n\n.content-container {\n  display: flex;\n  overflow: auto;\n  flex: 1 1 auto;\n  flex-direction: column;\n  align-items: stretch;\n  padding: 16px 24px;\n  margin: 8px 16px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n\n.vertical-container {\n  display: flex;\n  flex: 1 1 50%;\n  flex-direction: column;\n  align-items: stretch;\n}\n\n.horizontal-container {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  align-items: stretch;\n}\n\n@media all and (max-width: 800px) {\n  .horizontal-container {\n    flex-direction: column;\n  }\n}\n\n.action-toggle-button {\n  display: flex;\n  box-sizing: border-box;\n  flex: 1 1 auto;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  padding: 16px;\n  margin: 8px 0;\n  border-radius: 4px;\n  border: 1px solid #555;\n\n  cursor: pointer;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n}\n\n.action-toggle-button:hover {\n  color: #fff;\n  background-color: #555;\n}\n\n.font-preview-content {\n  color: #888;\n  line-height: 1.3;\n}\n"
 
 /***/ },
 /* 638 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">Simple example app for the angular2-font-picker</div>\n\n  <div class=\"info-container\">\n    You can select a font by clicking the first button and toggle the config options from the two other buttons.\n  </div>\n\n  <div class=\"horizontal-container\">\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Settings</div>\n\n      <div class=\"content-container\">\n        <div class=\"action-toggle-button\" [(fontPicker)]=\"font\" [fpWidth]=\"'240px'\" [fpPosition]=\"'bottom'\" [fpPositionOffset]=\"'0%'\" [fpPositionRelativeToArrow]=\"false\" [fpPresetLabel]=\"'Preset fonts'\" [fpPresetFonts]=\"presetFonts\" [fpSizeSelect]=\"sizeSelect\" [fpStyleSelect]=\"styleSelect\">\n          {{font.family}} {{font.style | FontStyles}} {{font.size}}px\n        </div>\n\n        <div class=\"action-toggle-button\" (click)=\"togglePresetFonts()\">Preset fonts: {{presetFonts.length ? \"ON\" : \"OFF\"}}</div>\n\n        <div class=\"action-toggle-button\" (click)=\"toggleExtraOptions()\">Style & size: {{(sizeSelect || styleSelect) ? \"ON\" : \"OFF\"}}</div>\n      </div>\n    </div>\n\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Preview</div>\n\n      <div class=\"content-container\">\n        <div [ngStyle]=\"font.getStyles()\">\n          <div class=\"font-preview-content\">\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor.\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">Simple example app for the angular2-font-picker</div>\n\n  <div class=\"info-container\">\n    You can select a font by clicking the first button and toggle the config options from the two other buttons.\n  </div>\n\n  <div class=\"horizontal-container\">\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Settings</div>\n\n      <div class=\"content-container\">\n        <div class=\"action-toggle-button\" [(fontPicker)]=\"font\" [fpWidth]=\"'auto'\" [fpPosition]=\"'bottom'\" [fpPositionOffset]=\"'0%'\" [fpPositionRelativeToArrow]=\"false\" [fpPresetLabel]=\"'Preset fonts'\" [fpPresetFonts]=\"presetFonts\" [fpSizeSelect]=\"sizeSelect\" [fpStyleSelect]=\"styleSelect\">\n          {{font.family}} {{font.style | FontStyles}} {{font.size}}px\n        </div>\n\n        <div class=\"action-toggle-button\" (click)=\"togglePresetFonts()\">Preset fonts: {{presetFonts.length ? \"ON\" : \"OFF\"}}</div>\n\n        <div class=\"action-toggle-button\" (click)=\"toggleExtraOptions()\">Style & size: {{(sizeSelect || styleSelect) ? \"ON\" : \"OFF\"}}</div>\n      </div>\n    </div>\n\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Preview</div>\n\n      <div class=\"content-container\">\n        <div [ngStyle]=\"font.getStyles()\">\n          <div class=\"font-preview-content\">\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor.\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 639 */
