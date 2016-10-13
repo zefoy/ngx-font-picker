@@ -381,6 +381,8 @@ export class DialogComponent implements OnInit {
   onResize() {
     if (this.position === 'fixed') {
       this.setDialogPosition();
+    } else {
+      this.closeFontPicker();
     }
   }
 
@@ -497,6 +499,10 @@ export class DialogComponent implements OnInit {
 
     if (!this.fpWidth) {
       this.fpWidth = boxDirective.width;
+    }
+
+    if (!this.fpHeight) {
+      this.fpHeight = boxDirective.height;
     }
 
     if (this.fpPosition === 'left') {

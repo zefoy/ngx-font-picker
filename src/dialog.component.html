@@ -1,4 +1,4 @@
-<div #dialogPopup *ngIf="open" class="font-picker" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
+<div #dialogPopup [hidden]="!open" class="font-picker" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
   <div class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
 
   <div class="search-box">

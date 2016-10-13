@@ -52,7 +52,7 @@ const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [(fontPicker)]      // Selected font ({family, size, style, styles, files}).
 
 [fpWidth]           // Width of the font picker (Default: '280px').
-[fpHeight]          // Height of the font picker (Default: 'auto').
+[fpHeight]          // Height of the font picker (Default: '320px').
 [fpPosition]        // Position of the font picker (Default: 'bottom').
 [fpSizeSelect]      // Show size selector in the font picker (Default: false).
 [fpStyleSelect]     // Show style selector in the font picker (Default: false).
