@@ -1,3 +1,7 @@
+0.8.2 Bug fix release
+
+  - Fixed width and height auto setting
+
 0.8.1 Bug fix release
 
   - Small styling / template fixes

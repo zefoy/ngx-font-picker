@@ -1,3 +1,5 @@
+declare var require: any;
+
 import * as WebFont from 'webfontloader';
 
 import "rxjs/add/operator/debounceTime";
@@ -83,9 +85,11 @@ export class DialogComponent implements OnInit {
     suppressScrollX: true
   };
 
-  @ViewChild(PerfectScrollbarComponent) scrollbar: PerfectScrollbarComponent;
+  @ViewChild('dialogPopup') dialogElement: any;
 
-  constructor( private el: ElementRef, private service: FontPickerService ) {
+  @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
+
+  constructor(private el: ElementRef, private service: FontPickerService) {
     this.loading = true;
     this.selectedFont = false;
     this.presetVisible = true;
@@ -117,10 +121,10 @@ export class DialogComponent implements OnInit {
       this.testContainer.innerHTML = Array(100).join('wi');
 
       this.testContainer.style.cssText = [
-        'position:absolute',
-        'width:auto',
-        'font-size:128px',
-        'left:-99999px'
+        'position: absolute',
+        'width: auto',
+        'font-size: 128px',
+        'left: -99999px'
       ].join(' !important;');
 
     this.listenerResize = () => this.onResize();
@@ -239,7 +243,7 @@ export class DialogComponent implements OnInit {
   }
 
   getPresetFonts() {
-    var presetFonts = [];
+    let presetFonts = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
       this.fpPresetFonts.forEach((font) => {
@@ -431,7 +435,7 @@ export class DialogComponent implements OnInit {
   }
 
   isDescendant(parent, child): boolean {
-    var node = child.parentNode;
+    let node = child.parentNode;
 
     while (node !== null) {
       if (node === parent) {
@@ -454,7 +458,11 @@ export class DialogComponent implements OnInit {
   }
 
   setDialogPosition() {
-    var node = this.directiveElementRef.nativeElement, parentNode = null, position = 'static';
+    let parentNode = null;
+    let position = 'static';
+    let node = this.directiveElementRef.nativeElement;
+
+    let dialogHeight = this.dialogElement.nativeElement.offsetHeight;
 
     while (node !== null && node.tagName !== 'HTML') {
       position = window.getComputedStyle(node).getPropertyValue("position");
@@ -487,13 +495,17 @@ export class DialogComponent implements OnInit {
       this.position = 'fixed';
     }
 
+    if (!this.fpWidth) {
+      this.fpWidth = boxDirective.width;
+    }
+
     if (this.fpPosition === 'left') {
       this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
       this.left -= this.fpWidth + this.dialogArrowSize;
     } else if (this.fpPosition === 'top') {
-      this.top -= this.fpHeight + this.dialogArrowSize;
+      this.top -= dialogHeight + this.dialogArrowSize;
       this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
-      this.arrowTop = this.fpHeight - 1;
+      this.arrowTop = dialogHeight - 1;
     } else if (this.fpPosition === 'bottom') {
       this.top += boxDirective.height + this.dialogArrowSize;
       this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;

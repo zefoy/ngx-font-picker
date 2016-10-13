@@ -10,7 +10,7 @@
       <div class="box-title">Settings</div>
 
       <div class="content-container">
-        <div class="action-toggle-button" [(fontPicker)]="font" [fpWidth]="'240px'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
+        <div class="action-toggle-button" [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
           {{font.family}} {{font.style | FontStyles}} {{font.size}}px
         </div>
 

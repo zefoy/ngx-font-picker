@@ -1,4 +1,4 @@
-<div class="font-picker" *ngIf="open" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
+<div #dialogPopup *ngIf="open" class="font-picker" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
   <div class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
 
   <div class="search-box">
@@ -7,7 +7,7 @@
     <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
   </div>
 
-  <perfect-scrollbar class="font-list" [config]="config">
+  <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
         <div class="group-line"></div>
@@ -44,12 +44,12 @@
       </div>
 
       <div *ngIf="fpSizeSelect" class="right">
-        <input [ngClass]="{'size-select': fpStyleSelect}" type="number" pattern="[0-9]*" min="1" max="100" [(ngModel)]="font.size" />
+        <input type="number" pattern="[0-9]*" min="1" max="100" [ngClass]="{'size-select': fpStyleSelect}" [(ngModel)]="font.size" />
       </div>
     </div>
   </div>
 
-  <div *ngIf="fpCancelButton || fpUploadButton" class="button-area">
+  <div *ngIf="fpUploadButton || fpCancelButton" class="button-area">
     <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFiles()">{{fpUploadButtonText}}</button>
 
     <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect()">{{fpCancelButtonText}}</button>

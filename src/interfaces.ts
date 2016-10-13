@@ -41,8 +41,8 @@ export class Font {
     return {
       'font-size': this.size.toString() + 'px',
       'font-family': this.family || 'monospace',
-      'font-weight': this.style.includes('regular') || isNaN(Number(this.style.slice(0,3))) ? 'normal' : this.style.slice(0,3),
-      'font-style': this.style.includes('i') || this.style.includes('italic') ? 'italic' : 'normal'
+      'font-style': this.style.includes('italic') ? 'italic' : 'normal',
+      'font-weight': isNaN(Number(this.style.slice(0, 3))) ? 'normal' : this.style.slice(0, 3)
     }
   }
 }
