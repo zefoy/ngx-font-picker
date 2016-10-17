@@ -1,6 +1,6 @@
 0.8.3 Bug fix release
 
-  - Fixed dowloading fonts bug after font picker was closed
+  - Fixed dowloading fonts after closing bug
 
 0.8.2 Bug fix release
 
