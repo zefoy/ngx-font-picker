@@ -217,7 +217,7 @@ export class DialogComponent implements OnInit {
     this.open = false;
 
     window.removeEventListener('resize', this.listenerResize);
-    document.removeEventListener('mouseup', this.listenerMouseDown);
+    document.removeEventListener('mousedown', this.listenerMouseDown);
   }
 
   isFontAvailable(font: Font) {
