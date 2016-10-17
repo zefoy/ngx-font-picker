@@ -48515,7 +48515,7 @@ var DialogComponent = (function () {
     };
     DialogComponent.prototype.loadMoreFonts = function () {
         var _this = this;
-        if (this.loading == false && this.loadedFonts < this.currentFonts.length) {
+        if (this.open && !this.loading && this.loadedFonts < this.currentFonts.length) {
             var moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
             this.loadGoogleFonts(moreFonts);
             this.loadedFonts += moreFonts.length;
