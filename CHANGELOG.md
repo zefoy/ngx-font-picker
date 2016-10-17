@@ -1,3 +1,7 @@
+0.8.4 Bug fix release
+
+  - Fixed small bug with the search
+
 0.8.3 Bug fix release
 
   - Fixed dowloading fonts after closing bug
