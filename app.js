@@ -48437,7 +48437,7 @@ var DialogComponent = (function () {
     DialogComponent.prototype.closeFontPicker = function () {
         this.open = false;
         window.removeEventListener('resize', this.listenerResize);
-        document.removeEventListener('mouseup', this.listenerMouseDown);
+        document.removeEventListener('mousedown', this.listenerMouseDown);
     };
     DialogComponent.prototype.isFontAvailable = function (font) {
         if (!this.testWidth) {
