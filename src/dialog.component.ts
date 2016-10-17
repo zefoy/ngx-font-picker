@@ -318,7 +318,7 @@ export class DialogComponent implements OnInit {
   }
 
   loadMoreFonts() {
-    if (this.loading == false && this.loadedFonts < this.currentFonts.length) {
+    if (this.loading == false && this.loadedFonts < this.currentFonts.length && this.open == true) {
       let moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
 
       this.loadGoogleFonts(moreFonts);
