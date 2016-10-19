@@ -1,3 +1,7 @@
+0.8.5 Bug fix release
+
+  - Fixed loading text not being shown bug
+
 0.8.4 Bug fix release
 
   - Fixed small bug with the search

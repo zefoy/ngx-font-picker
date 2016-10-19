@@ -7,6 +7,8 @@
     <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
   </div>
 
+  <div *ngIf="loading" class="load-text">Loading fonts list...</div>
+
   <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
