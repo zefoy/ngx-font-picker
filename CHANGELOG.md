@@ -1,3 +1,7 @@
+0.9.0 Feature release
+
+  - Added support for using in submodules
+
 0.8.5 Bug fix release
 
   - Fixed loading text not being shown bug
