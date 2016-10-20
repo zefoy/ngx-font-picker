@@ -1,3 +1,7 @@
+0.9.1 Maintenance release
+
+  - Allow easier font picker config creation
+
 0.9.0 Feature release
 
   - Added support for using in submodules
