@@ -48237,9 +48237,17 @@ if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === fre
 "use strict";
 "use strict";
 var FontPickerConfig = (function () {
-    function FontPickerConfig() {
+    function FontPickerConfig(config) {
+        if (config === void 0) { config = {}; }
         this.apiKey = null;
+        this.assign(config);
     }
+    FontPickerConfig.prototype.assign = function (config) {
+        if (config === void 0) { config = {}; }
+        for (var key in config) {
+            this[key] = config[key];
+        }
+    };
     return FontPickerConfig;
 }());
 exports.FontPickerConfig = FontPickerConfig;
@@ -53280,7 +53288,7 @@ var FontPickerModule = (function () {
                 },
                 {
                     provide: interfaces_1.FontPickerConfig,
-                    useFactory: provideFontPickerConfig,
+                    useFactory: function () { return new interfaces_1.FontPickerConfig(exports.FONT_PICKER_CONFIG); },
                     deps: [
                         exports.FONT_PICKER_CONFIG
                     ]
@@ -53313,13 +53321,6 @@ function provideForRootGuard(config) {
     return 'guarded';
 }
 exports.provideForRootGuard = provideForRootGuard;
-function provideFontPickerConfig(configInterface) {
-    if (configInterface === void 0) { configInterface = {}; }
-    var config = new interfaces_1.FontPickerConfig();
-    config.apiKey = configInterface.apiKey || '';
-    return config;
-}
-exports.provideFontPickerConfig = provideFontPickerConfig;
 
 
 /***/ },
