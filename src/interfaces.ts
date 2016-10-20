@@ -20,6 +20,16 @@ export interface FontPickerConfigInterface {
 
 export class FontPickerConfig implements FontPickerConfigInterface {
   apiKey: string = null;
+
+  constructor(config: FontPickerConfigInterface = {}) {
+    this.assign(config);
+  }
+
+  public assign(config: FontPickerConfigInterface = {}) {
+    for (var key in config) {
+      this[key] = config[key];
+    }
+  }
 }
 
 export class Font {
