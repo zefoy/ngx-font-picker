@@ -48240,7 +48240,6 @@ var FontPickerConfig = (function () {
     function FontPickerConfig(config) {
         if (config === void 0) { config = {}; }
         this.apiKey = null;
-        console.log(config);
         this.assign(config);
     }
     FontPickerConfig.prototype.assign = function (config) {
@@ -48248,7 +48247,6 @@ var FontPickerConfig = (function () {
         for (var key in config) {
             this[key] = config[key];
         }
-        console.log(this.apiKey);
     };
     return FontPickerConfig;
 }());
