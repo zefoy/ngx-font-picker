@@ -1,3 +1,7 @@
+0.9.2 Bug fix release
+
+  - Fixed global configuration setting
+
 0.9.1 Maintenance release
 
   - Allow easier font picker config creation

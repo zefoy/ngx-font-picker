@@ -43,7 +43,7 @@ export class FontPickerModule {
         },
         {
           provide: FontPickerConfig,
-          useFactory: () => new FontPickerConfig(FONT_PICKER_CONFIG),
+          useFactory: (config) => new FontPickerConfig(config),
           deps: [
             FONT_PICKER_CONFIG
           ]

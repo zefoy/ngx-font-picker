@@ -510,11 +510,11 @@ export class DialogComponent implements OnInit {
       this.left -= this.fpWidth + this.dialogArrowSize;
     } else if (this.fpPosition === 'top') {
       this.top -= dialogHeight + this.dialogArrowSize;
-      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset - 1;
       this.arrowTop = dialogHeight - 1;
     } else if (this.fpPosition === 'bottom') {
       this.top += boxDirective.height + this.dialogArrowSize;
-      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset - 1;
     } else {
       this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
       this.left += boxDirective.width + this.dialogArrowSize;

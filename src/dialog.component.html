@@ -12,8 +12,8 @@
   <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
-        <div class="group-line"></div>
         <div class="group-text">{{fpPresetLabel}}</div>
+        <div class="group-line"></div>
       </div>
 
       <div *ngFor="let fontItem of presetFonts | StatefulSlice:0:loadedFonts" class="font-item" [ngClass]="{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
@@ -26,8 +26,8 @@
     </div>
 
     <div class="font-group">
-      <div class="group-line black"></div>
       <div class="group-text black">{{listLabel}}</div>
+      <div class="group-line black"></div>
     </div>
 
     <div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
