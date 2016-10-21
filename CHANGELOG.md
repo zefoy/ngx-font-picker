@@ -1,3 +1,7 @@
+0.9.3 Maintenance release
+
+  - Removed forgotten debug logging
+
 0.9.2 Bug fix release
 
   - Fixed global configuration setting
