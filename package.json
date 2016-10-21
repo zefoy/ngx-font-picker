@@ -27,7 +27,7 @@
     "url": "https://github.com/zefoy/angular2-font-picker.git"
   },
   "dependencies": {
-    "angular2-perfect-scrollbar": "0.8.0",
+    "angular2-perfect-scrollbar": "^0.8.0",
     "webfontloader": "1.6.26"
   },
   "devDependencies": {
