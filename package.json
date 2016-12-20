@@ -3,7 +3,7 @@
   "description": "Google fonts font picker widget for Angular 2",
   "bugs": "https://github.com/zefoy/angular2-font-picker/issues",
   "license": "MIT",
-  "version": "0.9.3",
+  "version": "1.0.0",
   "main": "./lib/index.js",
   "typings": "./lib/src/index.d.ts",
   "files": [
@@ -27,7 +27,7 @@
     "url": "https://github.com/zefoy/angular2-font-picker.git"
   },
   "dependencies": {
-    "angular2-perfect-scrollbar": "^0.8.0",
+    "angular2-perfect-scrollbar": "^1.0.0",
     "webfontloader": "1.6.26"
   },
   "devDependencies": {
