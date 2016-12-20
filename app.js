@@ -46953,7 +46953,7 @@ var DomAdapter = (function () {
     ;
     return DomAdapter;
 }());
-//# sourceMappingURL=dom_adapter.js.map
+
 
 /***/ },
 /* 2 */
@@ -47351,7 +47351,7 @@ function escape(s) {
 function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
-//# sourceMappingURL=lang.js.map
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(41)))
 
 /***/ },
@@ -47728,7 +47728,7 @@ var SetWrapper = (function () {
     SetWrapper.delete = function (m, k) { m.delete(k); };
     return SetWrapper;
 }());
-//# sourceMappingURL=collection.js.map
+
 
 /***/ },
 /* 4 */
@@ -47805,7 +47805,7 @@ var EventManagerPlugin = (function () {
     };
     return EventManagerPlugin;
 }());
-//# sourceMappingURL=event_manager.js.map
+
 
 /***/ },
 /* 5 */
@@ -47951,7 +47951,7 @@ var Observable = (function () {
     return Observable;
 }());
 exports.Observable = Observable;
-//# sourceMappingURL=Observable.js.map
+
 
 /***/ },
 /* 6 */
@@ -48206,7 +48206,7 @@ var SafeSubscriber = (function (_super) {
     };
     return SafeSubscriber;
 }(Subscriber));
-//# sourceMappingURL=Subscriber.js.map
+
 
 /***/ },
 /* 7 */
@@ -48227,7 +48227,7 @@ var freeGlobal = objectTypes[typeof global] && global;
 if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
     exports.root = freeGlobal;
 }
-//# sourceMappingURL=root.js.map
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(41)))
 
 /***/ },
@@ -48303,7 +48303,7 @@ exports.GoogleFonts = GoogleFonts;
  * @stable
  */
 var DOCUMENT = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('DocumentToken');
-//# sourceMappingURL=dom_tokens.js.map
+
 
 /***/ },
 /* 10 */
@@ -48700,8 +48700,8 @@ var DialogComponent = (function () {
     DialogComponent = __decorate([
         core_1.Component({
             selector: 'font-picker',
-            template: __webpack_require__(60),
-            styles: [__webpack_require__(59)]
+            template: __webpack_require__(46),
+            styles: [__webpack_require__(45)]
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, font_picker_service_1.FontPickerService])
     ], DialogComponent);
@@ -48847,7 +48847,7 @@ var AnimationDriver = (function () {
     AnimationDriver.NOOP = new _NoOpAnimationDriver();
     return AnimationDriver;
 }());
-//# sourceMappingURL=animation_driver.js.map
+
 
 /***/ },
 /* 15 */
@@ -48928,7 +48928,7 @@ var ELEMENT_PROBE_PROVIDERS_PROD_MODE = [{
         useFactory: _createRootRenderer,
         deps: [__WEBPACK_IMPORTED_MODULE_4__dom_renderer__["a" /* DomRootRenderer */], [NgProbeToken, new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"]()]]
     }];
-//# sourceMappingURL=ng_probe.js.map
+
 
 /***/ },
 /* 16 */
@@ -49236,7 +49236,7 @@ function splitNamespace(name) {
     var match = name.match(NS_PREFIX_RE);
     return [match[1], match[2]];
 }
-//# sourceMappingURL=dom_renderer.js.map
+
 
 /***/ },
 /* 17 */
@@ -49246,7 +49246,7 @@ function splitNamespace(name) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hammer_common__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hammer_common__ = __webpack_require__(53);
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return HAMMER_GESTURE_CONFIG; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return HammerGestureConfig; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HammerGesturesPlugin; });
@@ -49334,7 +49334,7 @@ var HammerGesturesPlugin = (function (_super) {
     ];
     return HammerGesturesPlugin;
 }(__WEBPACK_IMPORTED_MODULE_2__hammer_common__["a" /* HammerGesturesPluginCommon */]));
-//# sourceMappingURL=hammer_gestures.js.map
+
 
 /***/ },
 /* 18 */
@@ -49422,7 +49422,7 @@ var DomSharedStylesHost = (function (_super) {
     ];
     return DomSharedStylesHost;
 }(SharedStylesHost));
-//# sourceMappingURL=shared_styles_host.js.map
+
 
 /***/ },
 /* 19 */
@@ -49487,7 +49487,7 @@ function sanitizeSrcset(srcset) {
     srcset = String(srcset);
     return srcset.split(',').map(function (srcset) { return sanitizeUrl(srcset.trim()); }).join(', ');
 }
-//# sourceMappingURL=url_sanitizer.js.map
+
 
 /***/ },
 /* 20 */
@@ -49497,7 +49497,7 @@ function sanitizeSrcset(srcset) {
 "use strict";
 // typeof any so that it we don't have to cast when comparing a result to the error object
 exports.errorObject = { e: {} };
-//# sourceMappingURL=errorObject.js.map
+
 
 /***/ },
 /* 21 */
@@ -49515,7 +49515,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(45);
+var platform_browser_1 = __webpack_require__(47);
 var forms_1 = __webpack_require__(42);
 var angular2_perfect_scrollbar_1 = __webpack_require__(34);
 var pipes_module_1 = __webpack_require__(13);
@@ -49781,7 +49781,7 @@ exports.StatefulSlicePipe = StatefulSlicePipe;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_dom_animation_driver__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_dom_web_animations_driver__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_dom_web_animations_driver__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_browser_adapter__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_location_browser_platform_location__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__browser_testability__ = __webpack_require__(27);
@@ -49898,7 +49898,7 @@ var BrowserModule = (function () {
     ];
     return BrowserModule;
 }());
-//# sourceMappingURL=browser.js.map
+
 
 /***/ },
 /* 25 */
@@ -49908,7 +49908,7 @@ var BrowserModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_dom_adapter__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_collection__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_lang__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__generic_browser_adapter__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__generic_browser_adapter__ = __webpack_require__(48);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BrowserDomAdapter; });
 /* unused harmony export parseCookieValue */
 /**
@@ -50375,7 +50375,7 @@ function parseCookieValue(cookieStr, name) {
     }
     return null;
 }
-//# sourceMappingURL=browser_adapter.js.map
+
 
 /***/ },
 /* 26 */
@@ -50387,7 +50387,7 @@ function parseCookieValue(cookieStr, name) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_dom_adapter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__history__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__history__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BrowserPlatformLocation; });
 /**
  * @license
@@ -50475,7 +50475,7 @@ var BrowserPlatformLocation = (function (_super) {
     BrowserPlatformLocation.ctorParameters = [];
     return BrowserPlatformLocation;
 }(__WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"]));
-//# sourceMappingURL=browser_platform_location.js.map
+
 
 /***/ },
 /* 27 */
@@ -50552,7 +50552,7 @@ var BrowserGetTestability = (function () {
     };
     return BrowserGetTestability;
 }());
-//# sourceMappingURL=testability.js.map
+
 
 /***/ },
 /* 28 */
@@ -50594,7 +50594,7 @@ var Title = (function () {
     Title.prototype.setTitle = function (newTitle) { __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dom_dom_adapter__["a" /* getDOM */])().setTitle(newTitle); };
     return Title;
 }());
-//# sourceMappingURL=title.js.map
+
 
 /***/ },
 /* 29 */
@@ -50647,7 +50647,7 @@ var DomEventsPlugin = (function (_super) {
     DomEventsPlugin.ctorParameters = [];
     return DomEventsPlugin;
 }(__WEBPACK_IMPORTED_MODULE_2__event_manager__["b" /* EventManagerPlugin */]));
-//# sourceMappingURL=dom_events.js.map
+
 
 /***/ },
 /* 30 */
@@ -50774,7 +50774,7 @@ var KeyEventsPlugin = (function (_super) {
     KeyEventsPlugin.ctorParameters = [];
     return KeyEventsPlugin;
 }(__WEBPACK_IMPORTED_MODULE_4__event_manager__["b" /* EventManagerPlugin */]));
-//# sourceMappingURL=key_events.js.map
+
 
 /***/ },
 /* 31 */
@@ -50800,7 +50800,7 @@ function camelCaseToDashCase(input) {
 function dashCaseToCamelCase(input) {
     return __WEBPACK_IMPORTED_MODULE_0__facade_lang__["g" /* StringWrapper */].replaceAllMapped(input, DASH_CASE_REGEXP, function (m /** TODO #9100 */) { return m[1].toUpperCase(); });
 }
-//# sourceMappingURL=util.js.map
+
 
 /***/ },
 /* 32 */
@@ -50847,7 +50847,7 @@ var prepareFinalAnimationStyles = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_
 var balanceAnimationKeyframes = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"].balanceAnimationKeyframes;
 var clearStyles = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"].clearStyles;
 var collectAndResolveStyles = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"].collectAndResolveStyles;
-//# sourceMappingURL=private_import_core.js.map
+
 
 /***/ },
 /* 33 */
@@ -50856,8 +50856,8 @@ var collectAndResolveStyles = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__cor
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__html_sanitizer__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__style_sanitizer__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__html_sanitizer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__style_sanitizer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__url_sanitizer__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DomSanitizer; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return DomSanitizerImpl; });
@@ -51029,7 +51029,7 @@ var SafeResourceUrlImpl = (function (_super) {
     SafeResourceUrlImpl.prototype.getTypeName = function () { return 'ResourceURL'; };
     return SafeResourceUrlImpl;
 }(SafeValueImpl));
-//# sourceMappingURL=dom_sanitization_service.js.map
+
 
 /***/ },
 /* 34 */
@@ -51120,10 +51120,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 var _ = __webpack_require__(1);
 var cls = __webpack_require__(5);
-var defaultSettings = __webpack_require__(14);
+var defaultSettings = __webpack_require__(15);
 var dom = __webpack_require__(4);
-var EventManager = __webpack_require__(11);
-var guid = __webpack_require__(12);
+var EventManager = __webpack_require__(12);
+var guid = __webpack_require__(13);
 
 var instances = {};
 
@@ -51240,7 +51240,7 @@ var toInt = exports.toInt = function (x) {
 };
 
 var clone = exports.clone = function (obj) {
-  if (obj === null) {
+  if (!obj) {
     return null;
   } else if (obj.constructor === Array) {
     return obj.map(clone);
@@ -51457,29 +51457,14 @@ module.exports = function (element) {
 
 var instances = __webpack_require__(0);
 
-var upEvent = document.createEvent('Event');
-var downEvent = document.createEvent('Event');
-var leftEvent = document.createEvent('Event');
-var rightEvent = document.createEvent('Event');
-var yEvent = document.createEvent('Event');
-var xEvent = document.createEvent('Event');
-var xStartEvent = document.createEvent('Event');
-var xEndEvent = document.createEvent('Event');
-var yStartEvent = document.createEvent('Event');
-var yEndEvent = document.createEvent('Event');
 var lastTop;
 var lastLeft;
 
-upEvent.initEvent('ps-scroll-up', true, true);
-downEvent.initEvent('ps-scroll-down', true, true);
-leftEvent.initEvent('ps-scroll-left', true, true);
-rightEvent.initEvent('ps-scroll-right', true, true);
-yEvent.initEvent('ps-scroll-y', true, true);
-xEvent.initEvent('ps-scroll-x', true, true);
-xStartEvent.initEvent('ps-x-reach-start', true, true);
-xEndEvent.initEvent('ps-x-reach-end', true, true);
-yStartEvent.initEvent('ps-y-reach-start', true, true);
-yEndEvent.initEvent('ps-y-reach-end', true, true);
+var createDOMEvent = function (name) {
+  var event = document.createEvent("Event");
+  event.initEvent(name, true, true);
+  return event;
+};
 
 module.exports = function (element, axis, value) {
   if (typeof element === 'undefined') {
@@ -51496,12 +51481,12 @@ module.exports = function (element, axis, value) {
 
   if (axis === 'top' && value <= 0) {
     element.scrollTop = value = 0; // don't allow negative scroll
-    element.dispatchEvent(yStartEvent);
+    element.dispatchEvent(createDOMEvent('ps-y-reach-start'));
   }
 
   if (axis === 'left' && value <= 0) {
     element.scrollLeft = value = 0; // don't allow negative scroll
-    element.dispatchEvent(xStartEvent);
+    element.dispatchEvent(createDOMEvent('ps-x-reach-start'));
   }
 
   var i = instances.get(element);
@@ -51515,7 +51500,7 @@ module.exports = function (element, axis, value) {
     } else {
       element.scrollTop = value;
     }
-    element.dispatchEvent(yEndEvent);
+    element.dispatchEvent(createDOMEvent('ps-y-reach-end'));
   }
 
   if (axis === 'left' && value >= i.contentWidth - i.containerWidth) {
@@ -51527,7 +51512,7 @@ module.exports = function (element, axis, value) {
     } else {
       element.scrollLeft = value;
     }
-    element.dispatchEvent(xEndEvent);
+    element.dispatchEvent(createDOMEvent('ps-x-reach-end'));
   }
 
   if (!lastTop) {
@@ -51539,29 +51524,29 @@ module.exports = function (element, axis, value) {
   }
 
   if (axis === 'top' && value < lastTop) {
-    element.dispatchEvent(upEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-up'));
   }
 
   if (axis === 'top' && value > lastTop) {
-    element.dispatchEvent(downEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-down'));
   }
 
   if (axis === 'left' && value < lastLeft) {
-    element.dispatchEvent(leftEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-left'));
   }
 
   if (axis === 'left' && value > lastLeft) {
-    element.dispatchEvent(rightEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-right'));
   }
 
   if (axis === 'top') {
     element.scrollTop = lastTop = value;
-    element.dispatchEvent(yEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-y'));
   }
 
   if (axis === 'left') {
     element.scrollLeft = lastLeft = value;
-    element.dispatchEvent(xEvent);
+    element.dispatchEvent(createDOMEvent('ps-scroll-x'));
   }
 
 };
@@ -51747,13 +51732,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var Ps = __webpack_require__(10);
+var Ps = __webpack_require__(11);
 var core_1 = __webpack_require__(8);
 var perfect_scrollbar_interfaces_1 = __webpack_require__(6);
 var PerfectScrollbarComponent = (function () {
-    function PerfectScrollbarComponent(elementRef, defaults) {
+    function PerfectScrollbarComponent(elementRef, defaults, zone) {
         this.elementRef = elementRef;
         this.defaults = defaults;
+        this.zone = zone;
+        this.runInsideAngular = false;
     }
     PerfectScrollbarComponent.prototype.ngDoCheck = function () {
         if (this.elementRef.nativeElement.children) {
@@ -51774,9 +51761,17 @@ var PerfectScrollbarComponent = (function () {
         Ps.destroy(this.elementRef.nativeElement);
     };
     PerfectScrollbarComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         var config = new perfect_scrollbar_interfaces_1.PerfectScrollbarConfig(this.defaults);
         config.assign(this.config);
-        Ps.initialize(this.elementRef.nativeElement, config);
+        if (this.runInsideAngular) {
+            Ps.initialize(this.elementRef.nativeElement, config);
+        }
+        else {
+            this.zone.runOutsideAngular(function () {
+                Ps.initialize(_this.elementRef.nativeElement, config);
+            });
+        }
     };
     PerfectScrollbarComponent.prototype.update = function () {
         Ps.update(this.elementRef.nativeElement);
@@ -51787,17 +51782,24 @@ var PerfectScrollbarComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], PerfectScrollbarComponent.prototype, "runInsideAngular", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], PerfectScrollbarComponent.prototype, "config", void 0);
     PerfectScrollbarComponent = __decorate([
         core_1.Component({
             selector: 'perfect-scrollbar',
             template: '<div class="ps-content"><ng-content></ng-content></div>',
-            styles: [__webpack_require__(25)],
-            encapsulation: core_1.ViewEncapsulation.None
+            styles: [__webpack_require__(10)],
+            encapsulation: core_1.ViewEncapsulation.None,
+            host: {
+                style: 'display: block; position: relative;'
+            }
         }),
         __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [core_1.ElementRef, perfect_scrollbar_interfaces_1.PerfectScrollbarConfig])
+        __metadata('design:paramtypes', [core_1.ElementRef, perfect_scrollbar_interfaces_1.PerfectScrollbarConfig, core_1.NgZone])
     ], PerfectScrollbarComponent);
     return PerfectScrollbarComponent;
 }());
@@ -51832,29 +51834,43 @@ var common_1 = __webpack_require__(26);
 var core_1 = __webpack_require__(8);
 var perfect_scrollbar_component_1 = __webpack_require__(7);
 var perfect_scrollbar_interfaces_1 = __webpack_require__(6);
+exports.PERFECT_SCROLLBAR_GUARD = new core_1.OpaqueToken('PERFECT_SCROLLBAR_GUARD');
 exports.PERFECT_SCROLLBAR_CONFIG = new core_1.OpaqueToken('PERFECT_SCROLLBAR_CONFIG');
 var PerfectScrollbarModule = (function () {
-    function PerfectScrollbarModule(parentModule) {
-        if (parentModule) {
-            throw new Error("PerfectScrollbarModule is already loaded. \n        Import it in the AppModule only!");
-        }
+    function PerfectScrollbarModule(guard) {
     }
     PerfectScrollbarModule.forRoot = function (config) {
         return {
             ngModule: PerfectScrollbarModule,
             providers: [
                 {
+                    provide: exports.PERFECT_SCROLLBAR_GUARD,
+                    useFactory: provideForRootGuard,
+                    deps: [
+                        [
+                            perfect_scrollbar_interfaces_1.PerfectScrollbarConfig,
+                            new core_1.Optional(),
+                            new core_1.SkipSelf()
+                        ]
+                    ]
+                },
+                {
                     provide: exports.PERFECT_SCROLLBAR_CONFIG,
                     useValue: config ? config : {}
                 },
                 {
                     provide: perfect_scrollbar_interfaces_1.PerfectScrollbarConfig,
-                    useFactory: providePerfectScrollbarConfig,
+                    useFactory: function (config) { return new perfect_scrollbar_interfaces_1.PerfectScrollbarConfig(config); },
                     deps: [
                         exports.PERFECT_SCROLLBAR_CONFIG
                     ]
                 }
             ]
+        };
+    };
+    PerfectScrollbarModule.forChild = function () {
+        return {
+            ngModule: PerfectScrollbarModule
         };
     };
     PerfectScrollbarModule = __decorate([
@@ -51864,31 +51880,39 @@ var PerfectScrollbarModule = (function () {
             exports: [common_1.CommonModule, perfect_scrollbar_component_1.PerfectScrollbarComponent]
         }),
         __param(0, core_1.Optional()),
-        __param(0, core_1.SkipSelf()), 
-        __metadata('design:paramtypes', [PerfectScrollbarModule])
+        __param(0, core_1.Inject(exports.PERFECT_SCROLLBAR_GUARD)), 
+        __metadata('design:paramtypes', [Object])
     ], PerfectScrollbarModule);
     return PerfectScrollbarModule;
 }());
 exports.PerfectScrollbarModule = PerfectScrollbarModule;
-function providePerfectScrollbarConfig(configInterface) {
-    var config = new perfect_scrollbar_interfaces_1.PerfectScrollbarConfig(configInterface);
-    return config;
+function provideForRootGuard(config) {
+    if (config) {
+        throw new Error("\n      Application called PerfectScrollbarModule.forRoot() twice.\n      For submodules use PerfectScrollbarModule.forChild() instead.\n    ");
+    }
+    return 'guarded';
 }
-exports.providePerfectScrollbarConfig = providePerfectScrollbarConfig;
+exports.provideForRootGuard = provideForRootGuard;
 
 
 /***/ },
 /* 10 */
+/***/ function(module, exports) {
+
+module.exports = "/* perfect-scrollbar v0.6.14 */\n.ps-container{-ms-touch-action:auto;touch-action:auto;overflow:hidden !important;-ms-overflow-style:none}@supports (-ms-overflow-style: none){.ps-container{overflow:auto !important}}@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){.ps-container{overflow:auto !important}}.ps-container.ps-active-x>.ps-scrollbar-x-rail,.ps-container.ps-active-y>.ps-scrollbar-y-rail{display:block;background-color:transparent}.ps-container.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail{background-color:#eee;opacity:.9}.ps-container.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail>.ps-scrollbar-x{background-color:#999;height:11px}.ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{background-color:#eee;opacity:.9}.ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y{background-color:#999;width:11px}.ps-container>.ps-scrollbar-x-rail{display:none;position:absolute;opacity:0;-webkit-transition:background-color .2s linear, opacity .2s linear;-o-transition:background-color .2s linear, opacity .2s linear;-moz-transition:background-color .2s linear, opacity .2s linear;transition:background-color .2s linear, opacity .2s linear;bottom:0px;height:15px}.ps-container>.ps-scrollbar-x-rail>.ps-scrollbar-x{position:absolute;background-color:#aaa;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;-o-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;-moz-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -webkit-border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;bottom:2px;height:6px}.ps-container>.ps-scrollbar-x-rail:hover>.ps-scrollbar-x,.ps-container>.ps-scrollbar-x-rail:active>.ps-scrollbar-x{height:11px}.ps-container>.ps-scrollbar-y-rail{display:none;position:absolute;opacity:0;-webkit-transition:background-color .2s linear, opacity .2s linear;-o-transition:background-color .2s linear, opacity .2s linear;-moz-transition:background-color .2s linear, opacity .2s linear;transition:background-color .2s linear, opacity .2s linear;right:0;width:15px}.ps-container>.ps-scrollbar-y-rail>.ps-scrollbar-y{position:absolute;background-color:#aaa;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;-o-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;-moz-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -webkit-border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;right:2px;width:6px}.ps-container>.ps-scrollbar-y-rail:hover>.ps-scrollbar-y,.ps-container>.ps-scrollbar-y-rail:active>.ps-scrollbar-y{width:11px}.ps-container:hover.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail{background-color:#eee;opacity:.9}.ps-container:hover.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail>.ps-scrollbar-x{background-color:#999;height:11px}.ps-container:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{background-color:#eee;opacity:.9}.ps-container:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y{background-color:#999;width:11px}.ps-container:hover>.ps-scrollbar-x-rail,.ps-container:hover>.ps-scrollbar-y-rail{opacity:.6}.ps-container:hover>.ps-scrollbar-x-rail:hover{background-color:#eee;opacity:.9}.ps-container:hover>.ps-scrollbar-x-rail:hover>.ps-scrollbar-x{background-color:#999}.ps-container:hover>.ps-scrollbar-y-rail:hover{background-color:#eee;opacity:.9}.ps-container:hover>.ps-scrollbar-y-rail:hover>.ps-scrollbar-y{background-color:#999}\n"
+
+/***/ },
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-module.exports = __webpack_require__(13);
+module.exports = __webpack_require__(14);
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -51966,7 +51990,7 @@ module.exports = EventManager;
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -51986,15 +52010,15 @@ module.exports = (function () {
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var destroy = __webpack_require__(15);
-var initialize = __webpack_require__(23);
-var update = __webpack_require__(24);
+var destroy = __webpack_require__(16);
+var initialize = __webpack_require__(24);
+var update = __webpack_require__(25);
 
 module.exports = {
   initialize: initialize,
@@ -52004,7 +52028,7 @@ module.exports = {
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -52016,7 +52040,6 @@ module.exports = {
   minScrollbarLength: null,
   scrollXMarginOffset: 0,
   scrollYMarginOffset: 0,
-  stopPropagationOnClick: true,
   suppressScrollX: false,
   suppressScrollY: false,
   swipePropagation: true,
@@ -52028,7 +52051,7 @@ module.exports = {
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52057,13 +52080,12 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var _ = __webpack_require__(1);
 var instances = __webpack_require__(0);
 var updateGeometry = __webpack_require__(2);
 var updateScroll = __webpack_require__(3);
@@ -52074,43 +52096,23 @@ function bindClickRailHandler(element, i) {
   }
   var stopPropagation = function (e) { e.stopPropagation(); };
 
-  if (i.settings.stopPropagationOnClick) {
-    i.event.bind(i.scrollbarY, 'click', stopPropagation);
-  }
+  i.event.bind(i.scrollbarY, 'click', stopPropagation);
   i.event.bind(i.scrollbarYRail, 'click', function (e) {
-    var halfOfScrollbarLength = _.toInt(i.scrollbarYHeight / 2);
-    var positionTop = i.railYRatio * (e.pageY - window.pageYOffset - pageOffset(i.scrollbarYRail).top - halfOfScrollbarLength);
-    var maxPositionTop = i.railYRatio * (i.railYHeight - i.scrollbarYHeight);
-    var positionRatio = positionTop / maxPositionTop;
+    var positionTop = e.pageY - window.pageYOffset - pageOffset(i.scrollbarYRail).top;
+    var direction = positionTop > i.scrollbarYTop ? 1 : -1;
 
-    if (positionRatio < 0) {
-      positionRatio = 0;
-    } else if (positionRatio > 1) {
-      positionRatio = 1;
-    }
-
-    updateScroll(element, 'top', (i.contentHeight - i.containerHeight) * positionRatio);
+    updateScroll(element, 'top', element.scrollTop + direction * i.containerHeight);
     updateGeometry(element);
 
     e.stopPropagation();
   });
 
-  if (i.settings.stopPropagationOnClick) {
-    i.event.bind(i.scrollbarX, 'click', stopPropagation);
-  }
+  i.event.bind(i.scrollbarX, 'click', stopPropagation);
   i.event.bind(i.scrollbarXRail, 'click', function (e) {
-    var halfOfScrollbarLength = _.toInt(i.scrollbarXWidth / 2);
-    var positionLeft = i.railXRatio * (e.pageX - window.pageXOffset - pageOffset(i.scrollbarXRail).left - halfOfScrollbarLength);
-    var maxPositionLeft = i.railXRatio * (i.railXWidth - i.scrollbarXWidth);
-    var positionRatio = positionLeft / maxPositionLeft;
+    var positionLeft = e.pageX - window.pageXOffset - pageOffset(i.scrollbarXRail).left;
+    var direction = positionLeft > i.scrollbarXLeft ? 1 : -1;
 
-    if (positionRatio < 0) {
-      positionRatio = 0;
-    } else if (positionRatio > 1) {
-      positionRatio = 1;
-    }
-
-    updateScroll(element, 'left', ((i.contentWidth - i.containerWidth) * positionRatio) - i.negativeScrollAdjustment);
+    updateScroll(element, 'left', element.scrollLeft + direction * i.containerWidth);
     updateGeometry(element);
 
     e.stopPropagation();
@@ -52124,7 +52126,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52234,7 +52236,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52311,16 +52313,40 @@ function bindKeyboardHandler(element, i) {
 
     switch (e.which) {
     case 37: // left
-      deltaX = -30;
+      if (e.metaKey) {
+        deltaX = -i.contentWidth;
+      } else if (e.altKey) {
+        deltaX = -i.containerWidth;
+      } else {
+        deltaX = -30;
+      }
       break;
     case 38: // up
-      deltaY = 30;
+      if (e.metaKey) {
+        deltaY = i.contentHeight;
+      } else if (e.altKey) {
+        deltaY = i.containerHeight;
+      } else {
+        deltaY = 30;
+      }
       break;
     case 39: // right
-      deltaX = 30;
+      if (e.metaKey) {
+        deltaX = i.contentWidth;
+      } else if (e.altKey) {
+        deltaX = i.containerWidth;
+      } else {
+        deltaX = 30;
+      }
       break;
     case 40: // down
-      deltaY = -30;
+      if (e.metaKey) {
+        deltaY = -i.contentHeight;
+      } else if (e.altKey) {
+        deltaY = -i.containerHeight;
+      } else {
+        deltaY = -30;
+      }
       break;
     case 33: // page up
       deltaY = 90;
@@ -52371,7 +52397,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52429,13 +52455,18 @@ function bindMouseWheelHandler(element, i) {
       deltaY = e.wheelDelta;
     }
 
+    if (e.shiftKey) {
+      // reverse axis with shift key
+      return [-deltaY, -deltaX];
+    }
     return [deltaX, deltaY];
   }
 
   function shouldBeConsumedByChild(deltaX, deltaY) {
     var child = element.querySelector('textarea:hover, select[multiple]:hover, .ps-child:hover');
     if (child) {
-      if (child.tagName !== 'TEXTAREA' && !window.getComputedStyle(child).overflow.match(/(scroll|auto)/)) {
+      if (!window.getComputedStyle(child).overflow.match(/(scroll|auto)/)) {
+        // if not scrollable
         return false;
       }
 
@@ -52514,7 +52545,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52536,7 +52567,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52597,6 +52628,12 @@ function bindSelectionHandler(element, i) {
       stopScrolling();
     }
   });
+  i.event.bind(window, 'keyup', function () {
+    if (isSelected) {
+      isSelected = false;
+      stopScrolling();
+    }
+  });
 
   i.event.bind(window, 'mousemove', function (e) {
     if (isSelected) {
@@ -52652,7 +52689,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52786,6 +52823,11 @@ function bindTouchHandler(element, i, supportsTouch, supportsIePointer) {
           return;
         }
 
+        if (!speed.x && !speed.y) {
+          clearInterval(easingLoop);
+          return;
+        }
+
         if (Math.abs(speed.x) < 0.01 && Math.abs(speed.y) < 0.01) {
           clearInterval(easingLoop);
           return;
@@ -52835,7 +52877,7 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52848,14 +52890,14 @@ var updateGeometry = __webpack_require__(2);
 
 // Handlers
 var handlers = {
-  'click-rail': __webpack_require__(16),
-  'drag-scrollbar': __webpack_require__(17),
-  'keyboard': __webpack_require__(18),
-  'wheel': __webpack_require__(19),
-  'touch': __webpack_require__(22),
-  'selection': __webpack_require__(21)
+  'click-rail': __webpack_require__(17),
+  'drag-scrollbar': __webpack_require__(18),
+  'keyboard': __webpack_require__(19),
+  'wheel': __webpack_require__(20),
+  'touch': __webpack_require__(23),
+  'selection': __webpack_require__(22)
 };
-var nativeScrollHandler = __webpack_require__(20);
+var nativeScrollHandler = __webpack_require__(21);
 
 module.exports = function (element, userSettings) {
   userSettings = typeof userSettings === 'object' ? userSettings : {};
@@ -52879,7 +52921,7 @@ module.exports = function (element, userSettings) {
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52923,12 +52965,6 @@ module.exports = function (element) {
 
 
 /***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-module.exports = "/* perfect-scrollbar v0.6.12 */\n.ps-container{-ms-touch-action:none;touch-action:none;overflow:hidden !important;-ms-overflow-style:none}@supports (-ms-overflow-style: none){.ps-container{overflow:auto !important}}@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){.ps-container{overflow:auto !important}}.ps-container.ps-active-x>.ps-scrollbar-x-rail,.ps-container.ps-active-y>.ps-scrollbar-y-rail{display:block;background-color:transparent}.ps-container.ps-in-scrolling{pointer-events:none}.ps-container.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail{background-color:#eee;opacity:.9}.ps-container.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail>.ps-scrollbar-x{background-color:#999}.ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{background-color:#eee;opacity:.9}.ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y{background-color:#999}.ps-container>.ps-scrollbar-x-rail{display:none;position:absolute;opacity:0;-webkit-transition:background-color .2s linear, opacity .2s linear;-moz-transition:background-color .2s linear, opacity .2s linear;-o-transition:background-color .2s linear, opacity .2s linear;transition:background-color .2s linear, opacity .2s linear;bottom:0px;height:15px}.ps-container>.ps-scrollbar-x-rail>.ps-scrollbar-x{position:absolute;background-color:#aaa;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;-moz-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;-o-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -webkit-border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;bottom:2px;height:6px}.ps-container>.ps-scrollbar-x-rail:hover>.ps-scrollbar-x,.ps-container>.ps-scrollbar-x-rail:active>.ps-scrollbar-x{height:11px}.ps-container>.ps-scrollbar-y-rail{display:none;position:absolute;opacity:0;-webkit-transition:background-color .2s linear, opacity .2s linear;-moz-transition:background-color .2s linear, opacity .2s linear;-o-transition:background-color .2s linear, opacity .2s linear;transition:background-color .2s linear, opacity .2s linear;right:0;width:15px}.ps-container>.ps-scrollbar-y-rail>.ps-scrollbar-y{position:absolute;background-color:#aaa;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, -webkit-border-radius .2s ease-in-out;-moz-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;-o-transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;transition:background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out, -webkit-border-radius .2s ease-in-out, -moz-border-radius .2s ease-in-out;right:2px;width:6px}.ps-container>.ps-scrollbar-y-rail:hover>.ps-scrollbar-y,.ps-container>.ps-scrollbar-y-rail:active>.ps-scrollbar-y{width:11px}.ps-container:hover.ps-in-scrolling{pointer-events:none}.ps-container:hover.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail{background-color:#eee;opacity:.9}.ps-container:hover.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail>.ps-scrollbar-x{background-color:#999}.ps-container:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{background-color:#eee;opacity:.9}.ps-container:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y{background-color:#999}.ps-container:hover>.ps-scrollbar-x-rail,.ps-container:hover>.ps-scrollbar-y-rail{opacity:.6}.ps-container:hover>.ps-scrollbar-x-rail:hover{background-color:#eee;opacity:.9}.ps-container:hover>.ps-scrollbar-x-rail:hover>.ps-scrollbar-x{background-color:#999}.ps-container:hover>.ps-scrollbar-y-rail:hover{background-color:#eee;opacity:.9}.ps-container:hover>.ps-scrollbar-y-rail:hover>.ps-scrollbar-y{background-color:#999}\n"
-
-/***/ },
 /* 26 */
 /***/ function(module, exports) {
 
@@ -52949,10 +52985,9 @@ __export(__webpack_require__(9));
 
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;
-//# sourceMappingURL=index.js.map
+
 
 /***/ },
 /* 35 */
@@ -53111,7 +53146,7 @@ var Subscription = (function () {
     return Subscription;
 }());
 exports.Subscription = Subscription;
-//# sourceMappingURL=Subscription.js.map
+
 
 /***/ },
 /* 36 */
@@ -53139,7 +53174,7 @@ function getSymbolObservable(context) {
 }
 exports.getSymbolObservable = getSymbolObservable;
 exports.$$observable = getSymbolObservable(root_1.root);
-//# sourceMappingURL=observable.js.map
+
 
 /***/ },
 /* 37 */
@@ -53151,7 +53186,7 @@ var root_1 = __webpack_require__(7);
 var Symbol = root_1.root.Symbol;
 exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
-//# sourceMappingURL=rxSubscriber.js.map
+
 
 /***/ },
 /* 38 */
@@ -53160,7 +53195,7 @@ exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 
 "use strict";
 "use strict";
 exports.isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
-//# sourceMappingURL=isArray.js.map
+
 
 /***/ },
 /* 39 */
@@ -53172,7 +53207,7 @@ function isFunction(x) {
     return typeof x === 'function';
 }
 exports.isFunction = isFunction;
-//# sourceMappingURL=isFunction.js.map
+
 
 /***/ },
 /* 40 */
@@ -53197,7 +53232,7 @@ function tryCatch(fn) {
 }
 exports.tryCatch = tryCatch;
 ;
-//# sourceMappingURL=tryCatch.js.map
+
 
 /***/ },
 /* 41 */
@@ -53325,10 +53360,22 @@ exports.provideForRootGuard = provideForRootGuard;
 
 /***/ },
 /* 45 */
+/***/ function(module, exports) {
+
+module.exports = ".font-picker {\n  position: absolute;\n  z-index: 1000;\n  top: 250px;\n  left: 30px;\n  display: flex;\n  flex-direction: column;\n  width: 280px;\n  height: 320px;\n  min-width: 200px;\n  min-height: 240px;\n  border: #777 solid 1px;\n  cursor: default;\n  user-select: none;\n  font-family: 'Open Sans', sans-serif;\n  background-color: #fff; }\n  .font-picker[hidden] {\n    display: none; }\n  .font-picker input,\n  .font-picker select {\n    width: 100%;\n    padding: 4px;\n    outline: none;\n    border: none;\n    border-bottom: 2px solid #cfcfcf;\n    font-size: 14px;\n    line-height: 18px;\n    text-align: left;\n    background: none;\n    transition: border 300ms ease; }\n    .font-picker input:hover, .font-picker input:focus, .font-picker input:active,\n    .font-picker select:hover,\n    .font-picker select:focus,\n    .font-picker select:active {\n      border-bottom: 2px solid #999; }\n    .font-picker input:invalid,\n    .font-picker select:invalid {\n      border-bottom: 2px solid #e74c3c;\n      box-shadow: none; }\n    .font-picker input::-webkit-inner-spin-button, .font-picker input::-webkit-outer-spin-button,\n    .font-picker select::-webkit-inner-spin-button,\n    .font-picker select::-webkit-outer-spin-button {\n      margin: 0;\n      -webkit-appearance: none; }\n  .font-picker .arrow {\n    position: absolute;\n    z-index: 999999;\n    width: 0;\n    height: 0;\n    border-style: solid; }\n  .font-picker .arrow-left {\n    top: 10px;\n    left: 231px;\n    border-width: 5px 10px;\n    border-color: transparent transparent transparent #777; }\n  .font-picker .arrow-right {\n    top: 10px;\n    left: -20px;\n    border-width: 5px 10px;\n    border-color: transparent #777 transparent transparent; }\n  .font-picker .arrow-top {\n    top: 0;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: #777 transparent transparent transparent; }\n  .font-picker .arrow-bottom {\n    top: -20px;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: transparent transparent #777 transparent; }\n  .font-picker .search-box {\n    position: relative; }\n  .font-picker .search-field {\n    box-sizing: border-box;\n    padding: 12px 48px 12px 16px; }\n    .font-picker .search-field:disabled {\n      opacity: 0.5;\n      cursor: not-allowed;\n      background-color: #888; }\n  .font-picker .search-reset {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 16px;\n    cursor: pointer;\n    color: #777;\n    font-size: 31px;\n    transition: color 300ms ease; }\n    .font-picker .search-reset:hover {\n      color: #555; }\n  .font-picker .load-text {\n    padding: 16px;\n    color: #000;\n    font-size: 12px;\n    text-align: center; }\n  .font-picker .font-list {\n    position: relative;\n    overflow: hidden;\n    flex: 1 1 auto; }\n    .font-picker .font-list .font-item {\n      position: relative;\n      padding: 8px 16px;\n      cursor: pointer; }\n      .font-picker .font-list .font-item.active {\n        font-weight: bold; }\n        .font-picker .font-list .font-item.active.selected {\n          cursor: default;\n          font-weight: normal;\n          background: #e6e6e6; }\n      .font-picker .font-list .font-item .font-info {\n        margin: 4px 0; }\n        .font-picker .font-list .font-item .font-info .font-name {\n          color: #555;\n          font-size: 14px;\n          text-transform: capitalize; }\n        .font-picker .font-list .font-item .font-info .not-available {\n          float: right;\n          width: 24px;\n          margin: -8px -8px 0 0;\n          color: #ef8b80;\n          font-size: 24px;\n          font-weight: 900;\n          font-family: 'Open Sans', sans-serif;\n          text-align: center;\n          text-transform: none; }\n          .font-picker .font-list .font-item .font-info .not-available::after {\n            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';\n            position: absolute;\n            z-index: 10;\n            top: 0;\n            right: 12px;\n            left: 12px;\n            opacity: 0;\n            padding: 12px 16px;\n            margin: 0 auto;\n            border-radius: 2px;\n            pointer-events: none;\n            color: #fff;\n            font-size: 13px;\n            font-weight: normal;\n            text-align: left;\n            background: rgba(60, 60, 60, 0.8);\n            transition: opacity 150ms ease; }\n          .font-picker .font-list .font-item .font-info .not-available:hover {\n            color: #ea6153; }\n            .font-picker .font-list .font-item .font-info .not-available:hover::after {\n              opacity: 1; }\n      .font-picker .font-list .font-item .font-text {\n        padding: 4px 0;\n        color: #999;\n        font-size: 16px;\n        text-align: right; }\n    .font-picker .font-list .font-group {\n      display: flex; }\n      .font-picker .font-list .font-group .group-line {\n        flex: 1 1 auto;\n        height: 2px;\n        margin-top: 14px;\n        margin-right: 12px;\n        background: #e74c3c; }\n        .font-picker .font-list .font-group .group-line.black {\n          background: #000; }\n      .font-picker .font-list .font-group .group-text {\n        overflow: hidden;\n        box-sizing: border-box;\n        max-width: 75%;\n        padding: 8px 12px;\n        color: #e74c3c;\n        font-size: 11px;\n        font-weight: bold;\n        text-align: left;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        .font-picker .font-list .font-group .group-text.black {\n          color: #000; }\n  .font-picker .font-options {\n    display: flex;\n    box-sizing: border-box;\n    padding: 8px;\n    border-top: 2px solid #cfcfcf; }\n    .font-picker .font-options .left {\n      flex: 1 1 auto;\n      padding: 0 2px; }\n      .font-picker .font-options .left .style-select {\n        text-transform: capitalize; }\n        .font-picker .font-options .left .style-select:disabled {\n          background-color: #777; }\n    .font-picker .font-options .right {\n      padding: 0 2px; }\n      .font-picker .font-options .right .size-select {\n        width: 48px;\n        text-align: center; }\n  .font-picker .button-area {\n    padding: 0 4px 4px;\n    border-top: 1px solid #aaa;\n    text-align: right; }\n    .font-picker .button-area .fp-upload-button-class,\n    .font-picker .button-area .fp-cancel-button-class {\n      display: inline-block;\n      margin: 8px;\n      text-align: center;\n      text-transform: uppercase; }\n"
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+module.exports = "<div #dialogPopup [hidden]=\"!open\" class=\"font-picker\" [style.height.px]=\"fpHeight\" [style.width.px]=\"fpWidth\" [style.top.px]=\"top\" [style.left.px]=\"left\" [style.position]=\"position\">\n  <div class=\"arrow arrow-{{fpPosition}}\" [style.top.px]=\"arrowTop\"></div>\n\n  <div class=\"search-box\">\n    <input class=\"search-field\" placeholder=\"Search from Google Web Fonts...\" [formControl]=\"searchTerm\" />\n\n    <div class=\"search-reset\" [hidden]=\"!searchTerm.value\" (click)=\"onSearchReset($event)\">×</div>\n  </div>\n\n  <div *ngIf=\"loading\" class=\"load-text\">Loading fonts list...</div>\n\n  <perfect-scrollbar #dialogScrollbar class=\"font-list\" [config]=\"config\">\n    <div *ngIf=\"presetVisible && fpPresetFonts.length\">\n      <div class=\"font-group\">\n        <div class=\"group-text\">{{fpPresetLabel}}</div>\n        <div class=\"group-line\"></div>\n      </div>\n\n      <div *ngFor=\"let fontItem of presetFonts | StatefulSlice:0:loadedFonts\" class=\"font-item\" [ngClass]=\"{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n        <div class=\"font-info\">\n          <span class=\"font-name\">{{fontItem.family}}</span>\n\n          <div *ngIf=\"!fontItem.files\" class=\"not-available\">!</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"font-group\">\n      <div class=\"group-text black\">{{listLabel}}</div>\n      <div class=\"group-line black\"></div>\n    </div>\n\n    <div *ngFor=\"let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)\" class=\"font-item\" [ngClass]=\"{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n      <div class=\"font-info\">\n        <span class=\"font-name\">{{fontItem.family}}</span>\n      </div>\n    </div>\n  </perfect-scrollbar>\n\n  <div *ngIf=\"selectedFont && (fpStyleSelect || fpSizeSelect)\">\n    <div  class=\"font-options\">\n      <div *ngIf=\"fpStyleSelect\" class=\"left\">\n        <select class=\"style-select\" [disabled]=\"!font.styles\" (change)=\"onFontStyleChange($event, font)\" [(ngModel)]=\"font.style\">\n          <option *ngFor=\"let style of font.styles\" [value]=\"style\">{{style | FontStyles}}</option>\n        </select>\n      </div>\n\n      <div *ngIf=\"fpSizeSelect\" class=\"right\">\n        <input type=\"number\" pattern=\"[0-9]*\" min=\"1\" max=\"100\" [ngClass]=\"{'size-select': fpStyleSelect}\" [(ngModel)]=\"font.size\" />\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"fpUploadButton || fpCancelButton\" class=\"button-area\">\n    <button *ngIf=\"fpUploadButton\" type=\"button\" class=\"{{fpUploadButtonClass}}\" (click)=\"onUploadFiles()\">{{fpUploadButtonText}}</button>\n\n    <button *ngIf=\"fpCancelButton\" type=\"button\" class=\"{{fpCancelButtonClass}}\" (click)=\"onCancelSelect()\">{{fpCancelButtonText}}</button>\n  </div>\n</div>\n"
+
+/***/ },
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_platform_browser__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_platform_browser__ = __webpack_require__(57);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "BrowserModule", function() { return __WEBPACK_IMPORTED_MODULE_0__src_platform_browser__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "platformBrowser", function() { return __WEBPACK_IMPORTED_MODULE_0__src_platform_browser__["b"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "Title", function() { return __WEBPACK_IMPORTED_MODULE_0__src_platform_browser__["c"]; });
@@ -53357,10 +53404,10 @@ exports.provideForRootGuard = provideForRootGuard;
  * Entry point for all public APIs of the platform-browser package.
  */
 
-//# sourceMappingURL=index.js.map
+
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53444,10 +53491,10 @@ var GenericBrowserDomAdapter = (function (_super) {
     };
     return GenericBrowserDomAdapter;
 }(__WEBPACK_IMPORTED_MODULE_0__dom_dom_adapter__["b" /* DomAdapter */]));
-//# sourceMappingURL=generic_browser_adapter.js.map
+
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53462,17 +53509,17 @@ var GenericBrowserDomAdapter = (function (_super) {
 function supportsState() {
     return !!window.history.pushState;
 }
-//# sourceMappingURL=history.js.map
+
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_dom_adapter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_browser__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_browser__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(2);
 /* unused harmony export ChangeDetectionPerfRecord */
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AngularTools; });
@@ -53558,15 +53605,15 @@ var AngularProfiler = (function () {
     };
     return AngularProfiler;
 }());
-//# sourceMappingURL=common_tools.js.map
+
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_tools__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_tools__ = __webpack_require__(50);
 /* harmony export (immutable) */ exports["b"] = enableDebugTools;
 /* harmony export (immutable) */ exports["a"] = disableDebugTools;
 /**
@@ -53604,10 +53651,10 @@ function enableDebugTools(ref) {
 function disableDebugTools() {
     delete context.ng;
 }
-//# sourceMappingURL=tools.js.map
+
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53665,10 +53712,10 @@ var By = (function () {
     };
     return By;
 }());
-//# sourceMappingURL=by.js.map
+
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53737,10 +53784,10 @@ var HammerGesturesPluginCommon = (function (_super) {
     };
     return HammerGesturesPluginCommon;
 }(__WEBPACK_IMPORTED_MODULE_1__event_manager__["b" /* EventManagerPlugin */]));
-//# sourceMappingURL=hammer_common.js.map
+
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53749,7 +53796,7 @@ var HammerGesturesPluginCommon = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_collection__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_lang__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__web_animations_player__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__web_animations_player__ = __webpack_require__(55);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WebAnimationsDriver; });
 /**
  * @license
@@ -53877,10 +53924,10 @@ function _isPixelDimensionStyle(prop) {
             return false;
     }
 }
-//# sourceMappingURL=web_animations_driver.js.map
+
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53987,10 +54034,10 @@ var WebAnimationsPlayer = (function () {
 function _computeStyle(element, prop) {
     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__dom_adapter__["a" /* getDOM */])().getComputedStyle(element)[prop];
 }
-//# sourceMappingURL=web_animations_player.js.map
+
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54029,24 +54076,24 @@ var EventTarget = win['EventTarget'];
 var History = win['History'];
 var Location = win['Location'];
 var EventListener = win['EventListener'];
-//# sourceMappingURL=browser.js.map
+
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__browser__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_title__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_tools_tools__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_tools_tools__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_animation_driver__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dom_debug_by__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dom_debug_by__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_debug_ng_probe__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dom_dom_tokens__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dom_events_event_manager__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_events_hammer_gestures__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__security_dom_sanitization_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__private_export__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__private_export__ = __webpack_require__(58);
 /* harmony reexport (binding) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__browser__["d"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(exports, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__browser__["e"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(exports, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__browser_title__["a"]; });
@@ -54080,10 +54127,10 @@ var EventListener = win['EventListener'];
 
 
 
-//# sourceMappingURL=platform-browser.js.map
+
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54129,10 +54176,10 @@ var __platform_browser_private__ = {
     INTERNAL_BROWSER_PLATFORM_PROVIDERS: __WEBPACK_IMPORTED_MODULE_0__browser__["b" /* INTERNAL_BROWSER_PLATFORM_PROVIDERS */],
     BROWSER_SANITIZATION_PROVIDERS: __WEBPACK_IMPORTED_MODULE_0__browser__["c" /* BROWSER_SANITIZATION_PROVIDERS */]
 };
-//# sourceMappingURL=private_export.js.map
+
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54405,10 +54452,10 @@ function sanitizeHtml(unsafeHtmlInput) {
         throw e;
     }
 }
-//# sourceMappingURL=html_sanitizer.js.map
+
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54507,19 +54554,7 @@ function sanitizeStyle(value) {
     }
     return 'unsafe';
 }
-//# sourceMappingURL=style_sanitizer.js.map
 
-/***/ },
-/* 59 */
-/***/ function(module, exports) {
-
-module.exports = ".font-picker {\n  position: absolute;\n  z-index: 1000;\n  top: 250px;\n  left: 30px;\n  display: flex;\n  flex-direction: column;\n  width: 280px;\n  height: 320px;\n  min-width: 200px;\n  min-height: 240px;\n  max-width: 100%;\n  max-height: 100%;\n  border: #777 solid 1px;\n  cursor: default;\n  user-select: none;\n  font-family: 'Open Sans', sans-serif;\n  background-color: #fff; }\n  .font-picker[hidden] {\n    display: none; }\n  .font-picker input,\n  .font-picker select {\n    width: 100%;\n    padding: 4px;\n    outline: none;\n    border: none;\n    border-bottom: 2px solid #cfcfcf;\n    font-size: 14px;\n    line-height: 18px;\n    text-align: left;\n    background: none;\n    transition: border 300ms ease; }\n    .font-picker input:hover, .font-picker input:focus, .font-picker input:active,\n    .font-picker select:hover,\n    .font-picker select:focus,\n    .font-picker select:active {\n      border-bottom: 2px solid #999; }\n    .font-picker input:invalid,\n    .font-picker select:invalid {\n      border-bottom: 2px solid #e74c3c;\n      box-shadow: none; }\n    .font-picker input::-webkit-inner-spin-button, .font-picker input::-webkit-outer-spin-button,\n    .font-picker select::-webkit-inner-spin-button,\n    .font-picker select::-webkit-outer-spin-button {\n      margin: 0;\n      -webkit-appearance: none; }\n  .font-picker .arrow {\n    position: absolute;\n    z-index: 999999;\n    width: 0;\n    height: 0;\n    border-style: solid; }\n  .font-picker .arrow-left {\n    top: 10px;\n    left: 231px;\n    border-width: 5px 10px;\n    border-color: transparent transparent transparent #777; }\n  .font-picker .arrow-right {\n    top: 10px;\n    left: -20px;\n    border-width: 5px 10px;\n    border-color: transparent #777 transparent transparent; }\n  .font-picker .arrow-top {\n    top: 0;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: #777 transparent transparent transparent; }\n  .font-picker .arrow-bottom {\n    top: -20px;\n    left: 10px;\n    border-width: 10px 5px;\n    border-color: transparent transparent #777 transparent; }\n  .font-picker .search-box {\n    position: relative; }\n  .font-picker .search-field {\n    box-sizing: border-box;\n    padding: 12px 48px 12px 16px; }\n    .font-picker .search-field:disabled {\n      opacity: 0.5;\n      cursor: not-allowed;\n      background-color: #888; }\n  .font-picker .search-reset {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 16px;\n    cursor: pointer;\n    color: #777;\n    font-size: 31px;\n    transition: color 300ms ease; }\n    .font-picker .search-reset:hover {\n      color: #555; }\n  .font-picker .load-text {\n    padding: 16px;\n    color: #000;\n    font-size: 12px;\n    text-align: center; }\n  .font-picker .font-list {\n    position: relative;\n    overflow: hidden;\n    flex: 1 1 auto; }\n    .font-picker .font-list .font-item {\n      position: relative;\n      padding: 8px 16px;\n      cursor: pointer; }\n      .font-picker .font-list .font-item.active {\n        font-weight: bold; }\n        .font-picker .font-list .font-item.active.selected {\n          cursor: default;\n          font-weight: normal;\n          background: #e6e6e6; }\n      .font-picker .font-list .font-item .font-info {\n        margin: 4px 0; }\n        .font-picker .font-list .font-item .font-info .font-name {\n          color: #555;\n          font-size: 14px;\n          text-transform: capitalize; }\n        .font-picker .font-list .font-item .font-info .not-available {\n          float: right;\n          width: 24px;\n          margin: -8px -8px 0 0;\n          color: #ef8b80;\n          font-size: 24px;\n          font-weight: 900;\n          font-family: 'Open Sans', sans-serif;\n          text-align: center;\n          text-transform: none; }\n          .font-picker .font-list .font-item .font-info .not-available::after {\n            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';\n            position: absolute;\n            z-index: 10;\n            top: 0;\n            right: 12px;\n            left: 12px;\n            opacity: 0;\n            padding: 12px 16px;\n            margin: 0 auto;\n            border-radius: 2px;\n            pointer-events: none;\n            color: #fff;\n            font-size: 13px;\n            font-weight: normal;\n            text-align: left;\n            background: rgba(60, 60, 60, 0.8);\n            transition: opacity 150ms ease; }\n          .font-picker .font-list .font-item .font-info .not-available:hover {\n            color: #ea6153; }\n            .font-picker .font-list .font-item .font-info .not-available:hover::after {\n              opacity: 1; }\n      .font-picker .font-list .font-item .font-text {\n        padding: 4px 0;\n        color: #999;\n        font-size: 16px;\n        text-align: right; }\n    .font-picker .font-list .font-group {\n      display: flex; }\n      .font-picker .font-list .font-group .group-line {\n        flex: 1 1 auto;\n        height: 2px;\n        margin-top: 14px;\n        margin-right: 12px;\n        background: #e74c3c; }\n        .font-picker .font-list .font-group .group-line.black {\n          background: #000; }\n      .font-picker .font-list .font-group .group-text {\n        overflow: hidden;\n        box-sizing: border-box;\n        max-width: 75%;\n        padding: 8px 12px;\n        color: #e74c3c;\n        font-size: 11px;\n        font-weight: bold;\n        text-align: left;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        .font-picker .font-list .font-group .group-text.black {\n          color: #000; }\n  .font-picker .font-options {\n    display: flex;\n    box-sizing: border-box;\n    padding: 8px;\n    border-top: 2px solid #cfcfcf; }\n    .font-picker .font-options .left {\n      flex: 1 1 auto;\n      padding: 0 2px; }\n      .font-picker .font-options .left .style-select {\n        text-transform: capitalize; }\n        .font-picker .font-options .left .style-select:disabled {\n          background-color: #777; }\n    .font-picker .font-options .right {\n      padding: 0 2px; }\n      .font-picker .font-options .right .size-select {\n        width: 48px;\n        text-align: center; }\n  .font-picker .button-area {\n    padding: 0 4px 4px;\n    border-top: 1px solid #aaa;\n    text-align: right; }\n    .font-picker .button-area .fp-upload-button-class,\n    .font-picker .button-area .fp-cancel-button-class {\n      display: inline-block;\n      margin: 8px;\n      text-align: center;\n      text-transform: uppercase; }\n"
-
-/***/ },
-/* 60 */
-/***/ function(module, exports) {
-
-module.exports = "<div #dialogPopup [hidden]=\"!open\" class=\"font-picker\" [style.height.px]=\"fpHeight\" [style.width.px]=\"fpWidth\" [style.top.px]=\"top\" [style.left.px]=\"left\" [style.position]=\"position\">\n  <div class=\"arrow arrow-{{fpPosition}}\" [style.top.px]=\"arrowTop\"></div>\n\n  <div class=\"search-box\">\n    <input class=\"search-field\" placeholder=\"Search from Google Web Fonts...\" [formControl]=\"searchTerm\" />\n\n    <div class=\"search-reset\" [hidden]=\"!searchTerm.value\" (click)=\"onSearchReset($event)\">×</div>\n  </div>\n\n  <div *ngIf=\"loading\" class=\"load-text\">Loading fonts list...</div>\n\n  <perfect-scrollbar #dialogScrollbar class=\"font-list\" [config]=\"config\">\n    <div *ngIf=\"presetVisible && fpPresetFonts.length\">\n      <div class=\"font-group\">\n        <div class=\"group-text\">{{fpPresetLabel}}</div>\n        <div class=\"group-line\"></div>\n      </div>\n\n      <div *ngFor=\"let fontItem of presetFonts | StatefulSlice:0:loadedFonts\" class=\"font-item\" [ngClass]=\"{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n        <div class=\"font-info\">\n          <span class=\"font-name\">{{fontItem.family}}</span>\n\n          <div *ngIf=\"!fontItem.files\" class=\"not-available\">!</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"font-group\">\n      <div class=\"group-text black\">{{listLabel}}</div>\n      <div class=\"group-line black\"></div>\n    </div>\n\n    <div *ngFor=\"let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)\" class=\"font-item\" [ngClass]=\"{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}\" [ngStyle]=\"{'font-family': fontItem.family}\" (click)=\"onSelectFont(fontItem)\">\n      <div class=\"font-info\">\n        <span class=\"font-name\">{{fontItem.family}}</span>\n      </div>\n    </div>\n  </perfect-scrollbar>\n\n  <div *ngIf=\"selectedFont && (fpStyleSelect || fpSizeSelect)\">\n    <div  class=\"font-options\">\n      <div *ngIf=\"fpStyleSelect\" class=\"left\">\n        <select class=\"style-select\" [disabled]=\"!font.styles\" (change)=\"onFontStyleChange($event, font)\" [(ngModel)]=\"font.style\">\n          <option *ngFor=\"let style of font.styles\" [value]=\"style\">{{style | FontStyles}}</option>\n        </select>\n      </div>\n\n      <div *ngIf=\"fpSizeSelect\" class=\"right\">\n        <input type=\"number\" pattern=\"[0-9]*\" min=\"1\" max=\"100\" [ngClass]=\"{'size-select': fpStyleSelect}\" [(ngModel)]=\"font.size\" />\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"fpUploadButton || fpCancelButton\" class=\"button-area\">\n    <button *ngIf=\"fpUploadButton\" type=\"button\" class=\"{{fpUploadButtonClass}}\" (click)=\"onUploadFiles()\">{{fpUploadButtonText}}</button>\n\n    <button *ngIf=\"fpCancelButton\" type=\"button\" class=\"{{fpCancelButtonClass}}\" (click)=\"onCancelSelect()\">{{fpCancelButtonText}}</button>\n  </div>\n</div>\n"
 
 /***/ },
 /* 61 */
@@ -54561,7 +54596,7 @@ var InnerSubscriber = (function (_super) {
     return InnerSubscriber;
 }(Subscriber_1.Subscriber));
 exports.InnerSubscriber = InnerSubscriber;
-//# sourceMappingURL=InnerSubscriber.js.map
+
 
 /***/ },
 /* 62 */
@@ -54575,7 +54610,7 @@ exports.empty = {
     error: function (err) { throw err; },
     complete: function () { }
 };
-//# sourceMappingURL=Observer.js.map
+
 
 /***/ },
 /* 63 */
@@ -54611,7 +54646,7 @@ var OuterSubscriber = (function (_super) {
     return OuterSubscriber;
 }(Subscriber_1.Subscriber));
 exports.OuterSubscriber = OuterSubscriber;
-//# sourceMappingURL=OuterSubscriber.js.map
+
 
 /***/ },
 /* 64 */
@@ -54666,7 +54701,7 @@ var Scheduler = (function () {
     return Scheduler;
 }());
 exports.Scheduler = Scheduler;
-//# sourceMappingURL=Scheduler.js.map
+
 
 /***/ },
 /* 65 */
@@ -54678,7 +54713,7 @@ var Observable_1 = __webpack_require__(5);
 var catch_1 = __webpack_require__(69);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
+
 
 /***/ },
 /* 66 */
@@ -54689,7 +54724,7 @@ Observable_1.Observable.prototype._catch = catch_1._catch;
 var Observable_1 = __webpack_require__(5);
 var debounceTime_1 = __webpack_require__(70);
 Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
-//# sourceMappingURL=debounceTime.js.map
+
 
 /***/ },
 /* 67 */
@@ -54700,7 +54735,7 @@ Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 var Observable_1 = __webpack_require__(5);
 var distinctUntilChanged_1 = __webpack_require__(71);
 Observable_1.Observable.prototype.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
-//# sourceMappingURL=distinctUntilChanged.js.map
+
 
 /***/ },
 /* 68 */
@@ -54711,7 +54746,7 @@ Observable_1.Observable.prototype.distinctUntilChanged = distinctUntilChanged_1.
 var Observable_1 = __webpack_require__(5);
 var map_1 = __webpack_require__(72);
 Observable_1.Observable.prototype.map = map_1.map;
-//# sourceMappingURL=map.js.map
+
 
 /***/ },
 /* 69 */
@@ -54782,7 +54817,7 @@ var CatchSubscriber = (function (_super) {
     };
     return CatchSubscriber;
 }(OuterSubscriber_1.OuterSubscriber));
-//# sourceMappingURL=catch.js.map
+
 
 /***/ },
 /* 70 */
@@ -54904,7 +54939,7 @@ var DebounceTimeSubscriber = (function (_super) {
 function dispatchNext(subscriber) {
     subscriber.debouncedNext();
 }
-//# sourceMappingURL=debounceTime.js.map
+
 
 /***/ },
 /* 71 */
@@ -54987,7 +55022,7 @@ var DistinctUntilChangedSubscriber = (function (_super) {
     };
     return DistinctUntilChangedSubscriber;
 }(Subscriber_1.Subscriber));
-//# sourceMappingURL=distinctUntilChanged.js.map
+
 
 /***/ },
 /* 72 */
@@ -55080,7 +55115,7 @@ var MapSubscriber = (function (_super) {
     };
     return MapSubscriber;
 }(Subscriber_1.Subscriber));
-//# sourceMappingURL=map.js.map
+
 
 /***/ },
 /* 73 */
@@ -55130,7 +55165,7 @@ var Action = (function (_super) {
     return Action;
 }(Subscription_1.Subscription));
 exports.Action = Action;
-//# sourceMappingURL=Action.js.map
+
 
 /***/ },
 /* 74 */
@@ -55278,7 +55313,7 @@ var AsyncAction = (function (_super) {
     return AsyncAction;
 }(Action_1.Action));
 exports.AsyncAction = AsyncAction;
-//# sourceMappingURL=AsyncAction.js.map
+
 
 /***/ },
 /* 75 */
@@ -55335,7 +55370,7 @@ var AsyncScheduler = (function (_super) {
     return AsyncScheduler;
 }(Scheduler_1.Scheduler));
 exports.AsyncScheduler = AsyncScheduler;
-//# sourceMappingURL=AsyncScheduler.js.map
+
 
 /***/ },
 /* 76 */
@@ -55346,7 +55381,7 @@ exports.AsyncScheduler = AsyncScheduler;
 var AsyncAction_1 = __webpack_require__(74);
 var AsyncScheduler_1 = __webpack_require__(75);
 exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
-//# sourceMappingURL=async.js.map
+
 
 /***/ },
 /* 77 */
@@ -55384,7 +55419,7 @@ else {
         exports.$$iterator = '@@iterator';
     }
 }
-//# sourceMappingURL=iterator.js.map
+
 
 /***/ },
 /* 78 */
@@ -55415,7 +55450,7 @@ var UnsubscriptionError = (function (_super) {
     return UnsubscriptionError;
 }(Error));
 exports.UnsubscriptionError = UnsubscriptionError;
-//# sourceMappingURL=UnsubscriptionError.js.map
+
 
 /***/ },
 /* 79 */
@@ -55427,7 +55462,7 @@ function isObject(x) {
     return x != null && typeof x === 'object';
 }
 exports.isObject = isObject;
-//# sourceMappingURL=isObject.js.map
+
 
 /***/ },
 /* 80 */
@@ -55439,7 +55474,7 @@ function isPromise(value) {
     return value && typeof value.subscribe !== 'function' && typeof value.then === 'function';
 }
 exports.isPromise = isPromise;
-//# sourceMappingURL=isPromise.js.map
+
 
 /***/ },
 /* 81 */
@@ -55519,7 +55554,7 @@ function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     return null;
 }
 exports.subscribeToResult = subscribeToResult;
-//# sourceMappingURL=subscribeToResult.js.map
+
 
 /***/ },
 /* 82 */
@@ -55544,7 +55579,7 @@ function toSubscriber(nextOrObserver, error, complete) {
     return new Subscriber_1.Subscriber(nextOrObserver, error, complete);
 }
 exports.toSubscriber = toSubscriber;
-//# sourceMappingURL=toSubscriber.js.map
+
 
 /***/ },
 /* 83 */
@@ -55596,9 +55631,8 @@ __export(__webpack_require__(13));
 
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;
 //# sourceMappingURL=index.js.map
 
 /***/ },
@@ -82830,6 +82864,15 @@ exports.toSubscriber = toSubscriber;
     (factory());
 }(this, (function () { 'use strict';
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
 var Zone$1 = (function (global) {
     if (global.Zone) {
         throw new Error('Zone already loaded.');
@@ -82840,37 +82883,46 @@ var Zone$1 = (function (global) {
             this._parent = parent;
             this._name = zoneSpec ? zoneSpec.name || 'unnamed' : '<root>';
             this._properties = zoneSpec && zoneSpec.properties || {};
-            this._zoneDelegate = new ZoneDelegate(this, this._parent && this._parent._zoneDelegate, zoneSpec);
+            this._zoneDelegate =
+                new ZoneDelegate(this, this._parent && this._parent._zoneDelegate, zoneSpec);
         }
         Zone.assertZonePatched = function () {
             if (global.Promise !== ZoneAwarePromise) {
-                throw new Error("Zone.js has detected that ZoneAwarePromise `(window|global).Promise` " +
-                    "has been overwritten.\n" +
-                    "Most likely cause is that a Promise polyfill has been loaded " +
-                    "after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. " +
-                    "If you must load one, do so before loading zone.js.)");
+                throw new Error('Zone.js has detected that ZoneAwarePromise `(window|global).Promise` ' +
+                    'has been overwritten.\n' +
+                    'Most likely cause is that a Promise polyfill has been loaded ' +
+                    'after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. ' +
+                    'If you must load one, do so before loading zone.js.)');
             }
         };
         Object.defineProperty(Zone, "current", {
-            get: function () { return _currentZone; },
+            get: function () {
+                return _currentZone;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone, "currentTask", {
-            get: function () { return _currentTask; },
+            get: function () {
+                return _currentTask;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone.prototype, "parent", {
-            get: function () { return this._parent; },
+            get: function () {
+                return this._parent;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone.prototype, "name", {
-            get: function () { return this._name; },
+            get: function () {
+                return this._name;
+            },
             enumerable: true,
             configurable: true
         });
@@ -82941,8 +82993,8 @@ var Zone$1 = (function (global) {
         Zone.prototype.runTask = function (task, applyThis, applyArgs) {
             task.runCount++;
             if (task.zone != this)
-                throw new Error('A task can only be run in the zone which created it! (Creation: ' +
-                    task.zone.name + '; Execution: ' + this.name + ')');
+                throw new Error('A task can only be run in the zone which created it! (Creation: ' + task.zone.name +
+                    '; Execution: ' + this.name + ')');
             var previousTask = _currentTask;
             _currentTask = task;
             var oldZone = _currentZone;
@@ -82991,40 +83043,51 @@ var Zone$1 = (function (global) {
             this._parentDelegate = parentDelegate;
             this._forkZS = zoneSpec && (zoneSpec && zoneSpec.onFork ? zoneSpec : parentDelegate._forkZS);
             this._forkDlgt = zoneSpec && (zoneSpec.onFork ? parentDelegate : parentDelegate._forkDlgt);
-            this._interceptZS = zoneSpec && (zoneSpec.onIntercept ? zoneSpec : parentDelegate._interceptZS);
-            this._interceptDlgt = zoneSpec && (zoneSpec.onIntercept ? parentDelegate : parentDelegate._interceptDlgt);
+            this._interceptZS =
+                zoneSpec && (zoneSpec.onIntercept ? zoneSpec : parentDelegate._interceptZS);
+            this._interceptDlgt =
+                zoneSpec && (zoneSpec.onIntercept ? parentDelegate : parentDelegate._interceptDlgt);
             this._invokeZS = zoneSpec && (zoneSpec.onInvoke ? zoneSpec : parentDelegate._invokeZS);
-            this._invokeDlgt = zoneSpec && (zoneSpec.onInvoke ? parentDelegate : parentDelegate._invokeDlgt);
-            this._handleErrorZS = zoneSpec && (zoneSpec.onHandleError ? zoneSpec : parentDelegate._handleErrorZS);
-            this._handleErrorDlgt = zoneSpec && (zoneSpec.onHandleError ? parentDelegate : parentDelegate._handleErrorDlgt);
-            this._scheduleTaskZS = zoneSpec && (zoneSpec.onScheduleTask ? zoneSpec : parentDelegate._scheduleTaskZS);
-            this._scheduleTaskDlgt = zoneSpec && (zoneSpec.onScheduleTask ? parentDelegate : parentDelegate._scheduleTaskDlgt);
-            this._invokeTaskZS = zoneSpec && (zoneSpec.onInvokeTask ? zoneSpec : parentDelegate._invokeTaskZS);
-            this._invokeTaskDlgt = zoneSpec && (zoneSpec.onInvokeTask ? parentDelegate : parentDelegate._invokeTaskDlgt);
-            this._cancelTaskZS = zoneSpec && (zoneSpec.onCancelTask ? zoneSpec : parentDelegate._cancelTaskZS);
-            this._cancelTaskDlgt = zoneSpec && (zoneSpec.onCancelTask ? parentDelegate : parentDelegate._cancelTaskDlgt);
+            this._invokeDlgt =
+                zoneSpec && (zoneSpec.onInvoke ? parentDelegate : parentDelegate._invokeDlgt);
+            this._handleErrorZS =
+                zoneSpec && (zoneSpec.onHandleError ? zoneSpec : parentDelegate._handleErrorZS);
+            this._handleErrorDlgt =
+                zoneSpec && (zoneSpec.onHandleError ? parentDelegate : parentDelegate._handleErrorDlgt);
+            this._scheduleTaskZS =
+                zoneSpec && (zoneSpec.onScheduleTask ? zoneSpec : parentDelegate._scheduleTaskZS);
+            this._scheduleTaskDlgt =
+                zoneSpec && (zoneSpec.onScheduleTask ? parentDelegate : parentDelegate._scheduleTaskDlgt);
+            this._invokeTaskZS =
+                zoneSpec && (zoneSpec.onInvokeTask ? zoneSpec : parentDelegate._invokeTaskZS);
+            this._invokeTaskDlgt =
+                zoneSpec && (zoneSpec.onInvokeTask ? parentDelegate : parentDelegate._invokeTaskDlgt);
+            this._cancelTaskZS =
+                zoneSpec && (zoneSpec.onCancelTask ? zoneSpec : parentDelegate._cancelTaskZS);
+            this._cancelTaskDlgt =
+                zoneSpec && (zoneSpec.onCancelTask ? parentDelegate : parentDelegate._cancelTaskDlgt);
             this._hasTaskZS = zoneSpec && (zoneSpec.onHasTask ? zoneSpec : parentDelegate._hasTaskZS);
-            this._hasTaskDlgt = zoneSpec && (zoneSpec.onHasTask ? parentDelegate : parentDelegate._hasTaskDlgt);
+            this._hasTaskDlgt =
+                zoneSpec && (zoneSpec.onHasTask ? parentDelegate : parentDelegate._hasTaskDlgt);
         }
         ZoneDelegate.prototype.fork = function (targetZone, zoneSpec) {
-            return this._forkZS
-                ? this._forkZS.onFork(this._forkDlgt, this.zone, targetZone, zoneSpec)
-                : new Zone(targetZone, zoneSpec);
+            return this._forkZS ? this._forkZS.onFork(this._forkDlgt, this.zone, targetZone, zoneSpec) :
+                new Zone(targetZone, zoneSpec);
         };
         ZoneDelegate.prototype.intercept = function (targetZone, callback, source) {
-            return this._interceptZS
-                ? this._interceptZS.onIntercept(this._interceptDlgt, this.zone, targetZone, callback, source)
-                : callback;
+            return this._interceptZS ?
+                this._interceptZS.onIntercept(this._interceptDlgt, this.zone, targetZone, callback, source) :
+                callback;
         };
         ZoneDelegate.prototype.invoke = function (targetZone, callback, applyThis, applyArgs, source) {
-            return this._invokeZS
-                ? this._invokeZS.onInvoke(this._invokeDlgt, this.zone, targetZone, callback, applyThis, applyArgs, source)
-                : callback.apply(applyThis, applyArgs);
+            return this._invokeZS ?
+                this._invokeZS.onInvoke(this._invokeDlgt, this.zone, targetZone, callback, applyThis, applyArgs, source) :
+                callback.apply(applyThis, applyArgs);
         };
         ZoneDelegate.prototype.handleError = function (targetZone, error) {
-            return this._handleErrorZS
-                ? this._handleErrorZS.onHandleError(this._handleErrorDlgt, this.zone, targetZone, error)
-                : true;
+            return this._handleErrorZS ?
+                this._handleErrorZS.onHandleError(this._handleErrorDlgt, this.zone, targetZone, error) :
+                true;
         };
         ZoneDelegate.prototype.scheduleTask = function (targetZone, task) {
             try {
@@ -83050,12 +83113,13 @@ var Zone$1 = (function (global) {
         };
         ZoneDelegate.prototype.invokeTask = function (targetZone, task, applyThis, applyArgs) {
             try {
-                return this._invokeTaskZS
-                    ? this._invokeTaskZS.onInvokeTask(this._invokeTaskDlgt, this.zone, targetZone, task, applyThis, applyArgs)
-                    : task.callback.apply(applyThis, applyArgs);
+                return this._invokeTaskZS ?
+                    this._invokeTaskZS.onInvokeTask(this._invokeTaskDlgt, this.zone, targetZone, task, applyThis, applyArgs) :
+                    task.callback.apply(applyThis, applyArgs);
             }
             finally {
-                if (targetZone == this.zone && (task.type != 'eventTask') && !(task.data && task.data.isPeriodic)) {
+                if (targetZone == this.zone && (task.type != 'eventTask') &&
+                    !(task.data && task.data.isPeriodic)) {
                     this._updateTaskCount(task.type, -1);
                 }
             }
@@ -83078,7 +83142,8 @@ var Zone$1 = (function (global) {
             return value;
         };
         ZoneDelegate.prototype.hasTask = function (targetZone, isEmpty) {
-            return this._hasTaskZS && this._hasTaskZS.onHasTask(this._hasTaskDlgt, this.zone, targetZone, isEmpty);
+            return this._hasTaskZS &&
+                this._hasTaskZS.onHasTask(this._hasTaskDlgt, this.zone, targetZone, isEmpty);
         };
         ZoneDelegate.prototype._updateTaskCount = function (type, count) {
             var counts = this._taskCounts;
@@ -83135,12 +83200,14 @@ var Zone$1 = (function (global) {
                 return this.data.handleId;
             }
             else {
-                return this.toString();
+                return Object.prototype.toString.call(this);
             }
         };
         return ZoneTask;
     }());
-    function __symbol__(name) { return '__zone_symbol__' + name; }
+    function __symbol__(name) {
+        return '__zone_symbol__' + name;
+    }
     
     var symbolSetTimeout = __symbol__('setTimeout');
     var symbolPromise = __symbol__('Promise');
@@ -83195,7 +83262,9 @@ var Zone$1 = (function (global) {
                 var _loop_1 = function() {
                     var uncaughtPromiseError = _uncaughtPromiseErrors.shift();
                     try {
-                        uncaughtPromiseError.zone.runGuarded(function () { throw uncaughtPromiseError; });
+                        uncaughtPromiseError.zone.runGuarded(function () {
+                            throw uncaughtPromiseError;
+                        });
                     }
                     catch (e) {
                         consoleError(e);
@@ -83211,8 +83280,12 @@ var Zone$1 = (function (global) {
     function isThenable(value) {
         return value && value.then;
     }
-    function forwardResolution(value) { return value; }
-    function forwardRejection(rejection) { return ZoneAwarePromise.reject(rejection); }
+    function forwardResolution(value) {
+        return value;
+    }
+    function forwardRejection(rejection) {
+        return ZoneAwarePromise.reject(rejection);
+    }
     var symbolState = __symbol__('state');
     var symbolValue = __symbol__('value');
     var source = 'Promise.then';
@@ -83245,7 +83318,8 @@ var Zone$1 = (function (global) {
                 if (queue.length == 0 && state == REJECTED) {
                     promise[symbolState] = REJECTED_NO_CATCH;
                     try {
-                        throw new Error("Uncaught (in promise): " + value);
+                        throw new Error('Uncaught (in promise): ' + value +
+                            (value && value.stack ? '\n' + value.stack : ''));
                     }
                     catch (e) {
                         var error_1 = e;
@@ -83309,9 +83383,16 @@ var Zone$1 = (function (global) {
         ZoneAwarePromise.race = function (values) {
             var resolve;
             var reject;
-            var promise = new this(function (res, rej) { resolve = res; reject = rej; });
-            function onResolve(value) { promise && (promise = null || resolve(value)); }
-            function onReject(error) { promise && (promise = null || reject(error)); }
+            var promise = new this(function (res, rej) {
+                _a = [res, rej], resolve = _a[0], reject = _a[1];
+                var _a;
+            });
+            function onResolve(value) {
+                promise && (promise = null || resolve(value));
+            }
+            function onReject(error) {
+                promise && (promise = null || reject(error));
+            }
             for (var _i = 0, values_1 = values; _i < values_1.length; _i++) {
                 var value = values_1[_i];
                 if (!isThenable(value)) {
@@ -83324,7 +83405,10 @@ var Zone$1 = (function (global) {
         ZoneAwarePromise.all = function (values) {
             var resolve;
             var reject;
-            var promise = new this(function (res, rej) { resolve = res; reject = rej; });
+            var promise = new this(function (res, rej) {
+                resolve = res;
+                reject = rej;
+            });
             var count = 0;
             var resolvedValues = [];
             for (var _i = 0, values_2 = values; _i < values_2.length; _i++) {
@@ -83371,13 +83455,14 @@ var Zone$1 = (function (global) {
     global.Promise = ZoneAwarePromise;
     function patchThen(NativePromise) {
         var NativePromiseProtototype = NativePromise.prototype;
-        var NativePromiseThen = NativePromiseProtototype[__symbol__('then')]
-            = NativePromiseProtototype.then;
+        var NativePromiseThen = NativePromiseProtototype[__symbol__('then')] =
+            NativePromiseProtototype.then;
         NativePromiseProtototype.then = function (onResolve, onReject) {
             var nativePromise = this;
             return new ZoneAwarePromise(function (resolve, reject) {
                 NativePromiseThen.call(nativePromise, resolve, reject);
-            }).then(onResolve, onReject);
+            })
+                .then(onResolve, onReject);
         };
     }
     if (NativePromise) {
@@ -83394,7 +83479,8 @@ var Zone$1 = (function (global) {
             }
             // ignore output to prevent error;
             fetchPromise.then(function () { return null; }, function () { return null; });
-            if (fetchPromise.constructor != NativePromise) {
+            if (fetchPromise.constructor != NativePromise &&
+                fetchPromise.constructor != ZoneAwarePromise) {
                 patchThen(fetchPromise.constructor);
             }
         }
@@ -83405,9 +83491,11 @@ var Zone$1 = (function (global) {
 })(typeof window === 'object' && window || typeof self === 'object' && self || global);
 
 /**
- * Suppress closure compiler errors about unknown 'process' variable
- * @fileoverview
- * @suppress {undefinedVars}
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
  */
 var zoneSymbol = Zone['__symbol__'];
 var _global$1 = typeof window === 'object' && window || typeof self === 'object' && self || global;
@@ -83442,10 +83530,7 @@ var isWebWorker = (typeof WorkerGlobalScope !== 'undefined' && self instanceof W
 var isNode = (typeof process !== 'undefined' && {}.toString.call(process) === '[object process]');
 var isBrowser = !isNode && !isWebWorker && !!(typeof window !== 'undefined' && window['HTMLElement']);
 function patchProperty(obj, prop) {
-    var desc = Object.getOwnPropertyDescriptor(obj, prop) || {
-        enumerable: true,
-        configurable: true
-    };
+    var desc = Object.getOwnPropertyDescriptor(obj, prop) || { enumerable: true, configurable: true };
     // A property descriptor cannot have getter/setter and be writable
     // deleting the writable and value properties avoids this error:
     //
@@ -83474,7 +83559,8 @@ function patchProperty(obj, prop) {
             this[_prop] = null;
         }
     };
-    // The getter would return undefined for unassigned properties but the default value of an unassigned property is null
+    // The getter would return undefined for unassigned properties but the default value of an
+    // unassigned property is null
     desc.get = function () {
         return this[_prop] || null;
     };
@@ -83508,9 +83594,7 @@ function findExistingRegisteredTask(target, handler, name, capture, remove) {
         for (var i = 0; i < eventTasks.length; i++) {
             var eventTask = eventTasks[i];
             var data = eventTask.data;
-            if (data.handler === handler
-                && data.useCapturing === capture
-                && data.eventName === name) {
+            if (data.handler === handler && data.useCapturing === capture && data.eventName === name) {
                 if (remove) {
                     eventTasks.splice(i, 1);
                 }
@@ -83563,13 +83647,14 @@ function makeZoneAwareAddListener(addFnName, removeFnName, useCapturingParam, al
             // In cross site contexts (such as WebDriver frameworks like Selenium),
             // accessing the handler object here will cause an exception to be thrown which
             // will fail tests prematurely.
-            validZoneHandler = handler && handler.toString() === "[object FunctionWrapper]";
+            validZoneHandler = handler && handler.toString() === '[object FunctionWrapper]';
         }
         catch (e) {
             // Returning nothing here is fine, because objects in a cross-site context are unusable
             return;
         }
-        // Ignore special listeners of IE11 & Edge dev tools, see https://github.com/angular/zone.js/issues/150
+        // Ignore special listeners of IE11 & Edge dev tools, see
+        // https://github.com/angular/zone.js/issues/150
         if (!delegate || validZoneHandler) {
             return target[addFnSymbol](eventName, handler, useCapturing);
         }
@@ -83650,7 +83735,8 @@ function patchClass(className) {
             case 4:
                 this[originalInstanceKey] = new OriginalClass(a[0], a[1], a[2], a[3]);
                 break;
-            default: throw new Error('Arg list too long.');
+            default:
+                throw new Error('Arg list too long.');
         }
     };
     var instance = new OriginalClass(function () { });
@@ -83702,7 +83788,7 @@ function createNamedFn(name, delegate) {
 }
 function patchMethod(target, name, patchFn) {
     var proto = target;
-    while (proto && !proto.hasOwnProperty(name)) {
+    while (proto && Object.getOwnPropertyNames(proto).indexOf(name) === -1) {
         proto = Object.getPrototypeOf(proto);
     }
     if (!proto && target[name]) {
@@ -83718,36 +83804,90 @@ function patchMethod(target, name, patchFn) {
     return delegate;
 }
 
-var WTF_ISSUE_555 = 'Anchor,Area,Audio,BR,Base,BaseFont,Body,Button,Canvas,Content,DList,Directory,Div,Embed,FieldSet,Font,Form,Frame,FrameSet,HR,Head,Heading,Html,IFrame,Image,Input,Keygen,LI,Label,Legend,Link,Map,Marquee,Media,Menu,Meta,Meter,Mod,OList,Object,OptGroup,Option,Output,Paragraph,Pre,Progress,Quote,Script,Select,Source,Span,Style,TableCaption,TableCell,TableCol,Table,TableRow,TableSection,TextArea,Title,Track,UList,Unknown,Video';
-var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Window,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'.split(',');
-var EVENT_TARGET = 'EventTarget';
-function eventTargetPatch(_global) {
-    var apis = [];
-    var isWtf = _global['wtf'];
-    if (isWtf) {
-        // Workaround for: https://github.com/google/tracing-framework/issues/555
-        apis = WTF_ISSUE_555.split(',').map(function (v) { return 'HTML' + v + 'Element'; }).concat(NO_EVENT_TARGET);
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+function patchTimer(window, setName, cancelName, nameSuffix) {
+    var setNative = null;
+    var clearNative = null;
+    setName += nameSuffix;
+    cancelName += nameSuffix;
+    var tasksByHandleId = {};
+    function scheduleTask(task) {
+        var data = task.data;
+        data.args[0] = function () {
+            task.invoke.apply(this, arguments);
+            delete tasksByHandleId[data.handleId];
+        };
+        data.handleId = setNative.apply(window, data.args);
+        tasksByHandleId[data.handleId] = task;
+        return task;
     }
-    else if (_global[EVENT_TARGET]) {
-        apis.push(EVENT_TARGET);
+    function clearTask(task) {
+        delete tasksByHandleId[task.data.handleId];
+        return clearNative(task.data.handleId);
     }
-    else {
-        // Note: EventTarget is not available in all browsers,
-        // if it's not available, we instead patch the APIs in the IDL that inherit from EventTarget
-        apis = NO_EVENT_TARGET;
-    }
-    for (var i = 0; i < apis.length; i++) {
-        var type = _global[apis[i]];
-        patchEventTargetMethods(type && type.prototype);
-    }
+    setNative =
+        patchMethod(window, setName, function (delegate) { return function (self, args) {
+            if (typeof args[0] === 'function') {
+                var zone = Zone.current;
+                var options = {
+                    handleId: null,
+                    isPeriodic: nameSuffix === 'Interval',
+                    delay: (nameSuffix === 'Timeout' || nameSuffix === 'Interval') ? args[1] || 0 : null,
+                    args: args
+                };
+                var task = zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
+                if (!task) {
+                    return task;
+                }
+                // Node.js must additionally support the ref and unref functions.
+                var handle = task.data.handleId;
+                if (handle.ref && handle.unref) {
+                    task.ref = handle.ref.bind(handle);
+                    task.unref = handle.unref.bind(handle);
+                }
+                return task;
+            }
+            else {
+                // cause an error by calling it directly.
+                return delegate.apply(window, args);
+            }
+        }; });
+    clearNative =
+        patchMethod(window, cancelName, function (delegate) { return function (self, args) {
+            var task = typeof args[0] === 'number' ? tasksByHandleId[args[0]] : args[0];
+            if (task && typeof task.type === 'string') {
+                if (task.cancelFn && task.data.isPeriodic || task.runCount === 0) {
+                    // Do not cancel already canceled functions
+                    task.zone.cancelTask(task);
+                }
+            }
+            else {
+                // cause an error by calling it directly.
+                delegate.apply(window, args);
+            }
+        }; });
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /*
  * This is necessary for Chrome and Chrome mobile, to enable
  * things like redefining `createdCallback` on an element.
  */
 var _defineProperty = Object[zoneSymbol('defineProperty')] = Object.defineProperty;
-var _getOwnPropertyDescriptor = Object[zoneSymbol('getOwnPropertyDescriptor')] = Object.getOwnPropertyDescriptor;
+var _getOwnPropertyDescriptor = Object[zoneSymbol('getOwnPropertyDescriptor')] =
+    Object.getOwnPropertyDescriptor;
 var _create = Object.create;
 var unconfigurablesKey = zoneSymbol('unconfigurables');
 function propertyPatch() {
@@ -83809,7 +83949,8 @@ function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
     }
     catch (e) {
         if (desc.configurable) {
-            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's retry with the original flag value
+            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's
+            // retry with the original flag value
             if (typeof originalConfigurableFlag == 'undefined') {
                 delete desc.configurable;
             }
@@ -83836,40 +83977,45 @@ function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
     }
 }
 
-function registerElementPatch(_global) {
-    if (!isBrowser || !('registerElement' in _global.document)) {
-        return;
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var WTF_ISSUE_555 = 'Anchor,Area,Audio,BR,Base,BaseFont,Body,Button,Canvas,Content,DList,Directory,Div,Embed,FieldSet,Font,Form,Frame,FrameSet,HR,Head,Heading,Html,IFrame,Image,Input,Keygen,LI,Label,Legend,Link,Map,Marquee,Media,Menu,Meta,Meter,Mod,OList,Object,OptGroup,Option,Output,Paragraph,Pre,Progress,Quote,Script,Select,Source,Span,Style,TableCaption,TableCell,TableCol,Table,TableRow,TableSection,TextArea,Title,Track,UList,Unknown,Video';
+var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Window,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'
+    .split(',');
+var EVENT_TARGET = 'EventTarget';
+function eventTargetPatch(_global) {
+    var apis = [];
+    var isWtf = _global['wtf'];
+    if (isWtf) {
+        // Workaround for: https://github.com/google/tracing-framework/issues/555
+        apis = WTF_ISSUE_555.split(',').map(function (v) { return 'HTML' + v + 'Element'; }).concat(NO_EVENT_TARGET);
     }
-    var _registerElement = document.registerElement;
-    var callbacks = [
-        'createdCallback',
-        'attachedCallback',
-        'detachedCallback',
-        'attributeChangedCallback'
-    ];
-    document.registerElement = function (name, opts) {
-        if (opts && opts.prototype) {
-            callbacks.forEach(function (callback) {
-                var source = 'Document.registerElement::' + callback;
-                if (opts.prototype.hasOwnProperty(callback)) {
-                    var descriptor = Object.getOwnPropertyDescriptor(opts.prototype, callback);
-                    if (descriptor && descriptor.value) {
-                        descriptor.value = Zone.current.wrap(descriptor.value, source);
-                        _redefineProperty(opts.prototype, callback, descriptor);
-                    }
-                    else {
-                        opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
-                    }
-                }
-                else if (opts.prototype[callback]) {
-                    opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
-                }
-            });
-        }
-        return _registerElement.apply(document, [name, opts]);
-    };
+    else if (_global[EVENT_TARGET]) {
+        apis.push(EVENT_TARGET);
+    }
+    else {
+        // Note: EventTarget is not available in all browsers,
+        // if it's not available, we instead patch the APIs in the IDL that inherit from EventTarget
+        apis = NO_EVENT_TARGET;
+    }
+    for (var i = 0; i < apis.length; i++) {
+        var type = _global[apis[i]];
+        patchEventTargetMethods(type && type.prototype);
+    }
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 // we have to patch the instance since the proto is non-configurable
 function apply(_global) {
     var WS = _global.WebSocket;
@@ -83903,7 +84049,15 @@ function apply(_global) {
     }
 }
 
-var eventNames = 'copy cut paste abort blur focus canplay canplaythrough change click contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop durationchange emptied ended input invalid keydown keypress keyup load loadeddata loadedmetadata loadstart message mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup pause play playing progress ratechange reset scroll seeked seeking select show stalled submit suspend timeupdate volumechange waiting mozfullscreenchange mozfullscreenerror mozpointerlockchange mozpointerlockerror error webglcontextrestored webglcontextlost webglcontextcreationerror'.split(' ');
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var eventNames = 'copy cut paste abort blur focus canplay canplaythrough change click contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop durationchange emptied ended input invalid keydown keypress keyup load loadeddata loadedmetadata loadstart message mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup pause play playing progress ratechange reset scroll seeked seeking select show stalled submit suspend timeupdate volumechange waiting mozfullscreenchange mozfullscreenerror mozpointerlockchange mozpointerlockerror error webglcontextrestored webglcontextlost webglcontextcreationerror'
+    .split(' ');
 function propertyDescriptorPatch(_global) {
     if (isNode) {
         return;
@@ -83937,8 +84091,8 @@ function propertyDescriptorPatch(_global) {
     }
 }
 function canPatchViaPropertyDescriptor() {
-    if (isBrowser && !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'onclick')
-        && typeof Element !== 'undefined') {
+    if (isBrowser && !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'onclick') &&
+        typeof Element !== 'undefined') {
         // WebKit https://bugs.webkit.org/show_bug.cgi?id=134364
         // IDL interface attributes are not configurable
         var desc = Object.getOwnPropertyDescriptor(Element.prototype, 'onclick');
@@ -83964,7 +84118,7 @@ function patchViaCapturingAllTheEvents() {
     var _loop_1 = function(i) {
         var property = eventNames[i];
         var onproperty = 'on' + property;
-        document.addEventListener(property, function (event) {
+        self.addEventListener(property, function (event) {
             var elt = event.target, bound, source;
             if (elt) {
                 source = elt.constructor['name'] + '.' + onproperty;
@@ -83988,61 +84142,49 @@ function patchViaCapturingAllTheEvents() {
     
 }
 
-function patchTimer(window, setName, cancelName, nameSuffix) {
-    var setNative = null;
-    var clearNative = null;
-    setName += nameSuffix;
-    cancelName += nameSuffix;
-    function scheduleTask(task) {
-        var data = task.data;
-        data.args[0] = task.invoke;
-        data.handleId = setNative.apply(window, data.args);
-        return task;
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+function registerElementPatch(_global) {
+    if (!isBrowser || !('registerElement' in _global.document)) {
+        return;
     }
-    function clearTask(task) {
-        return clearNative(task.data.handleId);
-    }
-    setNative = patchMethod(window, setName, function (delegate) { return function (self, args) {
-        if (typeof args[0] === 'function') {
-            var zone = Zone.current;
-            var options = {
-                handleId: null,
-                isPeriodic: nameSuffix === 'Interval',
-                delay: (nameSuffix === 'Timeout' || nameSuffix === 'Interval') ? args[1] || 0 : null,
-                args: args
-            };
-            var task = zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
-            if (!task) {
-                return task;
-            }
-            // Node.js must additionally support the ref and unref functions.
-            var handle = task.data.handleId;
-            if (handle.ref && handle.unref) {
-                task.ref = handle.ref.bind(handle);
-                task.unref = handle.unref.bind(handle);
-            }
-            return task;
+    var _registerElement = document.registerElement;
+    var callbacks = ['createdCallback', 'attachedCallback', 'detachedCallback', 'attributeChangedCallback'];
+    document.registerElement = function (name, opts) {
+        if (opts && opts.prototype) {
+            callbacks.forEach(function (callback) {
+                var source = 'Document.registerElement::' + callback;
+                if (opts.prototype.hasOwnProperty(callback)) {
+                    var descriptor = Object.getOwnPropertyDescriptor(opts.prototype, callback);
+                    if (descriptor && descriptor.value) {
+                        descriptor.value = Zone.current.wrap(descriptor.value, source);
+                        _redefineProperty(opts.prototype, callback, descriptor);
+                    }
+                    else {
+                        opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
+                    }
+                }
+                else if (opts.prototype[callback]) {
+                    opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
+                }
+            });
         }
-        else {
-            // cause an error by calling it directly.
-            return delegate.apply(window, args);
-        }
-    }; });
-    clearNative = patchMethod(window, cancelName, function (delegate) { return function (self, args) {
-        var task = args[0];
-        if (task && typeof task.type === 'string') {
-            if (task.cancelFn && task.data.isPeriodic || task.runCount === 0) {
-                // Do not cancel already canceled functions
-                task.zone.cancelTask(task);
-            }
-        }
-        else {
-            // cause an error by calling it directly.
-            delegate.apply(window, args);
-        }
-    }; });
+        return _registerElement.apply(document, [name, opts]);
+    };
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 var set = 'set';
 var clear = 'clear';
 var blockingMethods = ['alert', 'prompt', 'confirm'];
@@ -84093,8 +84235,7 @@ function patchXHR(window) {
         sendNative.apply(data.target, data.args);
         return task;
     }
-    function placeholderCallback() {
-    }
+    function placeholderCallback() { }
     function clearTask(task) {
         var data = task.data;
         // Note - ideally, we would call data.target.removeEventListener here, but it's too late
@@ -84113,13 +84254,7 @@ function patchXHR(window) {
             return sendNative.apply(self, args);
         }
         else {
-            var options = {
-                target: self,
-                isPeriodic: false,
-                delay: null,
-                args: args,
-                aborted: false
-            };
+            var options = { target: self, isPeriodic: false, delay: null, args: args, aborted: false };
             return zone.scheduleMacroTask('XMLHttpRequest.send', placeholderCallback, options, scheduleTask, clearTask);
         }
     }; });
@@ -84132,15 +84267,13 @@ function patchXHR(window) {
             }
             task.zone.cancelTask(task);
         }
-        // Otherwise, we are trying to abort an XHR which has not yet been sent, so there is no task to cancel. Do nothing.
+        // Otherwise, we are trying to abort an XHR which has not yet been sent, so there is no task
+        // to cancel. Do nothing.
     }; });
 }
 /// GEO_LOCATION
 if (_global['navigator'] && _global['navigator'].geolocation) {
-    patchPrototype(_global['navigator'].geolocation, [
-        'getCurrentPosition',
-        'watchPosition'
-    ]);
+    patchPrototype(_global['navigator'].geolocation, ['getCurrentPosition', 'watchPosition']);
 }
 
 })));
