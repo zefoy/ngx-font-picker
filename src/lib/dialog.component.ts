@@ -1,5 +1,3 @@
-declare var require: any;
-
 import * as WebFont from 'webfontloader';
 
 import { Observable } from 'rxjs/Rx';
@@ -18,8 +16,8 @@ import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
 
 @Component({
   selector: 'font-picker',
-  template: require('dialog.component.html'),
-  styles: [require('dialog.component.scss')]
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
   public open: boolean;

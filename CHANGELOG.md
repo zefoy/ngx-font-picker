@@ -1,3 +1,13 @@
+2.0.0 Feature release
+
+  - Added minified bundle library
+
+  - Added support for AOT compilation
+
+1.0.0 Maintenance release
+
+  - Released final 1.0.0 version
+
 0.9.3 Maintenance release
 
   - Removed forgotten debug logging
