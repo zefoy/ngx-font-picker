@@ -10,9 +10,9 @@ import { SharedModule } from "./shared.module";
 import { DialogComponent } from "./dialog.component";
 
 @NgModule({
-    imports: [BrowserModule, PerfectScrollbarModule, FormsModule, ReactiveFormsModule, SharedModule],
-    declarations: [DialogComponent],
-    exports: [FormsModule, ReactiveFormsModule],
-    entryComponents: [DialogComponent]
+  imports: [BrowserModule, PerfectScrollbarModule, FormsModule, ReactiveFormsModule, SharedModule],
+  declarations: [DialogComponent],
+  exports: [FormsModule, ReactiveFormsModule],
+  entryComponents: [DialogComponent]
 })
 export class DialogModule {}

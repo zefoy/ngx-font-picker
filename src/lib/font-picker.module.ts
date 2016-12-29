@@ -3,11 +3,11 @@ import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject 
 import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
 
+import { DialogModule } from './dialog.module';
 import { SharedModule } from "./shared.module";
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerDirective } from './font-picker.directive';
-import { DialogModule } from './dialog.module';
 
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 
@@ -15,9 +15,9 @@ export const FONT_PICKER_GUARD = new OpaqueToken('FONT_PICKER_GUARD');
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-    imports: [CommonModule, HttpModule, SharedModule, DialogModule],
+    imports: [CommonModule, HttpModule, DialogModule, SharedModule],
     declarations: [FontPickerDirective],
-    exports: [FontPickerDirective, SharedModule, DialogModule]
+    exports: [FontPickerDirective, DialogModule, SharedModule]
 })
 export class FontPickerModule {
   constructor (@Optional() @Inject(FONT_PICKER_GUARD) guard: any) {}
