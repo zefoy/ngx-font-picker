@@ -3,7 +3,7 @@
   "description": "Google fonts font picker widget for Angular 2",
   "bugs": "https://github.com/zefoy/angular2-font-picker/issues",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "bundles/angular2-font-picker.umd.js",
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",

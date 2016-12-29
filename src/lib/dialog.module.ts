@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
@@ -10,7 +10,7 @@ import { SharedModule } from "./shared.module";
 import { DialogComponent } from "./dialog.component";
 
 @NgModule({
-  imports: [BrowserModule, PerfectScrollbarModule, FormsModule, ReactiveFormsModule, SharedModule],
+  imports: [CommonModule, PerfectScrollbarModule, FormsModule, ReactiveFormsModule, SharedModule],
   declarations: [DialogComponent],
   exports: [FormsModule, ReactiveFormsModule],
   entryComponents: [DialogComponent]

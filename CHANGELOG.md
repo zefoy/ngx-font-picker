@@ -1,3 +1,7 @@
+2.0.1 Bug fix release
+
+  - Fixed dialog for AOT compilation
+
 2.0.0 Feature release
 
   - Added minified bundle library
