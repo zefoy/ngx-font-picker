@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 
-import { Directive, OnInit, Input, Output, EventEmitter, ElementRef, ViewContainerRef, ComponentFactoryResolver, Compiler, ReflectiveInjector } from '@angular/core';
+import { Directive, OnInit, Input, Output, EventEmitter, ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
 
 import { Font } from './interfaces';
 import { DialogModule } from "./dialog.module";
@@ -47,7 +47,7 @@ export class FontPickerDirective implements OnInit {
 
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<Font>();
 
-  constructor(private resolver: ComponentFactoryResolver, private compiler: Compiler, private el: ElementRef, private vc: ViewContainerRef) {}
+  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef) {}
 
   ngOnInit() {
     let fontPicker = this.fontPicker;
@@ -63,15 +63,12 @@ export class FontPickerDirective implements OnInit {
 
   onClick() {
     if (!this.dialog) {
-      this.compiler.compileModuleAndAllComponentsAsync(DialogModule).then((factory) => {
-        const compFactory = factory.componentFactories.find(x => x.componentType === DialogComponent);
+      const compFactory = this.resolver.resolveComponentFactory(DialogComponent);
+      const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
 
-        const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
+      this.dialog = this.vc.createComponent(compFactory, 0, injector, []).instance;
 
-        this.dialog = this.vc.createComponent(compFactory, 0, injector, []).instance;
-
-        this.dialog.setDialog(this, this.el, this.fontPicker, this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect ,this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
-      });
+      this.dialog.setDialog(this, this.el, this.fontPicker, this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect ,this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
     } else if (!this.dialog.open) {
       this.dialog.updateDialog(this.fontPicker, this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect, this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
 
