@@ -18,7 +18,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.join(__dirname, '../dist'),
-    publicPath: 'https://zefoy.github.io/angular2-font-picker/'
+    publicPath: 'https://zefoy.github.io/ngx-font-picker/'
   },
   module: {
     rules: [
