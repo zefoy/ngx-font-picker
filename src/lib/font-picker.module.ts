@@ -44,7 +44,7 @@ export class FontPickerModule {
         },
         {
           provide: FontPickerConfig,
-          useFactory: (config) => new FontPickerConfig(config),
+          useFactory: provideDefaultConfig,
           deps: [
             FONT_PICKER_CONFIG
           ]
@@ -69,4 +69,8 @@ export function provideForRootGuard(config: FontPickerConfig): any {
   }
 
   return 'guarded';
+}
+
+export function provideDefaultConfig(config: FontPickerConfigInterface): FontPickerConfig {
+  return new FontPickerConfig(config);
 }

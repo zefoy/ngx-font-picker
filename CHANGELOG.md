@@ -1,3 +1,7 @@
+2.0.2 Bug fix release
+
+  - Fixed forRoot for AOT compilation
+
 2.0.1 Bug fix release
 
   - Fixed dialog for AOT compilation
