@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -22,6 +23,7 @@ const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
     imports: [
       BrowserModule,
       FormsModule,
+      FlexLayoutModule,
       ReactiveFormsModule,
       FontPickerModule.forRoot(FONT_PICKER_CONFIG)
     ]

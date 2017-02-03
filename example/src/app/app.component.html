@@ -1,29 +1,29 @@
-<div class="box-container">
+<div class="box-container" fxLayout="column">
   <div class="app-title">Simple example app for the angular2-font-picker</div>
 
   <div class="info-container">
     You can select a font by clicking the first button and toggle the config options from the two other buttons.
   </div>
 
-  <div class="horizontal-container">
-    <div class="vertical-container">
+  <div class="horizontal-container" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="stretch" fxFlex>
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
       <div class="box-title">Settings</div>
 
-      <div class="content-container">
-        <div class="action-toggle-button" [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center center" fxFlex [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
           {{font.family}} {{font.style | FontStyles}} {{font.size}}px
         </div>
 
-        <div class="action-toggle-button" (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
 
-        <div class="action-toggle-button" (click)="toggleExtraOptions()">Style & size: {{(sizeSelect || styleSelect) ? "ON" : "OFF"}}</div>
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleExtraOptions()">Style & size: {{(sizeSelect || styleSelect) ? "ON" : "OFF"}}</div>
       </div>
     </div>
 
-    <div class="vertical-container">
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
       <div class="box-title">Preview</div>
 
-      <div class="content-container">
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
         <div [ngStyle]="font.getStyles()">
           <div class="font-preview-content">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor.
