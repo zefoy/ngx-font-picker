@@ -2,22 +2,25 @@ import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject 
 
 import { HttpModule } from "@angular/http";
 import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { DialogModule } from './dialog.module';
-import { SharedModule } from "./shared.module";
+import { PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
 
 import { FontPickerService } from './font-picker.service';
+import { FontPickerComponent } from "./font-picker.component";
 import { FontPickerDirective } from './font-picker.directive';
 
+import { FontStylesPipe, StatefulSlicePipe } from './pipes';
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 
 export const FONT_PICKER_GUARD = new OpaqueToken('FONT_PICKER_GUARD');
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-    imports: [CommonModule, HttpModule, DialogModule, SharedModule],
-    declarations: [FontPickerDirective],
-    exports: [FontPickerDirective, DialogModule, SharedModule]
+  declarations: [ FontPickerComponent, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ],
+  imports: [ CommonModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule ],
+  exports: [ FormsModule, ReactiveFormsModule, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ],
+  entryComponents: [ FontPickerComponent ]
 })
 export class FontPickerModule {
   constructor (@Optional() @Inject(FONT_PICKER_GUARD) guard: any) {}

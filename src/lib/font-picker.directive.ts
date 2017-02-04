@@ -3,7 +3,7 @@ import { ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjec
 
 import { Font } from './interfaces';
 
-import { DialogComponent } from './dialog.component';
+import { FontPickerComponent } from './font-picker.component';
 
 @Directive({
   selector: '[fontPicker]',
@@ -62,7 +62,7 @@ export class FontPickerDirective implements OnInit {
 
   onClick() {
     if (!this.dialog) {
-      const compFactory = this.resolver.resolveComponentFactory(DialogComponent);
+      const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
       const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
 
       this.dialog = this.vc.createComponent(compFactory, 0, injector, []).instance;

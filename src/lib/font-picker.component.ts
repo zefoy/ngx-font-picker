@@ -16,10 +16,10 @@ import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
 
 @Component({
   selector: 'font-picker',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  templateUrl: './font-picker.component.html',
+  styleUrls: ['./font-picker.component.css']
 })
-export class DialogComponent implements OnInit {
+export class FontPickerComponent implements OnInit {
   public open: boolean;
 
   private loading: boolean;

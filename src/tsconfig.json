@@ -21,11 +21,9 @@
     "index.ts",
     "lib/pipes.ts",
     "lib/interfaces.ts",
-    "lib/shared.module.ts",
-    "lib/dialog.module.ts",
-    "lib/dialog.component.ts",
     "lib/font-picker.module.ts",
     "lib/font-picker.service.ts",
+    "lib/font-picker.component.ts",
     "lib/font-picker.directive.ts"
   ],
   "angularCompilerOptions": {

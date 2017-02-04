@@ -38,7 +38,7 @@
     "@angular/common": "~2.4.0",
     "@angular/compiler": "~2.4.0",
     "@angular/core": "~2.4.0",
-    "@angular/forms": "2.0.0",
+    "@angular/forms": "~2.4.0",
     "@angular/flex-layout": "~2.0.0-beta.4",
     "@angular/http": "~2.4.0",
     "@angular/platform-browser": "~2.4.0",
@@ -47,7 +47,7 @@
     "angular2-font-picker": "~2.0.0",
     "core-js": "~2.4.0",
     "rxjs": "~5.0.0",
-    "webfontloader": "1.6.26",
+    "webfontloader": "~1.6.0",
     "zone.js": "~0.7.0"
   },
   "devDependencies": {
