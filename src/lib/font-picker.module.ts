@@ -1,25 +1,25 @@
 import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject } from '@angular/core';
 
-import { HttpModule } from "@angular/http";
-import { CommonModule } from "@angular/common";
+import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
 
 import { FontPickerService } from './font-picker.service';
-import { FontPickerComponent } from "./font-picker.component";
+import { FontPickerComponent } from './font-picker.component';
 import { FontPickerDirective } from './font-picker.directive';
 
-import { FontStylesPipe, StatefulSlicePipe } from './pipes';
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
+import { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './pipes';
 
 export const FONT_PICKER_GUARD = new OpaqueToken('FONT_PICKER_GUARD');
 export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
-  declarations: [ FontPickerComponent, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ],
+  declarations: [ FontPickerComponent, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   imports: [ CommonModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule ],
-  exports: [ FormsModule, ReactiveFormsModule, FontPickerDirective, FontStylesPipe, StatefulSlicePipe ],
+  exports: [ FormsModule, ReactiveFormsModule, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   entryComponents: [ FontPickerComponent ]
 })
 export class FontPickerModule {

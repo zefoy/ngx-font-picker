@@ -21,7 +21,7 @@ export class FontPickerDirective implements OnInit {
 
   @Input('fpFallbackFont') fpFallbackFont: Font = new Font({
     family: 'Roboto',
-    size: 14,
+    size: '16px',
     style: 'regular',
     styles: ['regular']
   });

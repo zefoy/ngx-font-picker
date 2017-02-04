@@ -11,7 +11,7 @@
 
       <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
         <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center center" fxFlex [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
-          {{font.family}} {{font.style | FontStyles}} {{font.size}}px
+          {{font.family}} {{font.style | FontStyles}} {{font.size}}
         </div>
 
         <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>

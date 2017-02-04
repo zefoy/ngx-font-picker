@@ -1,3 +1,7 @@
+2.1.0 Feature release
+
+  - Font size needs to have unit now
+
 2.0.2 Bug fix release
 
   - Fixed forRoot for AOT compilation

@@ -2,7 +2,7 @@
   "name": "angular2-font-picker-example",
   "description": "Example app for the angular2-font-picker",
   "license": "MIT",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "tslint": {
     "extends": "./tslint.json"
   },

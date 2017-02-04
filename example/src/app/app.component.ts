@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Font } from 'angular2-font-picker';
 
@@ -10,11 +10,11 @@ import { Font } from 'angular2-font-picker';
 export class AppComponent {
   private _presetFonts = ['Arial', 'Serif', 'Helvetica', 'Sans-Serif', 'Open Sans', 'Roboto Slab'];
 
-  private font: Font = new Font({
+  public font: Font = new Font({
     family: 'Roboto',
-    styles: ['regular'],
+    size: '14px',
     style: 'regular',
-    size: 14
+    styles: ['regular']
   });
 
   private sizeSelect: boolean = true;

@@ -1,7 +1,7 @@
 export interface FontInterface {
   family: string;
   files?: any;
-  size: number;
+  size: string;
   style: string;
   styles: string[];
 }
@@ -15,7 +15,7 @@ export interface GoogleFontInterface {
 }
 
 export interface FontPickerConfigInterface {
-  apiKey?: string
+  apiKey?: string;
 }
 
 export class FontPickerConfig implements FontPickerConfigInterface {
@@ -26,7 +26,7 @@ export class FontPickerConfig implements FontPickerConfigInterface {
   }
 
   public assign(config: FontPickerConfigInterface = {}) {
-    for (var key in config) {
+    for (let key in config) {
       this[key] = config[key];
     }
   }
@@ -35,25 +35,25 @@ export class FontPickerConfig implements FontPickerConfigInterface {
 export class Font {
   public family: string;
   public files: any;
-  public size: number;
+  public size: string;
   public style: string;
   public styles: string[];
 
   constructor(props: FontInterface) {
     this.family = props.family || 'monospace';
     this.styles = props.styles || ['regular'];
-    this.files = props.files || null;
     this.style = props.style || 'regular';
-    this.size = props.size || 14;
+    this.files = props.files || null;
+    this.size = props.size || null;
   }
 
   public getStyles(): any {
     return {
-      'font-size': this.size.toString() + 'px',
+      'font-size': this.size || '16px',
       'font-family': this.family || 'monospace',
       'font-style': this.style.includes('italic') ? 'italic' : 'normal',
       'font-weight': isNaN(Number(this.style.slice(0, 3))) ? 'normal' : this.style.slice(0, 3)
-    }
+    };
   }
 }
 
