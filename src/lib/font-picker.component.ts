@@ -405,7 +405,7 @@ export class FontPickerComponent implements OnInit {
 
     this.closeFontPicker();
 
-    this.directiveInstance.fontPickerChange.emit(this.font);
+    this.directiveInstance.fontChanged(this.font);
   }
 
   onSelectFont(font: any) {
@@ -417,7 +417,7 @@ export class FontPickerComponent implements OnInit {
 
     this.font.style = font.styles.indexOf('regular') > -1 ? 'regular' : font.styles[0];
 
-    this.directiveInstance.fontPickerChange.emit(this.font);
+    this.directiveInstance.fontChanged(this.font);
   }
 
   onSearchReset(event?: any) {
@@ -429,7 +429,7 @@ export class FontPickerComponent implements OnInit {
   onFontSizeChange(event: any, font: Font) {
     this.font.size = event.target.value + 'px';
 
-    this.directiveInstance.fontPickerChange.emit(this.font);
+    this.directiveInstance.fontChanged(this.font);
   }
 
   onFontStyleChange(event: any, font: Font) {
@@ -443,7 +443,7 @@ export class FontPickerComponent implements OnInit {
       });
     }
 
-    this.directiveInstance.fontPickerChange.emit(this.font);
+    this.directiveInstance.fontChanged(this.font);
   }
 
   isDescendant(parent, child): boolean {

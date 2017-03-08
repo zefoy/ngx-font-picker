@@ -82,4 +82,8 @@ export class FontPickerDirective implements OnInit {
       this.dialog.closeFontPicker();
     }
   }
+
+  fontChanged(value: Font) {
+    this.fontPickerChange.emit(value)
+  }
 }
