@@ -1,3 +1,7 @@
+2.1.1 Bug fix release
+
+  - Fixed the font change emitting
+
 2.1.0 Feature release
 
   - Font size needs to have unit now
