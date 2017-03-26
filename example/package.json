@@ -1,8 +1,8 @@
 {
-  "name": "angular2-font-picker-example",
-  "description": "Example app for the angular2-font-picker",
+  "name": "ngx-font-picker-example",
+  "description": "Example app for the ngx-font-picker",
   "license": "MIT",
-  "version": "2.1.1",
+  "version": "2.5.0",
   "tslint": {
     "extends": "./tslint.json"
   },
@@ -45,7 +45,8 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
-    "angular2-font-picker": "~2.0.0",
+    "ngx-font-picker": "~2.5.0",
+    "ngx-perfect-scrollbar": "~2.5.0",
     "core-js": "~2.4.0",
     "rxjs": "~5.0.0",
     "webfontloader": "~1.6.0",

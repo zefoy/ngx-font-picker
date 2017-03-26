@@ -8,7 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
-import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
+import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { FontPickerService } from './font-picker.service';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Font } from 'angular2-font-picker';
+import { Font } from 'ngx-font-picker';
 
 @Component({
   moduleId: module.id + '',

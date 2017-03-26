@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerComponent } from './font-picker.component';

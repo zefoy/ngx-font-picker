@@ -1,10 +1,10 @@
 {
-  "name": "angular2-font-picker",
-  "description": "Google fonts font picker widget for Angular 2",
-  "bugs": "https://github.com/zefoy/angular2-font-picker/issues",
+  "name": "ngx-font-picker",
+  "description": "Google fonts font picker widget for Angular",
+  "bugs": "https://github.com/zefoy/ngx-font-picker/issues",
   "license": "MIT",
-  "version": "2.1.1",
-  "main": "bundles/angular2-font-picker.umd.js",
+  "version": "2.5.0",
+  "main": "bundles/ngx-font-picker.umd.js",
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "tslint": {
@@ -22,6 +22,7 @@
     "build": "npm run build:umd && npm run build:aot",
     "deploy": "npm run build && npm run inline && npm publish",
     "inline": "ng2-inline --compress -b dist/lib/ -o ./ 'dist/lib/*.js'",
+    "release": "npm version -m 'New release with version %s'",
     "lint:ts": "tslint 'src/**/*.ts'",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "build:js": "ngc -p src/tsconfig.json",
@@ -32,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zefoy/angular2-font-picker.git"
+    "url": "https://github.com/zefoy/ngx-font-picker.git"
   },
   "dependencies": {
-    "angular2-perfect-scrollbar": "~2.0.0",
+    "ngx-perfect-scrollbar": "~2.5.0",
     "webfontloader": "~1.6.26"
   },
   "devDependencies": {
@@ -69,13 +70,9 @@
     "zone.js": "~0.7.0"
   },
   "peerDependencies": {
-    "@angular/common": "^2.0.0",
-    "@angular/core": "^2.0.0",
-    "@angular/forms": "^2.0.0",
-    "@angular/http": "^2.0.0",
-    "@angular/platform-browser": "^2.0.0",
-    "core-js": "^2.4.0",
-    "rxjs": "^5.0.0",
-    "zone.js": "^0.7.0"
+    "@angular/common": ">=2.0.0",
+    "@angular/core": ">=2.0.0",
+    "@angular/forms": ">=2.0.0",
+    "@angular/http": ">=2.0.0"
   }
 }

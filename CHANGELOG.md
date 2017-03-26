@@ -1,3 +1,9 @@
+2.5.0 Last 2.x release
+
+  - Preparing for moving to Angular 4.x
+
+  - Changed from angular2 to ngx prefix
+
 2.1.1 Bug fix release
 
   - Fixed the font change emitting
