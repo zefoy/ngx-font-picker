@@ -1,6 +1,6 @@
-# Angular 2 Font Picker
+# Angular Font Picker
 
-<a href="https://badge.fury.io/js/angular2-font-picker"><img src="https://badge.fury.io/js/angular2-font-picker.svg" align="right" alt="npm version" height="18"></a>
+<a href="https://badge.fury.io/js/ngx-font-picker"><img src="https://badge.fury.io/js/ngx-font-picker.svg" align="right" alt="npm version" height="18"></a>
 
 This is a simple font picker based on the cool angular2-color-picker by Alberplz.
 
@@ -19,13 +19,13 @@ See a live example application <a href="https://zefoy.github.io/ngx-font-picker/
 
 ### Installing and usage
 
-    npm install angular2-font-picker --save-dev
+    npm install ngx-font-picker --save-dev
 
 ##### Load the module for your app (with global configuration):
 
 ```javascript
-import { FontPickerModule } from 'angular2-font-picker';
-import { FontPickerConfigInterface } from 'angular2-font-picker';
+import { FontPickerModule } from 'ngx-font-picker';
+import { FontPickerConfigInterface } from 'ngx-font-picker';
 
 const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
   // Change this to your Google API key

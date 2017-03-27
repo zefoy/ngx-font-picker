@@ -7,13 +7,13 @@ module.exports = {
     hints: false
   },
   entry: {
-    'angular2-font-picker.umd': './src/index.ts',
-    'angular2-font-picker.umd.min': './src/index.ts'
+    'ngx-font-picker.umd': './src/index.ts',
+    'ngx-font-picker.umd.min': './src/index.ts'
   },
   output: {
     path: './bundles',
     filename: '[name].js',
-    library: 'angular2-font-picker',
+    library: 'ngx-font-picker',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -27,7 +27,7 @@
       'rxjs': 'npm:rxjs',
       'ts': 'npm:plugin-typescript/lib/plugin.js',
       'typescript': 'npm:typescript/lib/typescript.js',
-      'angular2-font-picker': 'node_modules/angular2-font-picker'
+      'ngx-font-picker': 'node_modules/ngx-font-picker'
     },
     packages: {
       'app': {
@@ -42,8 +42,8 @@
       'rxjs': {
         defaultExtension: 'js'
       },
-      'angular2-font-picker': {
-        main: 'bundles/angular2-font-picker.umd.js',
+      'ngx-font-picker': {
+        main: 'bundles/ngx-font-picker.umd.js',
         defaultExtension: 'js'
       }
     }
