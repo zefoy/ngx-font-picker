@@ -1,3 +1,5 @@
+import * as WebFont from 'webfontloader';
+
 import { Directive, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
 
@@ -58,6 +60,20 @@ export class FontPickerDirective implements OnInit {
     if (fontPicker != this.fontPicker) {
       this.fontPickerChange.emit(this.fontPicker);
     }
+
+    this.loadFont(this.fontPicker);
+  }
+
+  loadFont(font: Font) {
+    try {
+      WebFont.load({
+        google: {
+          families: [font.family + ':' + font.style]
+        }
+      });
+    } catch (e) {
+      console.warn('Problem with loading font:', font);
+    }
   }
 
   onClick() {
@@ -84,6 +100,6 @@ export class FontPickerDirective implements OnInit {
   }
 
   fontChanged(value: Font) {
-    this.fontPickerChange.emit(value)
+    this.fontPickerChange.emit(value);
   }
 }
