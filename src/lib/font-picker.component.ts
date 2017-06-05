@@ -6,7 +6,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -41,7 +41,7 @@ export class FontPickerComponent implements OnInit {
   public presetVisible: boolean;
 
   public arrowTop: number;
-  public fontAmount: number = 5;
+  public fontAmount: number = 10;
   public loadedFonts: number = 0;
 
   public presetFonts: Font[] = [];
@@ -87,7 +87,7 @@ export class FontPickerComponent implements OnInit {
 
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
 
-  constructor(private el: ElementRef, private service: FontPickerService) {
+  constructor(private el: ElementRef, private cdRef: ChangeDetectorRef, private service: FontPickerService) {
     this.loading = true;
     this.selectedFont = false;
     this.presetVisible = true;
@@ -267,13 +267,13 @@ export class FontPickerComponent implements OnInit {
 
   setDisplayedFontSource() {
     if (this.fpPresetFonts && this.fpPresetFonts.length) {
-      this.setCurentFonts(this.getPresetFonts());
+      this.setCurrentFonts(this.getPresetFonts());
     } else {
-      this.setCurentFonts(this.googleFonts);
+      this.setCurrentFonts(this.googleFonts);
     }
   }
 
-  setCurentFonts(target: Font[]) {
+  setCurrentFonts(target: Font[]) {
     if (target != this.currentFonts) {
       this.currentFonts = target;
       this.loadedFonts = this.fontAmount;
@@ -281,6 +281,8 @@ export class FontPickerComponent implements OnInit {
       let initialFonts = this.currentFonts.slice(0, this.fontAmount);
 
       this.loadGoogleFonts(initialFonts);
+
+      this.cdRef.markForCheck();
 
       setTimeout(() => {
         this.scrollbar.scrollTo(0);
@@ -323,7 +325,11 @@ export class FontPickerComponent implements OnInit {
 
       this.loadedFonts += moreFonts.length;
 
-      setTimeout(() => { this.scrollbar.update(); }, 0);
+      this.cdRef.markForCheck();
+
+      setTimeout(() => {
+        this.scrollbar.update();
+      }, 0);
     }
   }
 
@@ -360,7 +366,7 @@ export class FontPickerComponent implements OnInit {
       this.loadedFonts = this.fontAmount;
       searchResult = this.findFonts(value, false);
 
-      this.setCurentFonts(searchResult);
+      this.setCurrentFonts(searchResult);
     }
   }
 
@@ -423,7 +429,7 @@ export class FontPickerComponent implements OnInit {
   onSearchReset(event?: any) {
     this.searchTerm.setValue('');
 
-    this.setCurentFonts(this.googleFonts);
+    this.setCurrentFonts(this.googleFonts);
   }
 
   onFontSizeChange(event: any, font: Font) {

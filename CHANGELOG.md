@@ -1,3 +1,7 @@
+4.0.2 Bug fix release
+
+  - Fixed problems when using onpush strategy
+
 4.0.1 Bug fix release
 
   - Fixed initial font not beeing loaded
