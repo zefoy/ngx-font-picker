@@ -364,9 +364,12 @@ export class FontPickerComponent implements OnInit {
 
     if (this.googleFonts) {
       this.loadedFonts = this.fontAmount;
+
       searchResult = this.findFonts(value, false);
 
       this.setCurrentFonts(searchResult);
+
+      this.cdRef.markForCheck();
     }
   }
 
