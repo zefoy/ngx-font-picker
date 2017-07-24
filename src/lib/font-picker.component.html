@@ -9,7 +9,7 @@
 
   <div *ngIf="loading" class="load-text">Loading fonts list...</div>
 
-  <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config">
+  <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config" [attr.fxFlex]="'auto'">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
         <div class="group-text">{{fpPresetLabel}}</div>

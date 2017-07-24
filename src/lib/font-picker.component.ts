@@ -285,7 +285,7 @@ export class FontPickerComponent implements OnInit {
       this.cdRef.markForCheck();
 
       setTimeout(() => {
-        this.scrollbar.scrollTo(0);
+        this.scrollbar.directiveRef.scrollToY(0);
       }, 0);
     }
   }
@@ -328,7 +328,7 @@ export class FontPickerComponent implements OnInit {
       this.cdRef.markForCheck();
 
       setTimeout(() => {
-        this.scrollbar.update();
+        this.scrollbar.directiveRef.update();
       }, 0);
     }
   }
