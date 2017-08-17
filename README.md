@@ -24,7 +24,7 @@ npm start
 ### Installing and usage
 
 ```bash
-npm install ngx-font-picker --save-dev
+npm install ngx-font-picker --save
 ```
 
 ##### Load the module for your app (with global configuration):
