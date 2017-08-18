@@ -1,9 +1,9 @@
 import * as WebFont from 'webfontloader';
 
-import { Observable } from 'rxjs/Rx';
-
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+
+import { Observable } from 'rxjs/Observable';
 
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
