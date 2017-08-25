@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FontSizePipe implements PipeTransform {
   transform(value: string): number {
-    return parseInt(value.replace(/[^-\d\.]/g, '') || '16');
+    return parseInt(value.replace(/[^-\d\.]/g, '') || '16', 10);
   }
 }
 
@@ -16,7 +16,7 @@ export class FontSizePipe implements PipeTransform {
 })
 export class FontStylesPipe implements PipeTransform {
   transform(value: string): string {
-    let lookup = {
+    const lookup = {
       '100': 'Thin',
       '200': 'Extra-Light',
       '300': 'Light',
@@ -28,8 +28,8 @@ export class FontStylesPipe implements PipeTransform {
       '900': 'Black'
     };
 
-    for (let style in lookup) {
-      let found = value.search(style);
+    for (const style in lookup) {
+      const found = value.search(style);
 
       if (found >= 0) {
         value = value.replace(style, lookup[style] + ' ');
@@ -52,7 +52,7 @@ export class StatefulSlicePipe implements PipeTransform {
   private previousEndValue = null;
 
   transform(arr: any[], start: number, end: number): any {
-    if (arr && (this.previousEndValue != end || this.previousArrayRef !== arr)) {
+    if (arr && (this.previousEndValue !== end || this.previousArrayRef !== arr)) {
       this.slicedArray = arr.slice(start, end);
 
       this.previousArrayRef = arr;

@@ -1,20 +1,20 @@
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
 
 import { FontPickerConfig, Font, GoogleFonts  } from './interfaces';
 
 @Injectable()
 export class FontPickerService {
-  private apiKey: string = "";
+  private apiKey: string = '';
 
   private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-  constructor( @Inject(FontPickerConfig) private config: FontPickerConfig, private http: Http ) {
+  constructor( @Inject(FontPickerConfig) private config: FontPickerConfig, private http: HttpClient ) {
     this.apiKey = config.apiKey;
   }
 
@@ -23,15 +23,14 @@ export class FontPickerService {
     date || alpha || style || trending || popularity
   */
 
-  public getAllFonts(sort: string): Observable<GoogleFonts>{
-    let requestUrl = this.baseUrl + '?key=' + this.apiKey
+  public getAllFonts(sort: string): Observable<GoogleFonts> {
+    let requestUrl = this.baseUrl + '?key=' + this.apiKey;
 
     if (sort) {
-      requestUrl = requestUrl.concat('&sort=' + sort)
+      requestUrl = requestUrl.concat('&sort=' + sort);
     }
 
     return <Observable<GoogleFonts>> this.http.get(requestUrl)
-      .map((res) => res.json())
       .catch(this.handleHttpError);
   }
 
@@ -39,11 +38,10 @@ export class FontPickerService {
     Return observable of the requested font
   */
 
-  public getRequestedFont(family: string): Observable<Font>{
-    let requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
+  public getRequestedFont(family: string): Observable<Font> {
+    const requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
 
     return <Observable<Font>> this.http.get(requestUrl)
-      .map(res => res.json())
       .catch(this.handleHttpError);
   }
 
@@ -52,8 +50,10 @@ export class FontPickerService {
   */
 
   private handleHttpError(error: any) {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(error);
+
+    const errMsg = (error.error instanceof Error) ? error.error.message :
+      (error.status || 'Unknown error');
 
     return Observable.throw(errMsg);
   }

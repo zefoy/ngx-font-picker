@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject } from '@angular/core';
 
-import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -18,7 +18,7 @@ export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
 
 @NgModule({
   declarations: [ FontPickerComponent, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
-  imports: [ CommonModule, HttpModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule ],
+  imports: [ CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule, PerfectScrollbarModule ],
   exports: [ FormsModule, ReactiveFormsModule, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   entryComponents: [ FontPickerComponent ]
 })

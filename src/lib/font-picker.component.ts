@@ -1,5 +1,6 @@
 import * as WebFont from 'webfontloader';
 
+import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
@@ -132,21 +133,29 @@ export class FontPickerComponent implements OnInit {
     this.openFontPicker();
   }
 
-  setDialog(instance: any, elementRef: ElementRef, font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect:boolean, fpSizeSelect:boolean,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
+  setDialog(instance: any, elementRef: ElementRef, defaultFont: Font, fpPosition: string,
+    fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts,
+    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
+    fpStyleSelect: boolean, fpSizeSelect: boolean, fpCancelButton: boolean, fpCancelButtonClass: string,
+    fpCancelButtonText: string, fpHeight: string, fpWidth: string)
+  {
     this.listLabel = 'Loading fonts...';
 
     this.directiveInstance = instance;
     this.directiveElementRef = elementRef;
 
-    this.updateDialog(font, fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText, fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText, fpHeight, fpWidth);
+    this.updateDialog(defaultFont, fpPosition, fpPositionOffset, fpPositionRelativeToArrow,
+      fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText,
+      fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText,
+      fpHeight, fpWidth);
 
-    this.service.getAllFonts('popularity').subscribe((data) => {
+    this.service.getAllFonts('popularity').subscribe((fonts) => {
       this.loading = false;
 
-      this.googleFonts = data.items.map((font) => this.convertGoogleFont(font));
+      this.googleFonts = fonts.items.map((font) => this.convertGoogleFont(font));
 
       // Find styles for initial font
-      let searchFont = this.findFont(this.initialFont.family, true);
+      const searchFont = this.findFont(this.initialFont.family, true);
 
       if (searchFont) {
         this.font.files = searchFont.files;
@@ -156,21 +165,25 @@ export class FontPickerComponent implements OnInit {
       }
 
       // Load Open Sans if available
-      let openSans = this.googleFonts.find((font) => font.family == 'Open sans');
+      const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
 
       this.loadGoogleFonts([openSans]);
     },
     err => console.log(err));
   }
 
-  updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect:boolean, fpSizeSelect:boolean,  fpCancelButton: boolean, fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string) {
+  updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
+    fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
+    fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean, fpCancelButtonClass: string,
+    fpCancelButtonText: string, fpHeight: string, fpWidth: string)
+  {
     this.font = font;
     this.styles = font.styles;
 
     this.initialFont = new Font(font);
 
     this.fpPosition = fpPosition;
-    this.fpPositionOffset = parseInt(fpPositionOffset);
+    this.fpPositionOffset = parseInt(fpPositionOffset, 10);
 
     if (!fpPositionRelativeToArrow) {
       this.dialogArrowOffset = 0;
@@ -190,8 +203,8 @@ export class FontPickerComponent implements OnInit {
     this.fpUploadButtonText = fpUploadButtonText;
     this.fpUploadButtonClass = fpUploadButtonClass;
 
-    this.fpWidth = parseInt(fpWidth);
-    this.fpHeight = parseInt(fpHeight);
+    this.fpWidth = parseInt(fpWidth, 10);
+    this.fpHeight = parseInt(fpHeight, 10);
 
     this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
 
@@ -233,15 +246,15 @@ export class FontPickerComponent implements OnInit {
 
     document.body.appendChild(this.testContainer);
 
-    let width = this.testContainer.clientWidth;
+    const width = this.testContainer.clientWidth;
 
     document.body.removeChild(this.testContainer);
 
-    return width != this.testWidth;
+    return width !== this.testWidth;
   }
 
   getPresetFonts() {
-    let presetFonts = [];
+    const presetFonts = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
       this.fpPresetFonts.forEach((font) => {
@@ -274,11 +287,11 @@ export class FontPickerComponent implements OnInit {
   }
 
   setCurrentFonts(target: Font[]) {
-    if (target != this.currentFonts) {
+    if (target !== this.currentFonts) {
       this.currentFonts = target;
       this.loadedFonts = this.fontAmount;
 
-      let initialFonts = this.currentFonts.slice(0, this.fontAmount);
+      const initialFonts = this.currentFonts.slice(0, this.fontAmount);
 
       this.loadGoogleFonts(initialFonts);
 
@@ -290,15 +303,15 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  findFont(searchVal, exactMatch:boolean = false): Font {
+  findFont(searchVal, exactMatch: boolean = false): Font {
     return this.findFonts(searchVal, exactMatch)[0];
   }
 
-  findFonts(searchVal, exactMatch:boolean = false) : Font[] {
+  findFonts(searchVal, exactMatch: boolean = false): Font[] {
     searchVal = searchVal.toLowerCase();
 
-    let fullmatchFonts: Font[] = [];
-    let candidateFonts: Font[] = [];
+    const fullmatchFonts: Font[] = [];
+    const candidateFonts: Font[] = [];
 
     this.googleFonts.forEach((font) => {
       if (searchVal === font.family.toLowerCase()) {
@@ -307,19 +320,19 @@ export class FontPickerComponent implements OnInit {
         return;
       }
 
-      if (exactMatch == false && font.family.toLowerCase().indexOf(searchVal) > -1) {
+      if (!exactMatch && font.family.toLowerCase().indexOf(searchVal) > -1) {
         candidateFonts.push(font);
       }
     });
 
-    let resultFonts: Font[] = fullmatchFonts.concat(candidateFonts);
+    const resultFonts: Font[] = fullmatchFonts.concat(candidateFonts);
 
     return resultFonts;
   }
 
   loadMoreFonts() {
     if (this.open && !this.loading && this.loadedFonts < this.currentFonts.length) {
-      let moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
+      const moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
 
       this.loadGoogleFonts(moreFonts);
 
@@ -336,7 +349,7 @@ export class FontPickerComponent implements OnInit {
   loadGoogleFonts(fonts: Font[]) {
     fonts.slice(0, this.fontAmount).forEach((font: any) => {
       if (font && font.files && !this.isFontAvailable(font)) {
-        let style = font.styles.indexOf('regular') > -1 ? '' : ':'  + font.styles.find((x: any) => !isNaN(x));
+        const style = font.styles.indexOf('regular') > -1 ? '' : ':'  + font.styles.find((x: any) => !isNaN(x));
 
         try {
           WebFont.load({
@@ -374,7 +387,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   convertGoogleFont(font: GoogleFontInterface): Font {
-    let convertedFont = new Font({
+    const convertedFont = new Font({
       family: font.family,
       styles: font.variants,
       files: font.files,
@@ -395,7 +408,8 @@ export class FontPickerComponent implements OnInit {
 
   onMouseDown(event: any) {
     if (!this.isDescendant(this.el.nativeElement, event.target) &&
-      event.target != this.directiveElementRef.nativeElement) {
+      event.target !== this.directiveElementRef.nativeElement)
+    {
       this.closeFontPicker();
     }
   }
@@ -442,7 +456,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   onFontStyleChange(event: any, font: Font) {
-    let str = this.font.family + ':' +  event.target.value;
+    const str = this.font.family + ':' +  event.target.value;
 
     if (font.files) {
       WebFont.load({
@@ -479,11 +493,14 @@ export class FontPickerComponent implements OnInit {
   }
 
   setDialogPosition() {
-    let parentNode = null;
     let position = 'static';
+
+    let parentNode = null;
+    let boxDirective = null;
+
     let node = this.directiveElementRef.nativeElement;
 
-    let dialogHeight = this.dialogElement.nativeElement.offsetHeight;
+    const dialogHeight = this.dialogElement.nativeElement.offsetHeight;
 
     while (node !== null && node.tagName !== 'HTML') {
       position = window.getComputedStyle(node).getPropertyValue('position');
@@ -500,16 +517,18 @@ export class FontPickerComponent implements OnInit {
     }
 
     if (position !== 'fixed') {
-      var boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, true);
+      boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, true);
 
-      if (parentNode === null) { parentNode = node }
+      if (parentNode === null) {
+        parentNode = node;
+      }
 
-      let boxParent = this.createDialogBox(parentNode, true);
+      const boxParent = this.createDialogBox(parentNode, true);
 
       this.top = boxDirective.top - boxParent.top;
       this.left = boxDirective.left - boxParent.left;
     } else {
-      var boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, false);
+      boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, false);
 
       this.top = boxDirective.top;
       this.left = boxDirective.left;

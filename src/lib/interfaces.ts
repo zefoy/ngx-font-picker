@@ -26,7 +26,7 @@ export class FontPickerConfig implements FontPickerConfigInterface {
   }
 
   public assign(config: FontPickerConfigInterface = {}) {
-    for (let key in config) {
+    for (const key in config) {
       this[key] = config[key];
     }
   }

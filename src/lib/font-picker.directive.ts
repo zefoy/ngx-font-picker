@@ -1,6 +1,6 @@
 import * as WebFont from 'webfontloader';
 
-import { Directive, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
 
 import { Font } from './interfaces';
@@ -8,10 +8,7 @@ import { Font } from './interfaces';
 import { FontPickerComponent } from './font-picker.component';
 
 @Directive({
-  selector: '[fontPicker]',
-  host: {
-    '(click)': 'onClick()'
-  }
+  selector: '[fontPicker]'
 })
 export class FontPickerDirective implements OnInit {
   private dialog: any;
@@ -48,35 +45,7 @@ export class FontPickerDirective implements OnInit {
 
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<Font>();
 
-  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef) {}
-
-  ngOnInit() {
-    let fontPicker = this.fontPicker;
-
-    if (!this.fontPicker) {
-      this.fontPicker = this.fpFallbackFont;
-    }
-
-    if (fontPicker != this.fontPicker) {
-      this.fontPickerChange.emit(this.fontPicker);
-    }
-
-    this.loadFont(this.fontPicker);
-  }
-
-  loadFont(font: Font) {
-    try {
-      WebFont.load({
-        google: {
-          families: [font.family + ':' + font.style]
-        }
-      });
-    } catch (e) {
-      console.warn('Problem with loading font:', font);
-    }
-  }
-
-  onClick() {
+  @HostListener('click', ['$event']) onClick(event: Event) {
     if (!this.dialog) {
       const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
       const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
@@ -96,6 +65,34 @@ export class FontPickerDirective implements OnInit {
       this.dialog.openFontPicker();
     } else {
       this.dialog.closeFontPicker();
+    }
+  }
+
+  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef) {}
+
+  ngOnInit() {
+    const fontPicker = this.fontPicker;
+
+    if (!this.fontPicker) {
+      this.fontPicker = this.fpFallbackFont;
+    }
+
+    if (fontPicker !== this.fontPicker) {
+      this.fontPickerChange.emit(this.fontPicker);
+    }
+
+    this.loadFont(this.fontPicker);
+  }
+
+  loadFont(font: Font) {
+    try {
+      WebFont.load({
+        google: {
+          families: [font.family + ':' + font.style]
+        }
+      });
+    } catch (e) {
+      console.warn('Problem with loading font:', font);
     }
   }
 
