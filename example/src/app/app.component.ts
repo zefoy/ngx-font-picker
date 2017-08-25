@@ -18,10 +18,10 @@ export class AppComponent {
     styles: ['regular']
   });
 
-  private sizeSelect: boolean = true;
-  private styleSelect: boolean = true;
+  public sizeSelect: boolean = true;
+  public styleSelect: boolean = true;
 
-  private presetFonts = this._presetFonts;
+  public presetFonts = this._presetFonts;
 
   constructor() {}
 
