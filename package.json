@@ -35,7 +35,7 @@
     "url": "https://github.com/zefoy/ngx-font-picker.git"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "^4.5.6",
+    "ngx-perfect-scrollbar": "^4.6.5",
     "webfontloader": "~1.6.0"
   },
   "devDependencies": {
