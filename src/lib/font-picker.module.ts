@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, Optional, SkipSelf, Inject } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,8 +13,8 @@ import { FontPickerDirective } from './font-picker.directive';
 import { FontPickerConfig, FontPickerConfigInterface} from './interfaces';
 import { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './pipes';
 
-export const FONT_PICKER_GUARD = new OpaqueToken('FONT_PICKER_GUARD');
-export const FONT_PICKER_CONFIG = new OpaqueToken('FONT_PICKER_CONFIG');
+export const FONT_PICKER_GUARD = new InjectionToken('FONT_PICKER_GUARD');
+export const FONT_PICKER_CONFIG = new InjectionToken('FONT_PICKER_CONFIG');
 
 @NgModule({
   declarations: [ FontPickerComponent, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
