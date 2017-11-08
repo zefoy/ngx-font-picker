@@ -6,7 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
-import { FontPickerConfig, Font, GoogleFonts  } from './interfaces';
+import { FONT_PICKER_CONFIG  } from './font-picker.interfaces';
+
+import { FontPickerConfig, Font, GoogleFonts  } from './font-picker.interfaces';
 
 @Injectable()
 export class FontPickerService {
@@ -14,14 +16,14 @@ export class FontPickerService {
 
   private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-  constructor( @Inject(FontPickerConfig) private config: FontPickerConfig, private http: HttpClient ) {
+  constructor( @Inject(FONT_PICKER_CONFIG) private config: FontPickerConfig, private http: HttpClient ) {
     this.apiKey = config.apiKey;
   }
 
-  /*
-    Return all fonts avaliable from google fonts, may have sort parameter:
-    date || alpha || style || trending || popularity
-  */
+  /**
+   * Return all fonts avaliable from google fonts, may have sort parameter:
+   * date || alpha || style || trending || popularity
+   */
 
   public getAllFonts(sort: string): Observable<GoogleFonts> {
     let requestUrl = this.baseUrl + '?key=' + this.apiKey;
@@ -34,9 +36,9 @@ export class FontPickerService {
       .catch(this.handleHttpError);
   }
 
-  /*
-    Return observable of the requested font
-  */
+  /**
+   * Return observable of the requested font.
+   */
 
   public getRequestedFont(family: string): Observable<Font> {
     const requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
@@ -45,9 +47,9 @@ export class FontPickerService {
       .catch(this.handleHttpError);
   }
 
-  /*
-    Handler for possible http request errors
-  */
+  /**
+   * Handler for possible http request errors.
+   */
 
   private handleHttpError(error: any) {
     console.error(error);

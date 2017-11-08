@@ -1,9 +1,9 @@
 import * as WebFont from 'webfontloader';
 
-import { Directive, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import { ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
+import { Directive, OnInit, Input, Output, EventEmitter, HostListener,
+  ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
 
-import { Font } from './interfaces';
+import { Font } from './font-picker.interfaces';
 
 import { FontPickerComponent } from './font-picker.component';
 
@@ -84,7 +84,7 @@ export class FontPickerDirective implements OnInit {
     this.loadFont(this.fontPicker);
   }
 
-  loadFont(font: Font) {
+  private loadFont(font: Font) {
     try {
       WebFont.load({
         google: {
@@ -96,7 +96,7 @@ export class FontPickerDirective implements OnInit {
     }
   }
 
-  fontChanged(value: Font) {
+  public fontChanged(value: Font) {
     this.fontPickerChange.emit(value);
   }
 }

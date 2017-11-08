@@ -1,3 +1,7 @@
+import { InjectionToken } from '@angular/core';
+
+export const FONT_PICKER_CONFIG = new InjectionToken('FONT_PICKER_CONFIG');
+
 export interface FontInterface {
   family: string;
   files?: any;

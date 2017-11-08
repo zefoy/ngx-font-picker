@@ -25,9 +25,9 @@
   select {
     width: 100%;
     padding: 4px;
-    outline: none;
     border: none;
     border-bottom: 2px solid #cfcfcf;
+    outline: none;
 
     font-size: 14px;
     line-height: 18px;
@@ -107,6 +107,7 @@
 
     &:disabled {
       opacity: 0.5;
+
       cursor: not-allowed;
       background-color: #888;
     }
@@ -120,8 +121,8 @@
     padding: 0 16px;
 
     cursor: pointer;
-    color: #777;
     font-size: 31px;
+    color: #777;
 
     transition: color 300ms ease;
 
@@ -133,13 +134,14 @@
   .load-text {
     padding: 16px;
 
-    color: #000;
     font-size: 12px;
     text-align: center;
+    color: #000;
   }
 
   .font-list {
     position: relative;
+
     overflow: hidden;
     flex: 1 1 auto;
 
@@ -164,9 +166,9 @@
         margin: 4px 0;
 
         .font-name {
-          color: #555;
           font-size: 14px;
           text-transform: capitalize;
+          color: #555;
         }
 
         .not-available {
@@ -175,12 +177,12 @@
           width: 24px;
           margin: -8px -8px 0 0;
 
-          color: lighten(#e74c3c, 15%);
           font-size: 24px;
           font-weight: 900;
           font-family: 'Open Sans', sans-serif;
           text-align: center;
           text-transform: none;
+          color: lighten(#e74c3c, 15%);
 
           &::after {
             content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';
@@ -197,10 +199,10 @@
             border-radius: 2px;
 
             pointer-events: none;
-            color: #fff;
             font-size: 13px;
             font-weight: normal;
             text-align: left;
+            color: #fff;
             background: rgba(60, 60, 60, 0.8);
 
             transition: opacity 150ms ease;
@@ -219,9 +221,9 @@
       .font-text {
         padding: 4px 0;
 
-        color: #999;
         font-size: 16px;
         text-align: right;
+        color: #999;
       }
     }
 
@@ -249,12 +251,12 @@
         max-width: 75%;
         padding: 8px 12px;
 
-        color: #e74c3c;
         font-size: 11px;
         font-weight: bold;
-        text-align: left;
         white-space: nowrap;
+        text-align: left;
         text-overflow: ellipsis;
+        color: #e74c3c;
 
         &.black {
           color: #000;

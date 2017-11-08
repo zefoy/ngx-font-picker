@@ -1,10 +1,17 @@
+export { FontPickerComponent } from './lib/font-picker.component';
+export { FontPickerDirective } from './lib/font-picker.directive';
+
 export {
-  FontPickerComponent, FontPickerDirective, FontPickerService,
-  Font, GoogleFonts,
-  FontInterface, GoogleFontInterface, 
-  FontPickerConfig, FontPickerConfigInterface,
-  FontSizePipe, FontStylesPipe, StatefulSlicePipe,
-  provideDefaultConfig, provideForRootGuard,
-  FONT_PICKER_CONFIG, FONT_PICKER_GUARD,
-  FontPickerModule
-} from './lib/index';
+  FONT_PICKER_CONFIG,
+
+  Font, FontInterface,
+  GoogleFonts, GoogleFontInterface,
+
+  FontPickerConfig, FontPickerConfigInterface
+} from './lib/font-picker.interfaces';
+
+export { FontPickerModule } from './lib/font-picker.module';
+
+export { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './lib/font-picker.pipes';
+
+export { FontPickerService } from './lib/font-picker.service';

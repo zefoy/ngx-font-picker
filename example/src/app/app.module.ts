@@ -3,12 +3,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { FONT_PICKER_CONFIG } from 'ngx-font-picker';
 import { FontPickerModule, FontPickerConfigInterface } from 'ngx-font-picker';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AppComponent } from './app.component';
 
-const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
+const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
   // Change this to your Google API key
   apiKey: 'AIzaSyA9S7DY0khhn9JYcfyRWb1F6Rd2rwtF_mA'
 };
@@ -25,7 +26,15 @@ const FONT_PICKER_CONFIG: FontPickerConfigInterface = {
       FormsModule,
       FlexLayoutModule,
       ReactiveFormsModule,
-      FontPickerModule.forRoot(FONT_PICKER_CONFIG)
+      FontPickerModule
+    ],
+    exports: [
+    ],
+    providers: [
+      {
+        provide: FONT_PICKER_CONFIG,
+        useValue: DEFAULT_FONT_PICKER_CONFIG
+      }
     ]
 })
 export class AppModule {}

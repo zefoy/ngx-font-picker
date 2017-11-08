@@ -1,10 +1,9 @@
 import * as WebFont from 'webfontloader';
 
-import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
@@ -13,12 +12,12 @@ import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-
 
 import { FontPickerService } from './font-picker.service';
 
-import { Font, GoogleFonts, GoogleFontInterface } from './interfaces';
+import { Font, GoogleFonts, GoogleFontInterface } from './font-picker.interfaces';
 
 @Component({
   selector: 'font-picker',
-  templateUrl: './font-picker.component.html',
-  styleUrls: ['./font-picker.component.css']
+  templateUrl: './lib/font-picker.component.html',
+  styleUrls: [ './lib/font-picker.component.css' ]
 })
 export class FontPickerComponent implements OnInit {
   public open: boolean;
@@ -80,6 +79,8 @@ export class FontPickerComponent implements OnInit {
 
   public searchTerm = new FormControl('');
 
+  public renderMore: Subject<any> = new Subject();
+
   public config: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
   };
@@ -88,7 +89,7 @@ export class FontPickerComponent implements OnInit {
 
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
 
-  constructor(private el: ElementRef, private cdRef: ChangeDetectorRef, private service: FontPickerService) {
+  constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef, public service: FontPickerService) {
     this.loading = true;
     this.selectedFont = false;
     this.presetVisible = true;
@@ -111,8 +112,7 @@ export class FontPickerComponent implements OnInit {
         this.searchGoogleFonts(text);
       });
 
-      // Don't allow too many loading requests in a short time span.
-      Observable.fromEvent(this.el.nativeElement, 'ps-y-reach-end')
+      this.renderMore
         .debounceTime(150)
         .subscribe(() => this.loadMoreFonts());
 
@@ -133,7 +133,7 @@ export class FontPickerComponent implements OnInit {
     this.openFontPicker();
   }
 
-  setDialog(instance: any, elementRef: ElementRef, defaultFont: Font, fpPosition: string,
+  public setDialog(instance: any, elementRef: ElementRef, defaultFont: Font, fpPosition: string,
     fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts,
     fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
     fpStyleSelect: boolean, fpSizeSelect: boolean, fpCancelButton: boolean, fpCancelButtonClass: string,
@@ -172,7 +172,7 @@ export class FontPickerComponent implements OnInit {
     err => console.log(err));
   }
 
-  updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
+  public updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
     fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
     fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean, fpCancelButtonClass: string,
     fpCancelButtonText: string, fpHeight: string, fpWidth: string)
@@ -211,7 +211,7 @@ export class FontPickerComponent implements OnInit {
     this.setDisplayedFontSource();
   }
 
-  openFontPicker() {
+  public openFontPicker() {
     if (!this.open) {
       this.setDialogPosition();
 
@@ -224,14 +224,14 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  closeFontPicker() {
+  public closeFontPicker() {
     this.open = false;
 
     window.removeEventListener('resize', this.listenerResize);
     document.removeEventListener('mousedown', this.listenerMouseDown);
   }
 
-  isFontAvailable(font: Font) {
+  private isFontAvailable(font: Font) {
     if (!this.testWidth) {
       this.testContainer.style.fontFamily = 'monospace';
 
@@ -253,7 +253,7 @@ export class FontPickerComponent implements OnInit {
     return width !== this.testWidth;
   }
 
-  getPresetFonts() {
+  private getPresetFonts() {
     const presetFonts = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
@@ -278,7 +278,7 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  setDisplayedFontSource() {
+  private setDisplayedFontSource() {
     if (this.fpPresetFonts && this.fpPresetFonts.length) {
       this.setCurrentFonts(this.getPresetFonts());
     } else {
@@ -286,7 +286,7 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  setCurrentFonts(target: Font[]) {
+  private setCurrentFonts(target: Font[]) {
     if (target !== this.currentFonts) {
       this.currentFonts = target;
       this.loadedFonts = this.fontAmount;
@@ -303,11 +303,11 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  findFont(searchVal, exactMatch: boolean = false): Font {
+  private findFont(searchVal, exactMatch: boolean = false): Font {
     return this.findFonts(searchVal, exactMatch)[0];
   }
 
-  findFonts(searchVal, exactMatch: boolean = false): Font[] {
+  private findFonts(searchVal, exactMatch: boolean = false): Font[] {
     searchVal = searchVal.toLowerCase();
 
     const fullmatchFonts: Font[] = [];
@@ -330,7 +330,7 @@ export class FontPickerComponent implements OnInit {
     return resultFonts;
   }
 
-  loadMoreFonts() {
+  private loadMoreFonts() {
     if (this.open && !this.loading && this.loadedFonts < this.currentFonts.length) {
       const moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
 
@@ -364,7 +364,7 @@ export class FontPickerComponent implements OnInit {
     });
   }
 
-  searchGoogleFonts(value: string) {
+  private searchGoogleFonts(value: string) {
     if (!value) {
       this.onSearchReset();
 
@@ -386,7 +386,7 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  convertGoogleFont(font: GoogleFontInterface): Font {
+  private convertGoogleFont(font: GoogleFontInterface): Font {
     const convertedFont = new Font({
       family: font.family,
       styles: font.variants,
@@ -398,7 +398,7 @@ export class FontPickerComponent implements OnInit {
     return convertedFont;
   }
 
-  onResize() {
+  public onResize() {
     if (this.position === 'fixed') {
       this.setDialogPosition();
     } else {
@@ -406,18 +406,18 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  onMouseDown(event: any) {
-    if (!this.isDescendant(this.el.nativeElement, event.target) &&
-      event.target !== this.directiveElementRef.nativeElement)
+  public onMouseDown(event: any) {
+    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
+        event.target !== this.directiveElementRef.nativeElement)
     {
       this.closeFontPicker();
     }
   }
 
-  onUploadFiles() {
+  public onUploadFiles() {
   }
 
-  onCancelSelect() {
+  public onCancelSelect() {
     this.selectedFont = false;
 
     this.font.family = this.initialFont.family;
@@ -431,7 +431,7 @@ export class FontPickerComponent implements OnInit {
     this.directiveInstance.fontChanged(this.font);
   }
 
-  onSelectFont(font: any) {
+  public onSelectFont(font: any) {
     this.selectedFont = true;
 
     this.font.family = font.family;
@@ -443,19 +443,19 @@ export class FontPickerComponent implements OnInit {
     this.directiveInstance.fontChanged(this.font);
   }
 
-  onSearchReset(event?: any) {
+  public onSearchReset(event?: any) {
     this.searchTerm.setValue('');
 
     this.setCurrentFonts(this.googleFonts);
   }
 
-  onFontSizeChange(event: any, font: Font) {
+  public onFontSizeChange(event: any, font: Font) {
     this.font.size = event.target.value + 'px';
 
     this.directiveInstance.fontChanged(this.font);
   }
 
-  onFontStyleChange(event: any, font: Font) {
+  public onFontStyleChange(event: any, font: Font) {
     const str = this.font.family + ':' +  event.target.value;
 
     if (font.files) {
@@ -469,7 +469,7 @@ export class FontPickerComponent implements OnInit {
     this.directiveInstance.fontChanged(this.font);
   }
 
-  isDescendant(parent, child): boolean {
+  private isDescendant(parent, child): boolean {
     let node = child.parentNode;
 
     while (node !== null) {
@@ -483,7 +483,7 @@ export class FontPickerComponent implements OnInit {
     return false;
   }
 
-  createDialogBox(element, offset): any {
+  private createDialogBox(element, offset): any {
     return {
       top: element.getBoundingClientRect().top + (offset ? window.pageYOffset : 0),
       left: element.getBoundingClientRect().left + (offset ? window.pageXOffset : 0),
@@ -492,7 +492,7 @@ export class FontPickerComponent implements OnInit {
     };
   }
 
-  setDialogPosition() {
+  private setDialogPosition() {
     let position = 'static';
 
     let parentNode = null;

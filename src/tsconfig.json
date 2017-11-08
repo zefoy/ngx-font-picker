@@ -1,36 +1,38 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "inlineSources": true,
-    "lib": ["dom", "es2015"],
-    "module": "commonjs",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "module": "es2015",
     "moduleResolution": "node",
     "outDir": "../dist",
+    "rootDir": ".",
+    "skipLibCheck": true,
     "sourceMap": true,
+    "strict": false,
     "target": "es5",
     "typeRoots": [
       "../node_modules/@types"
     ],
     "types": [
-      "node"
+      "node",
+      "webfontloader"
     ]
   },
   "files": [
-    "index.ts",
-    "lib/pipes.ts",
-    "lib/interfaces.ts",
-    "lib/font-picker.module.ts",
-    "lib/font-picker.service.ts",
-    "lib/font-picker.component.ts",
-    "lib/font-picker.directive.ts"
+    "index.ts"
   ],
   "angularCompilerOptions": {
-    "skipMetadataEmit" : false,
-    "skipTemplateCodegen": true
-  },
-  "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "ngx-font-picker",
+    "flatModuleOutFile": "ngx-font-picker.js",
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
   }
 }
