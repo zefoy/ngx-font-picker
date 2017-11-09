@@ -3,7 +3,7 @@
   "description": "Google fonts font picker widget for Angular",
   "bugs": "https://github.com/zefoy/ngx-font-picker/issues",
   "license": "MIT",
-  "version": "5.0.0-0",
+  "version": "5.0.0",
   "main": "./bundles/ngx-font-picker.umd.js",
   "module": "./dist/ngx-font-picker.es5.js",
   "typings": "./dist/ngx-font-picker.d.ts",
@@ -35,7 +35,7 @@
     "url": "https://github.com/zefoy/ngx-font-picker.git"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "5.0.0-9",
+    "ngx-perfect-scrollbar": "^5.0.0",
     "webfontloader": "^1.6.0"
   },
   "devDependencies": {
