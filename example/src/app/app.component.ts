@@ -6,7 +6,7 @@ import { Font } from 'ngx-font-picker';
   selector: 'my-app',
   moduleId: 'src/app/app.component',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  styleUrls: [ 'app.component.css' ]
 })
 export class AppComponent {
   private _presetFonts = ['Arial', 'Serif', 'Helvetica', 'Sans-Serif', 'Open Sans', 'Roboto Slab'];
