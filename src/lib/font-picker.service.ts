@@ -1,7 +1,6 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
 import { Observable } from 'rxjs/Observable';
+
+import { catchError, map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
@@ -32,8 +31,9 @@ export class FontPickerService {
       requestUrl = requestUrl.concat('&sort=' + sort);
     }
 
-    return <Observable<GoogleFonts>> this.http.get(requestUrl)
-      .catch(this.handleHttpError);
+    return <Observable<GoogleFonts>> this.http.get(requestUrl).pipe(
+      catchError(this.handleHttpError)
+    );
   }
 
   /**
@@ -43,8 +43,9 @@ export class FontPickerService {
   public getRequestedFont(family: string): Observable<Font> {
     const requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
 
-    return <Observable<Font>> this.http.get(requestUrl)
-      .catch(this.handleHttpError);
+    return <Observable<Font>> this.http.get(requestUrl).pipe(
+      catchError(this.handleHttpError)
+    );
   }
 
   /**

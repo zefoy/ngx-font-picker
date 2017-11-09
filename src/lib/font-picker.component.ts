@@ -1,9 +1,8 @@
 import * as WebFont from 'webfontloader';
 
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
 import { Subject } from 'rxjs/Subject';
+
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
@@ -96,35 +95,34 @@ export class FontPickerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchTerm
-      .valueChanges
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .subscribe((text) => {
-        if (!text) {
-          this.presetVisible = true;
-          this.listLabel = 'Popular fonts';
-        } else {
-          this.presetVisible = false;
-          this.listLabel = 'Search results';
-        }
+    this.searchTerm.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe((text) => {
+      if (!text) {
+        this.presetVisible = true;
+        this.listLabel = 'Popular fonts';
+      } else {
+        this.presetVisible = false;
+        this.listLabel = 'Search results';
+      }
 
-        this.searchGoogleFonts(text);
-      });
+      this.searchGoogleFonts(text);
+    });
 
-      this.renderMore
-        .debounceTime(150)
-        .subscribe(() => this.loadMoreFonts());
+    this.renderMore.pipe(
+      debounceTime(150)
+    ).subscribe(() => this.loadMoreFonts());
 
-      this.testContainer = document.createElement('span');
-      this.testContainer.innerHTML = Array(100).join('wi');
+    this.testContainer = document.createElement('span');
+    this.testContainer.innerHTML = Array(100).join('wi');
 
-      this.testContainer.style.cssText = [
-        'position: absolute',
-        'width: auto',
-        'font-size: 128px',
-        'left: -99999px'
-      ].join(' !important;');
+    this.testContainer.style.cssText = [
+      'position: absolute',
+      'width: auto',
+      'font-size: 128px',
+      'left: -99999px'
+    ].join(' !important;');
 
     this.listenerResize = () => this.onResize();
 
