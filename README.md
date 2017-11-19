@@ -29,7 +29,7 @@ npm start
 ```bash
 npm link
 cd example
-npm ling ngx-font-picker
+npm link ngx-font-picker
 ```
 
 ### Installing and usage
