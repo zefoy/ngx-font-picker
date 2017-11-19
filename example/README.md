@@ -1,1 +1,1 @@
-# Example app for the angular2-font-picker
+# Example app for the ngx-font-picker
