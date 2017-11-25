@@ -63,7 +63,9 @@ export class FontPickerDirective implements OnInit, OnChanges {
     if (changes.fontPicker) {
       this.fontPicker = this.fontPicker || this.fpFallbackFont;
 
-      this.loadFont(this.fontPicker);
+      if (this.fpAutoLoad) {
+        this.loadFont(this.fontPicker);
+      }
     }
   }
 
