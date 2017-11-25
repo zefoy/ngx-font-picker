@@ -12,6 +12,6 @@ export {
 
 export { FontPickerModule } from './lib/font-picker.module';
 
-export { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './lib/font-picker.pipes';
-
 export { FontPickerService } from './lib/font-picker.service';
+
+export { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './lib/font-picker.pipes';

@@ -1,16 +1,17 @@
-import * as WebFont from 'webfontloader';
-
-import { Directive, OnInit, Input, Output, EventEmitter, HostListener,
-  ElementRef, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
+import { Directive, OnInit, OnChanges, Input, Output, EventEmitter,
+  HostListener, ElementRef, ViewContainerRef, SimpleChanges,
+  ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
 
 import { Font } from './font-picker.interfaces';
+
+import { FontPickerService } from './font-picker.service';
 
 import { FontPickerComponent } from './font-picker.component';
 
 @Directive({
   selector: '[fontPicker]'
 })
-export class FontPickerDirective implements OnInit {
+export class FontPickerDirective implements OnInit, OnChanges {
   private dialog: any;
 
   @Input('fontPicker') fontPicker: Font;
@@ -25,7 +26,9 @@ export class FontPickerDirective implements OnInit {
     styles: ['regular']
   });
 
-  @Input('fpPresetLabel') fpPresetLabel: string;
+  @Input('fpAutoLoad') fpAutoLoad: boolean = true;
+
+  @Input('fpPresetLabel') fpPresetLabel: string = '';
   @Input('fpPresetFonts') fpPresetFonts: Array<string>;
 
   @Input('fpSizeSelect') fpSizeSelect: boolean = true;
@@ -46,6 +49,41 @@ export class FontPickerDirective implements OnInit {
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<Font>();
 
   @HostListener('click', ['$event']) onClick(event: Event) {
+    this.toggleDialog();
+  }
+
+  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef,
+    private vc: ViewContainerRef, private service: FontPickerService) {}
+
+  ngOnInit() {
+    this.fontPicker = this.fontPicker || this.fpFallbackFont;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.fontPicker) {
+      this.fontPicker = this.fontPicker || this.fpFallbackFont;
+
+      this.loadFont(this.fontPicker);
+    }
+  }
+
+  public loadFont(font: Font) {
+    this.service.loadFont(font);
+  }
+
+  public openDialog() {
+    if (!this.dialog || !this.dialog.open) {
+      this.toggleDialog();
+    }
+  }
+
+  public closeDialog() {
+    if (this.dialog && this.dialog.open) {
+      this.toggleDialog();
+    }
+  }
+
+  public toggleDialog() {
     if (!this.dialog) {
       const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
       const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
@@ -68,35 +106,7 @@ export class FontPickerDirective implements OnInit {
     }
   }
 
-  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef, private vc: ViewContainerRef) {}
-
-  ngOnInit() {
-    const fontPicker = this.fontPicker;
-
-    if (!this.fontPicker) {
-      this.fontPicker = this.fpFallbackFont;
-    }
-
-    if (fontPicker !== this.fontPicker) {
-      this.fontPickerChange.emit(this.fontPicker);
-    }
-
-    this.loadFont(this.fontPicker);
-  }
-
-  private loadFont(font: Font) {
-    try {
-      WebFont.load({
-        google: {
-          families: [font.family + ':' + font.style]
-        }
-      });
-    } catch (e) {
-      console.warn('Problem with loading font:', font);
-    }
-  }
-
-  public fontChanged(value: Font) {
-    this.fontPickerChange.emit(value);
+  public fontChanged(font: Font) {
+    this.fontPickerChange.emit(font);
   }
 }

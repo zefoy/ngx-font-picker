@@ -1,3 +1,5 @@
+import * as WebFont from 'webfontloader';
+
 import { Observable } from 'rxjs/Observable';
 
 import { catchError, map } from 'rxjs/operators';
@@ -20,7 +22,22 @@ export class FontPickerService {
   }
 
   /**
-   * Return all fonts avaliable from google fonts, may have sort parameter:
+   * Loads the given font from Google Web Fonts.
+   */
+  public loadFont(font: Font) {
+    try {
+      WebFont.load({
+        google: {
+          families: [font.family + ':' + font.style]
+        }
+      });
+    } catch (e) {
+      console.warn('Failed to load the font:', font);
+    }
+  }
+
+  /**
+   * Returns list of all fonts with given sort option:
    * date || alpha || style || trending || popularity
    */
 
@@ -37,7 +54,7 @@ export class FontPickerService {
   }
 
   /**
-   * Return observable of the requested font.
+   * Returns font object for the requested font family.
    */
 
   public getRequestedFont(family: string): Observable<Font> {
@@ -49,7 +66,7 @@ export class FontPickerService {
   }
 
   /**
-   * Handler for possible http request errors.
+   * Handler method for all possible http request errors.
    */
 
   private handleHttpError(error: any) {

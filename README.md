@@ -81,6 +81,8 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 
 [fpPosition]            // Position of the font picker (Default: 'bottom').
 
+[fpAutoLoad]            // Auto loads font on change (fontPicker input change).
+
 [fpSizeSelect]          // Show size selector in the font picker (Default: false).
 [fpStyleSelect]         // Show style selector in the font picker (Default: false).
 
@@ -98,4 +100,21 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 
 ```javascript
 apiKey                  // Your Google API key for the Google Web Fonts API.
+```
+
+##### Available control / helper functions (provided by the service):
+
+loadFont(font)          // Loads the given font (family:style) from Web Fonts.
+
+getAllFonts(sort)       // Returns list of Google Fonts with given sort option:
+                        // 'alpha' | 'date' | 'popularity' | 'style' | 'trending'
+
+##### Available control / helper functions (provided by the directive):
+
+```javascript
+loadFont(font)          // Loads the (font.family:font.style) form Web Fonts.
+
+openDialog()            // Opens the font picker dialog if not already open.
+closeDialog()           // Closes the font picker dialog if not already closed.
+toggleDialog()          // Toggles the open state of the font picker dialog.
 ```
