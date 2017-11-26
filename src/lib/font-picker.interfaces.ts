@@ -3,19 +3,57 @@ import { InjectionToken } from '@angular/core';
 export const FONT_PICKER_CONFIG = new InjectionToken('FONT_PICKER_CONFIG');
 
 export interface FontInterface {
-  family: string;
-  files?: any;
   size: string;
   style: string;
-  styles: string[];
+  family: string;
+
+  files?: any;
+  styles?: string[];
 }
 
 export interface GoogleFontInterface {
-  category: string;
-  family: string;
-  files: Object[];
   kind: string;
+  family: string;
+  category: string;
+
+  files: any[];
   variants: string[];
+}
+
+export class GoogleFontsInterface {
+  kind: string;
+  items: any[];
+}
+
+export class Font implements FontInterface {
+  public size: string = null;
+  public style: string = 'regular';
+  public family: string = 'monospace';
+
+  public files: any = null;
+  public styles: string[]= ['regular'];
+
+  constructor(props?: FontInterface) {
+    if (props) {
+      this.size = props.size || null;
+      this.style = props.style || 'regular';
+      this.family = props.family || 'monospace';
+
+      this.files = props.files || null;
+      this.styles = props.styles || ['regular'];
+    }
+  }
+
+  public getStyles(): any {
+    return {
+      'font-size': this.size || '16px',
+      'font-style': this.style.includes('italic') ?
+        'italic' : 'normal',
+      'font-family': this.family || 'monospace',
+      'font-weight': isNaN(Number(this.style.slice(0, 3))) ?
+        'normal' : this.style.slice(0, 3)
+    };
+  }
 }
 
 export interface FontPickerConfigInterface {
@@ -34,34 +72,4 @@ export class FontPickerConfig implements FontPickerConfigInterface {
       this[key] = config[key];
     }
   }
-}
-
-export class Font {
-  public family: string;
-  public files: any;
-  public size: string;
-  public style: string;
-  public styles: string[];
-
-  constructor(props: FontInterface) {
-    this.family = props.family || 'monospace';
-    this.styles = props.styles || ['regular'];
-    this.style = props.style || 'regular';
-    this.files = props.files || null;
-    this.size = props.size || null;
-  }
-
-  public getStyles(): any {
-    return {
-      'font-size': this.size || '16px',
-      'font-family': this.family || 'monospace',
-      'font-style': this.style.includes('italic') ? 'italic' : 'normal',
-      'font-weight': isNaN(Number(this.style.slice(0, 3))) ? 'normal' : this.style.slice(0, 3)
-    };
-  }
-}
-
-export class GoogleFonts {
-  kind: string;
-  items: Array<any>;
 }

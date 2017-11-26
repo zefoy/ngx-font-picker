@@ -5,7 +5,7 @@ export {
   FONT_PICKER_CONFIG,
 
   Font, FontInterface,
-  GoogleFonts, GoogleFontInterface,
+  GoogleFontInterface, GoogleFontsInterface,
 
   FontPickerConfig, FontPickerConfigInterface
 } from './lib/font-picker.interfaces';

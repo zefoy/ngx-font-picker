@@ -9,7 +9,8 @@ import { Inject, Injectable } from '@angular/core';
 
 import { FONT_PICKER_CONFIG  } from './font-picker.interfaces';
 
-import { FontPickerConfig, Font, GoogleFonts  } from './font-picker.interfaces';
+import { FontInterface, GoogleFontsInterface,
+  FontPickerConfigInterface  } from './font-picker.interfaces';
 
 @Injectable()
 export class FontPickerService {
@@ -17,14 +18,16 @@ export class FontPickerService {
 
   private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-  constructor( @Inject(FONT_PICKER_CONFIG) private config: FontPickerConfig, private http: HttpClient ) {
+  constructor(private http: HttpClient,
+    @Inject(FONT_PICKER_CONFIG) private config: FontPickerConfigInterface)
+  {
     this.apiKey = config.apiKey;
   }
 
   /**
    * Loads the given font from Google Web Fonts.
    */
-  public loadFont(font: Font) {
+  public loadFont(font: FontInterface) {
     try {
       WebFont.load({
         google: {
@@ -41,14 +44,14 @@ export class FontPickerService {
    * date || alpha || style || trending || popularity
    */
 
-  public getAllFonts(sort: string): Observable<GoogleFonts> {
+  public getAllFonts(sort: string): Observable<GoogleFontsInterface> {
     let requestUrl = this.baseUrl + '?key=' + this.apiKey;
 
     if (sort) {
       requestUrl = requestUrl.concat('&sort=' + sort);
     }
 
-    return <Observable<GoogleFonts>> this.http.get(requestUrl).pipe(
+    return <Observable<GoogleFontsInterface>> this.http.get(requestUrl).pipe(
       catchError(this.handleHttpError)
     );
   }
@@ -57,10 +60,10 @@ export class FontPickerService {
    * Returns font object for the requested font family.
    */
 
-  public getRequestedFont(family: string): Observable<Font> {
+  public getRequestedFont(family: string): Observable<FontInterface> {
     const requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
 
-    return <Observable<Font>> this.http.get(requestUrl).pipe(
+    return <Observable<FontInterface>> this.http.get(requestUrl).pipe(
       catchError(this.handleHttpError)
     );
   }

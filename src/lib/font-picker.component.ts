@@ -9,9 +9,9 @@ import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@an
 
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
-import { FontPickerService } from './font-picker.service';
+import { Font, FontInterface, GoogleFontInterface, GoogleFontsInterface } from './font-picker.interfaces';
 
-import { Font, GoogleFonts, GoogleFontInterface } from './font-picker.interfaces';
+import { FontPickerService } from './font-picker.service';
 
 @Component({
   selector: 'font-picker',
@@ -20,7 +20,6 @@ import { Font, GoogleFonts, GoogleFontInterface } from './font-picker.interfaces
 })
 export class FontPickerComponent implements OnInit {
   public open: boolean;
-
   public loading: boolean;
 
   public top: number;
@@ -28,18 +27,12 @@ export class FontPickerComponent implements OnInit {
   public position: string;
 
   public font: Font;
-  public initialFont: Font;
-
-  private styles: string[] = [];
-
-  private testWidth: number;
-  private testContainer: any;
 
   public listLabel: string;
   public selectedFont: boolean;
   public presetVisible: boolean;
 
-  public arrowTop: number;
+  public arrowTop: number = null;
   public fontAmount: number = 10;
   public loadedFonts: number = 0;
 
@@ -54,7 +47,7 @@ export class FontPickerComponent implements OnInit {
   public fpPositionOffset: number;
 
   public fpPresetLabel: string;
-  public fpPresetFonts: Array<any>;
+  public fpPresetFonts: string[];
 
   public fpSizeSelect: boolean;
   public fpStyleSelect: boolean;
@@ -69,6 +62,11 @@ export class FontPickerComponent implements OnInit {
 
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
+
+  private initialFont: Font;
+
+  private testWidth: number;
+  private testContainer: any;
 
   private listenerResize: any;
   private listenerMouseDown: any;
@@ -88,7 +86,9 @@ export class FontPickerComponent implements OnInit {
 
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
 
-  constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef, public service: FontPickerService) {
+  constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef,
+    public service: FontPickerService)
+  {
     this.loading = true;
     this.selectedFont = false;
     this.presetVisible = true;
@@ -115,26 +115,28 @@ export class FontPickerComponent implements OnInit {
     ).subscribe(() => this.loadMoreFonts());
 
     this.testContainer = document.createElement('span');
+
     this.testContainer.innerHTML = Array(100).join('wi');
 
     this.testContainer.style.cssText = [
       'position: absolute',
+      'left: -99999px',
       'width: auto',
-      'font-size: 128px',
-      'left: -99999px'
+      'font-size: 128px'
     ].join(' !important;');
 
-    this.listenerResize = () => this.onResize();
+  this.listenerResize = (event: any) => this.onResize(event);
 
     this.listenerMouseDown = (event: any) => this.onMouseDown(event);
 
     this.openFontPicker();
   }
 
-  public setDialog(instance: any, elementRef: ElementRef, defaultFont: Font, fpPosition: string,
-    fpPositionOffset: string, fpPositionRelativeToArrow: boolean, fpPresetLabel, fpPresetFonts,
-    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
-    fpStyleSelect: boolean, fpSizeSelect: boolean, fpCancelButton: boolean, fpCancelButtonClass: string,
+  public setDialog(instance: any, elementRef: ElementRef, defaultFont: FontInterface,
+    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
+    fpPresetLabel: string, fpPresetFonts: string[], fpUploadButton: boolean,
+    fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect: boolean,
+    fpSizeSelect: boolean, fpCancelButton: boolean, fpCancelButtonClass: string,
     fpCancelButtonText: string, fpHeight: string, fpWidth: string)
   {
     this.listLabel = 'Loading fonts...';
@@ -147,10 +149,18 @@ export class FontPickerComponent implements OnInit {
       fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText,
       fpHeight, fpWidth);
 
-    this.service.getAllFonts('popularity').subscribe((fonts) => {
+    this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
 
-      this.googleFonts = fonts.items.map((font) => this.convertGoogleFont(font));
+      this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
+          return new Font({
+            family: font.family,
+            styles: font.variants,
+            files: font.files,
+            style: null,
+            size: null
+          });
+        });
 
       // Find styles for initial font
       const searchFont = this.findFont(this.initialFont.family, true);
@@ -170,14 +180,13 @@ export class FontPickerComponent implements OnInit {
     err => console.log(err));
   }
 
-  public updateDialog(font: Font, fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
-    fpPresetLabel, fpPresetFonts, fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
-    fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean, fpCancelButtonClass: string,
-    fpCancelButtonText: string, fpHeight: string, fpWidth: string)
+  public updateDialog(font: FontInterface, fpPosition: string, fpPositionOffset: string,
+    fpPositionRelativeToArrow: boolean, fpPresetLabel: string, fpPresetFonts: string[],
+    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
+    fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean,
+    fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string)
   {
-    this.font = font;
-    this.styles = font.styles;
-
+    this.font = new Font(font);
     this.initialFont = new Font(font);
 
     this.fpPosition = fpPosition;
@@ -255,7 +264,7 @@ export class FontPickerComponent implements OnInit {
     const presetFonts = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
-      this.fpPresetFonts.forEach((font) => {
+      this.fpPresetFonts.forEach((font: string) => {
         let fontClass = this.findFont(font, true);
 
         if (!fontClass) {
@@ -306,12 +315,12 @@ export class FontPickerComponent implements OnInit {
   }
 
   private findFonts(searchVal, exactMatch: boolean = false): Font[] {
+    const fullmatchFonts = [];
+    const candidateFonts = [];
+
     searchVal = searchVal.toLowerCase();
 
-    const fullmatchFonts: Font[] = [];
-    const candidateFonts: Font[] = [];
-
-    this.googleFonts.forEach((font) => {
+    this.googleFonts.forEach((font: Font) => {
       if (searchVal === font.family.toLowerCase()) {
         fullmatchFonts.push(font);
 
@@ -323,7 +332,7 @@ export class FontPickerComponent implements OnInit {
       }
     });
 
-    const resultFonts: Font[] = fullmatchFonts.concat(candidateFonts);
+    const resultFonts = fullmatchFonts.concat(candidateFonts);
 
     return resultFonts;
   }
@@ -344,127 +353,35 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  loadGoogleFonts(fonts: Font[]) {
+  private loadGoogleFonts(fonts: Font[]) {
     fonts.slice(0, this.fontAmount).forEach((font: any) => {
       if (font && font.files && !this.isFontAvailable(font)) {
-        const style = font.styles.indexOf('regular') > -1 ? '' : ':'  + font.styles.find((x: any) => !isNaN(x));
+        const style = (font.styles.indexOf('regular') > -1) ?
+          '' : ':'  + font.styles.find((x: any) => !isNaN(x));
 
-        try {
-          WebFont.load({
-            google: {
-              families: [font.family + ':' + style]
-            }
-          });
-        } catch (e) {
-          console.warn('Problem with loading font:', font);
-        }
+        this.service.loadFont({ family: font.family, style: style, size: font.size });
       }
     });
   }
 
   private searchGoogleFonts(value: string) {
     if (!value) {
-      this.onSearchReset();
+      this.searchTerm.setValue('');
 
-      return;
-    }
-
-    value = value.toLowerCase();
-
-    let searchResult: Font[] = Array();
-
-    if (this.googleFonts) {
-      this.loadedFonts = this.fontAmount;
-
-      searchResult = this.findFonts(value, false);
-
-      this.setCurrentFonts(searchResult);
-
-      this.cdRef.markForCheck();
-    }
-  }
-
-  private convertGoogleFont(font: GoogleFontInterface): Font {
-    const convertedFont = new Font({
-      family: font.family,
-      styles: font.variants,
-      files: font.files,
-      style: null,
-      size: null
-    });
-
-    return convertedFont;
-  }
-
-  public onResize() {
-    if (this.position === 'fixed') {
-      this.setDialogPosition();
+      this.setCurrentFonts(this.googleFonts);
     } else {
-      this.closeFontPicker();
+      value = value.toLowerCase();
+
+      if (this.googleFonts) {
+        this.loadedFonts = this.fontAmount;
+
+        const searchResult = this.findFonts(value, false);
+
+        this.setCurrentFonts(searchResult);
+
+        this.cdRef.markForCheck();
+      }
     }
-  }
-
-  public onMouseDown(event: any) {
-    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
-        event.target !== this.directiveElementRef.nativeElement)
-    {
-      this.closeFontPicker();
-    }
-  }
-
-  public onUploadFiles() {
-  }
-
-  public onCancelSelect() {
-    this.selectedFont = false;
-
-    this.font.family = this.initialFont.family;
-    this.font.size = this.initialFont.size;
-    this.font.files = this.initialFont.files;
-    this.font.style = this.initialFont.style;
-    this.font.styles = this.initialFont.styles;
-
-    this.closeFontPicker();
-
-    this.directiveInstance.fontChanged(this.font);
-  }
-
-  public onSelectFont(font: any) {
-    this.selectedFont = true;
-
-    this.font.family = font.family;
-    this.font.styles = font.styles;
-    this.font.files = font.files;
-
-    this.font.style = font.styles.indexOf('regular') > -1 ? 'regular' : font.styles[0];
-
-    this.directiveInstance.fontChanged(this.font);
-  }
-
-  public onSearchReset(event?: any) {
-    this.searchTerm.setValue('');
-
-    this.setCurrentFonts(this.googleFonts);
-  }
-
-  public onFontSizeChange(event: any, font: Font) {
-    this.font.size = event.target.value + 'px';
-
-    this.directiveInstance.fontChanged(this.font);
-  }
-
-  public onFontStyleChange(event: any, font: Font) {
-    const str = this.font.family + ':' +  event.target.value;
-
-    if (font.files) {
-      WebFont.load({
-        google: {
-          families: [str]
-        }
-      });
-    }
-
-    this.directiveInstance.fontChanged(this.font);
   }
 
   private isDescendant(parent, child): boolean {
@@ -528,9 +445,10 @@ export class FontPickerComponent implements OnInit {
     } else {
       boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, false);
 
+      this.position = 'fixed';
+
       this.top = boxDirective.top;
       this.left = boxDirective.left;
-      this.position = 'fixed';
     }
 
     if (!this.fpWidth) {
@@ -554,6 +472,78 @@ export class FontPickerComponent implements OnInit {
     } else {
       this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
       this.left += boxDirective.width + this.dialogArrowSize;
+    }
+  }
+
+  public onUploadFiles() {
+  }
+
+  public onCancelSelect() {
+    this.selectedFont = false;
+
+    this.font.size = this.initialFont.size;
+    this.font.files = this.initialFont.files;
+    this.font.style = this.initialFont.style;
+    this.font.family = this.initialFont.family;
+    this.font.styles = this.initialFont.styles;
+
+    this.directiveInstance.fontChanged(this.font);
+
+    this.closeFontPicker();
+  }
+
+  public onSelectFont(font: any) {
+    this.selectedFont = true;
+
+    this.font.files = font.files;
+    this.font.family = font.family;
+    this.font.styles = font.styles;
+
+    this.font.style = (font.styles.indexOf('regular') !== -1) ?
+      'regular' : font.styles[0];
+
+    this.directiveInstance.fontChanged(this.font);
+  }
+
+  public onSearchReset(event: any) {
+    this.searchTerm.setValue('');
+
+    this.setCurrentFonts(this.googleFonts);
+  }
+
+  public onFontSizeChange(event: any, font: Font) {
+    this.font.size = event.target.value + 'px';
+
+    this.directiveInstance.fontChanged(this.font);
+  }
+
+  public onFontStyleChange(event: any, font: Font) {
+    const str = this.font.family + ':' +  event.target.value;
+
+    if (font.files) {
+      WebFont.load({
+        google: {
+          families: [str]
+        }
+      });
+    }
+
+    this.directiveInstance.fontChanged(this.font);
+  }
+
+  private onResize(event: any) {
+    if (this.position === 'fixed') {
+      this.setDialogPosition();
+    } else {
+      this.closeFontPicker();
+    }
+  }
+
+  private onMouseDown(event: any) {
+    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
+        event.target !== this.directiveElementRef.nativeElement)
+    {
+      this.closeFontPicker();
     }
   }
 }
