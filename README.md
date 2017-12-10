@@ -92,8 +92,10 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [fpFallbackFont]        // Fallback font (Default: {family: 'Roboto', size: 14}).
 
 [fpCancelButton]        // Show cancel button in the font picker (Default: false).
+[fpUploadButton]        // Show upload button in the font picker (Default: false).
 
 (fontPickerChange)      // Event handler for the font / size / style change.
+(fontPickerUpload)      // Event handler for the font upload button click event.
 ```
 
 ##### Available configuration options (for the global configuration):

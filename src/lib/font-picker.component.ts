@@ -135,6 +135,10 @@ export class FontPickerComponent implements OnInit {
     this.openFontPicker();
   }
 
+  public trackFont(index: number, font: FontInterface) {
+    return font.family;
+  }
+
   public setDialog(instance: any, elementRef: ElementRef, defaultFont: FontInterface,
     fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
     fpPresetLabel: string, fpPresetFonts: string[], fpUploadButton: boolean,
@@ -179,6 +183,8 @@ export class FontPickerComponent implements OnInit {
       const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
 
       this.loadGoogleFonts([openSans]);
+
+      this.setDisplayedFontSource();
     },
     (error: any) => console.log(error));
   }
@@ -217,8 +223,6 @@ export class FontPickerComponent implements OnInit {
     this.fpHeight = parseInt(fpHeight, 10);
 
     this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
-
-    this.setDisplayedFontSource();
   }
 
   public openFontPicker() {
@@ -496,7 +500,8 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  public onUploadFiles() {
+  public onUploadFont() {
+    this.directiveInstance.uploadFont();
   }
 
   public onCancelSelect() {

@@ -46,6 +46,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
   @Input('fpUploadButtonText') fpUploadButtonText: string = 'Upload';
   @Input('fpUploadButtonClass') fpUploadButtonClass: string = 'fp-upload-button-class';
 
+  @Output('fontPickerUpload') fontPickerUpload = new EventEmitter<void>();
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<FontInterface>();
 
   @HostListener('click', ['$event']) onClick(event: Event) {
@@ -71,6 +72,10 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   public loadFont(font: FontInterface) {
     this.service.loadFont(font);
+  }
+
+  public uploadFont() {
+    this.fontPickerUpload.emit();
   }
 
   public openDialog() {
