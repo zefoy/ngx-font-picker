@@ -2,7 +2,7 @@
   "name": "ngx-font-picker-example",
   "description": "Example app for the ngx-font-picker",
   "license": "MIT",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "tslint": {
     "extends": "./tslint.json"
   },
