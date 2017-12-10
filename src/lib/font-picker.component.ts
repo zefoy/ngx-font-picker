@@ -5,7 +5,8 @@ import { Subject } from 'rxjs/Subject';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild,
+  ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -16,9 +17,21 @@ import { FontPickerService } from './font-picker.service';
 @Component({
   selector: 'font-picker',
   templateUrl: './lib/font-picker.component.html',
-  styleUrls: [ './lib/font-picker.component.css' ]
+  styleUrls: [ './lib/font-picker.component.css' ],
+  encapsulation: ViewEncapsulation.None
 })
 export class FontPickerComponent implements OnInit {
+  private initialFont: Font;
+
+  private testWidth: number;
+  private testContainer: any;
+
+  private listenerResize: any;
+  private listenerMouseDown: any;
+
+  private directiveInstance: any;
+  private directiveElementRef: ElementRef;
+
   public open: boolean;
   public loading: boolean;
 
@@ -63,17 +76,6 @@ export class FontPickerComponent implements OnInit {
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
 
-  private initialFont: Font;
-
-  private testWidth: number;
-  private testContainer: any;
-
-  private listenerResize: any;
-  private listenerMouseDown: any;
-
-  private directiveInstance: any;
-  private directiveElementRef: ElementRef;
-
   public searchTerm = new FormControl('');
 
   public renderMore: Subject<any> = new Subject();
@@ -82,7 +84,7 @@ export class FontPickerComponent implements OnInit {
     suppressScrollX: true
   };
 
-  @ViewChild('dialogPopup') dialogElement: any;
+  @ViewChild('dialogPopup') dialogElement: ElementRef;
 
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
 
@@ -90,11 +92,16 @@ export class FontPickerComponent implements OnInit {
     public service: FontPickerService)
   {
     this.loading = true;
+
     this.selectedFont = false;
     this.presetVisible = true;
   }
 
   ngOnInit() {
+    this.renderMore.pipe(
+      debounceTime(150)
+    ).subscribe(() => this.loadMoreFonts());
+
     this.searchTerm.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged()
@@ -110,10 +117,6 @@ export class FontPickerComponent implements OnInit {
       this.searchGoogleFonts(text);
     });
 
-    this.renderMore.pipe(
-      debounceTime(150)
-    ).subscribe(() => this.loadMoreFonts());
-
     this.testContainer = document.createElement('span');
 
     this.testContainer.innerHTML = Array(100).join('wi');
@@ -125,7 +128,7 @@ export class FontPickerComponent implements OnInit {
       'font-size: 128px'
     ].join(' !important;');
 
-  this.listenerResize = (event: any) => this.onResize(event);
+    this.listenerResize = (event: any) => this.onResize(event);
 
     this.listenerMouseDown = (event: any) => this.onMouseDown(event);
 
@@ -153,14 +156,14 @@ export class FontPickerComponent implements OnInit {
       this.loading = false;
 
       this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
-          return new Font({
-            family: font.family,
-            styles: font.variants,
-            files: font.files,
-            style: null,
-            size: null
-          });
+        return new Font({
+          family: font.family,
+          styles: font.variants,
+          files: font.files,
+          style: null,
+          size: null
         });
+      });
 
       // Find styles for initial font
       const searchFont = this.findFont(this.initialFont.family, true);
@@ -177,7 +180,7 @@ export class FontPickerComponent implements OnInit {
 
       this.loadGoogleFonts([openSans]);
     },
-    err => console.log(err));
+    (error: any) => console.log(error));
   }
 
   public updateDialog(font: FontInterface, fpPosition: string, fpPositionOffset: string,
@@ -225,6 +228,7 @@ export class FontPickerComponent implements OnInit {
       this.searchTerm.setValue('');
 
       window.addEventListener('resize', this.listenerResize);
+
       document.addEventListener('mousedown', this.listenerMouseDown);
 
       this.open = true;
@@ -235,6 +239,7 @@ export class FontPickerComponent implements OnInit {
     this.open = false;
 
     window.removeEventListener('resize', this.listenerResize);
+
     document.removeEventListener('mousedown', this.listenerMouseDown);
   }
 
@@ -345,11 +350,11 @@ export class FontPickerComponent implements OnInit {
 
       this.loadedFonts += moreFonts.length;
 
-      this.cdRef.markForCheck();
-
       setTimeout(() => {
         this.scrollbar.directiveRef.update();
       }, 0);
+
+      this.cdRef.markForCheck();
     }
   }
 
@@ -475,6 +480,22 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
+  private onResize(event: any) {
+    if (this.position === 'fixed') {
+      this.setDialogPosition();
+    } else {
+      this.closeFontPicker();
+    }
+  }
+
+  private onMouseDown(event: any) {
+    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
+        event.target !== this.directiveElementRef.nativeElement)
+    {
+      this.closeFontPicker();
+    }
+  }
+
   public onUploadFiles() {
   }
 
@@ -523,27 +544,11 @@ export class FontPickerComponent implements OnInit {
     if (font.files) {
       WebFont.load({
         google: {
-          families: [str]
+          families: [ str ]
         }
       });
     }
 
     this.directiveInstance.fontChanged(this.font);
-  }
-
-  private onResize(event: any) {
-    if (this.position === 'fixed') {
-      this.setDialogPosition();
-    } else {
-      this.closeFontPicker();
-    }
-  }
-
-  private onMouseDown(event: any) {
-    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
-        event.target !== this.directiveElementRef.nativeElement)
-    {
-      this.closeFontPicker();
-    }
   }
 }
