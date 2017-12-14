@@ -35,7 +35,7 @@ npm link ngx-font-picker
 ### Installing and usage
 
 ```bash
-npm install ngx-font-picker --save
+npm install ngx-font-picker@prev --save
 ```
 
 ##### Load the module for your app (with global configuration):
