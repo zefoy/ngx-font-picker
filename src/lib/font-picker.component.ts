@@ -159,15 +159,17 @@ export class FontPickerComponent implements OnInit {
     this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
 
-      this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
-        return new Font({
-          family: font.family,
-          styles: font.variants,
-          files: font.files,
-          style: null,
-          size: null
+      if (fonts.items) {
+        this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
+          return new Font({
+            family: font.family,
+            styles: font.variants,
+            files: font.files,
+            style: null,
+            size: null
+          });
         });
-      });
+      }
 
       // Find styles for initial font
       const searchFont = this.findFont(this.initialFont.family, true);

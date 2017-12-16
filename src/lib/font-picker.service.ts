@@ -1,5 +1,7 @@
 import * as WebFont from 'webfontloader';
 
+import { of } from 'rxjs/observable/of';
+
 import { Observable } from 'rxjs/Observable';
 
 import { catchError, map } from 'rxjs/operators';
@@ -78,6 +80,6 @@ export class FontPickerService {
     const errMsg = (error.error instanceof Error) ? error.error.message :
       (error.status || 'Unknown error');
 
-    return Observable.throw(errMsg);
+    return of(errMsg);
   }
 }
