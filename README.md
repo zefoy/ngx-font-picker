@@ -88,6 +88,7 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [fpAutoLoad]            // Auto loads font on change (fontPicker input change).
 
 [fpSizeSelect]          // Show size selector in the font picker (Default: false).
+
 [fpStyleSelect]         // Show style selector in the font picker (Default: false).
 
 [fpPresetLabel]         // Label for the preset fonts list (Default: undefined).
@@ -96,9 +97,11 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [fpFallbackFont]        // Fallback font (Default: {family: 'Roboto', size: 14}).
 
 [fpCancelButton]        // Show cancel button in the font picker (Default: false).
+
 [fpUploadButton]        // Show upload button in the font picker (Default: false).
 
 (fontPickerChange)      // Event handler for the font / size / style change.
+
 (fontPickerUpload)      // Event handler for the font upload button click event.
 ```
 
@@ -122,5 +125,6 @@ loadFont(font)          // Loads the (font.family:font.style) form Web Fonts.
 
 openDialog()            // Opens the font picker dialog if not already open.
 closeDialog()           // Closes the font picker dialog if not already closed.
+
 toggleDialog()          // Toggles the open state of the font picker dialog.
 ```
