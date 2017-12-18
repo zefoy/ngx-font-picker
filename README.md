@@ -6,7 +6,11 @@ This is a simple font picker loosely based on the cool angular2-color-picker by 
 
 This documentation is for the latest 5.x.x version which requires Angular 5. For Angular 4 you need to use the latest 4.x.x version. Documentation for the 4.x.x can be found from <a href="https://github.com/zefoy/ngx-font-picker/tree/4.x.x/">here</a>.
 
-See a live example application <a href="https://zefoy.github.io/ngx-font-picker/">here</a>.
+### Quick links
+
+[Example application](https://zefoy.github.io/ngx-font-picker/)
+ | 
+[Plunker template](http://plnkr.co/edit/UpJA4eUZD76YK2Eh95B8?p=preview)
 
 ### Building the library
 
