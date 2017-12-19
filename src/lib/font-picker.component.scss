@@ -48,13 +48,11 @@
       box-shadow: none;
     }
 
-    /* stylelint-disable no-descending-specificity */
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
       margin: 0;
       -webkit-appearance: none;
     }
-    /* stylelint-enable no-descending-specificity */
   }
 
   .arrow {
