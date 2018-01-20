@@ -44,6 +44,8 @@ npm install ngx-font-picker --save
 
 ##### Load the module for your app (with global configuration):
 
+Global configuration should be provided only once (this is usually done in the root module).
+
 ```javascript
 import { FontPickerModule } from 'ngx-font-picker';
 import { FONT_PICKER_CONFIG } from 'ngx-font-picker';
