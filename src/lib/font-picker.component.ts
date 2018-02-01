@@ -81,7 +81,8 @@ export class FontPickerComponent implements OnInit {
   public renderMore: Subject<any> = new Subject();
 
   public config: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true
+    suppressScrollX: true,
+    wheelPropagation: false
   };
 
   @ViewChild('dialogPopup') dialogElement: ElementRef;
