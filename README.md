@@ -10,7 +10,7 @@ This documentation is for the latest 5.x.x version which requires Angular 5. For
 
 [Example application](https://zefoy.github.io/ngx-font-picker/)
  | 
-[Plunker template](http://plnkr.co/edit/UpJA4eUZD76YK2Eh95B8?p=preview)
+[StackBlitz example](https://stackblitz.com/github/zefoy/ngx-font-picker/tree/master/example)
 
 ### Building the library
 

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FONT_PICKER_CONFIG } from 'ngx-font-picker';
 import { FontPickerModule, FontPickerConfigInterface } from 'ngx-font-picker';
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AppComponent } from './app.component';
 

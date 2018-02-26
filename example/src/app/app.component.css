@@ -32,6 +32,7 @@
 .action-container,
 .content-container {
   overflow: auto;
+  height: 300px;
   min-height: 0;
   padding: 16px 24px;
   margin: 8px 16px;

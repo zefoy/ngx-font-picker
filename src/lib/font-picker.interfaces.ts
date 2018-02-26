@@ -31,7 +31,7 @@ export class Font implements FontInterface {
   public family: string = 'monospace';
 
   public files: any = null;
-  public styles: string[]= ['regular'];
+  public styles: string[] = ['regular'];
 
   constructor(props?: FontInterface) {
     if (props) {

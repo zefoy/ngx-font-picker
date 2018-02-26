@@ -2,9 +2,9 @@ import * as WebFont from 'webfontloader';
 
 import { of } from 'rxjs/observable/of';
 
-import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
 
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
@@ -21,9 +21,9 @@ export class FontPickerService {
   private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
   constructor(private http: HttpClient,
-    @Inject(FONT_PICKER_CONFIG) private config: FontPickerConfigInterface)
+    @Inject(FONT_PICKER_CONFIG) private _config: FontPickerConfigInterface)
   {
-    this.apiKey = config.apiKey;
+    this.apiKey = _config.apiKey;
   }
 
   /**
