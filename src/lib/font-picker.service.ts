@@ -29,7 +29,7 @@ export class FontPickerService {
   /**
    * Loads the given font from Google Web Fonts.
    */
-  public loadFont(font: FontInterface) {
+  public loadFont(font: FontInterface): void {
     try {
       WebFont.load({
         google: {
@@ -74,11 +74,11 @@ export class FontPickerService {
    * Handler method for all possible http request errors.
    */
 
-  private handleHttpError(error: any) {
+  private handleHttpError(error: any): Observable<string> {
     console.error(error);
 
-    const errMsg = (error.error instanceof Error) ? error.error.message :
-      (error.status || 'Unknown error');
+    const errMsg = (error.error instanceof Error) ?
+      error.error.message : (error.status || 'Unknown error');
 
     return of(errMsg);
   }

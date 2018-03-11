@@ -51,7 +51,7 @@ export class StatefulSlicePipe implements PipeTransform {
   private previousArrayRef = [];
   private previousEndValue = null;
 
-  transform(arr: any[], start: number, end: number): any {
+  transform(arr: any[], start: number, end: number): any[] {
     if (arr && (this.previousEndValue !== end || this.previousArrayRef !== arr)) {
       this.slicedArray = arr.slice(start, end);
 

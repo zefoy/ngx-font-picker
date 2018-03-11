@@ -56,7 +56,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
   constructor(private resolver: ComponentFactoryResolver, private el: ElementRef,
     private vc: ViewContainerRef, private service: FontPickerService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fontPicker = this.fontPicker || this.fpFallbackFont;
   }
 
@@ -70,27 +70,27 @@ export class FontPickerDirective implements OnInit, OnChanges {
     }
   }
 
-  public loadFont(font: FontInterface) {
+  public loadFont(font: FontInterface): void {
     this.service.loadFont(font);
   }
 
-  public uploadFont() {
+  public uploadFont(): void {
     this.fontPickerUpload.emit();
   }
 
-  public openDialog() {
+  public openDialog(): void {
     if (!this.dialog || !this.dialog.open) {
       this.toggleDialog();
     }
   }
 
-  public closeDialog() {
+  public closeDialog(): void {
     if (this.dialog && this.dialog.open) {
       this.toggleDialog();
     }
   }
 
-  public toggleDialog() {
+  public toggleDialog(): void {
     if (!this.dialog) {
       const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
       const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
@@ -113,7 +113,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
     }
   }
 
-  public fontChanged(font: FontInterface) {
+  public fontChanged(font: FontInterface): void {
     this.fontPickerChange.emit(font);
   }
 }

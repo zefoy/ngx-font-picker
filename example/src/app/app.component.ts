@@ -25,11 +25,11 @@ export class AppComponent {
 
   constructor() {}
 
-  togglePresetFonts() {
+  public togglePresetFonts(): void {
     this.presetFonts = this.presetFonts.length ? [] : this._presetFonts;
   }
 
-  toggleExtraOptions() {
+  public toggleExtraOptions(): void {
     this.sizeSelect = !this.sizeSelect;
     this.styleSelect = !this.styleSelect;
   }
