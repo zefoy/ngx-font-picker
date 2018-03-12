@@ -2,7 +2,7 @@ import * as WebFont from 'webfontloader';
 
 import { of } from 'rxjs/observable/of';
 
-import { catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators/catchError';
 
 import { Observable } from 'rxjs/Observable';
 
