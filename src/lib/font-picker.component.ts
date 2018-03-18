@@ -3,7 +3,7 @@ import * as WebFont from 'webfontloader';
 import { Subject } from 'rxjs/Subject';
 
 import { debounceTime } from 'rxjs/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/operators/distincUntilChanged';
+import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild,
@@ -363,6 +363,7 @@ export class FontPickerComponent implements OnInit {
       }, 0);
 
       this.cdRef.markForCheck();
+      this.cdRef.detectChanges();
     }
   }
 
