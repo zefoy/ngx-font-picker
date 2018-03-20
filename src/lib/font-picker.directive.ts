@@ -9,7 +9,8 @@ import { FontPickerService } from './font-picker.service';
 import { FontPickerComponent } from './font-picker.component';
 
 @Directive({
-  selector: '[fontPicker]'
+  selector: '[fontPicker]',
+  exportAs: 'ngxFontPicker'
 })
 export class FontPickerDirective implements OnInit, OnChanges {
   private dialog: any;
