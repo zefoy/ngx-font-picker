@@ -1,9 +1,8 @@
 import * as WebFont from 'webfontloader';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild,

@@ -1,10 +1,8 @@
 import * as WebFont from 'webfontloader';
 
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 
-import { catchError } from 'rxjs/operators/catchError';
-
-import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
