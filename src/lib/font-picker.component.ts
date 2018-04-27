@@ -225,6 +225,8 @@ export class FontPickerComponent implements OnInit {
     this.fpWidth = parseInt(fpWidth, 10);
     this.fpHeight = parseInt(fpHeight, 10);
 
+    this.setDisplayedFontSource();
+
     this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
   }
 
