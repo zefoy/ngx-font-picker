@@ -47,6 +47,7 @@
     "@angular/forms": "6.0.0-rc.0",
     "@angular/platform-browser": "6.0.0-rc.0",
     "@angular/platform-browser-dynamic": "^5.0.4",
+    "@types/jasmine": "^2.8.6",
     "@types/node": "^8.5.0",
     "@types/webfontloader": "^1.6.0",
     "angular-inliner-cli": "^1.2.0",

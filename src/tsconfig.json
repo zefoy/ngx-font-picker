@@ -22,7 +22,8 @@
     ],
     "types": [
       "node",
-      "webfontloader"
+      "webfontloader",
+      "jasmine"
     ]
   },
   "files": [
