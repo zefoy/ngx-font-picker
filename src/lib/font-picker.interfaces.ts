@@ -26,16 +26,16 @@ export class GoogleFontsInterface {
 }
 
 export class Font implements FontInterface {
-  public size: string = null;
+  public size: string = '16px';
   public style: string = 'regular';
   public family: string = 'monospace';
 
   public files: any = null;
   public styles: string[] = ['regular'];
 
-  constructor(props?: FontInterface) {
+  constructor(props?: Partial<FontInterface>) {
     if (props) {
-      this.size = props.size || null;
+      this.size = props.size || '16px';
       this.style = props.style || 'regular';
       this.family = props.family || 'monospace';
 
@@ -57,17 +57,17 @@ export class Font implements FontInterface {
 }
 
 export interface FontPickerConfigInterface {
-  apiKey?: string;
+  apiKey: string;
 }
 
 export class FontPickerConfig implements FontPickerConfigInterface {
-  apiKey: string = null;
+  public apiKey: string = '';
 
-  constructor(config: FontPickerConfigInterface = {}) {
+  constructor(config: Partial<FontPickerConfigInterface> = {}) {
     this.assign(config);
   }
 
-  public assign(config: FontPickerConfigInterface = {}) {
+  public assign(config: Partial<FontPickerConfigInterface> = {}) {
     for (const key in config) {
       this[key] = config[key];
     }

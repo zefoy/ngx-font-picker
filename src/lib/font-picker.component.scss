@@ -185,7 +185,7 @@
           color: lighten(#e74c3c, 15%);
 
           &::after {
-            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';
+            content: 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.';
 
             position: absolute;
             z-index: 10;

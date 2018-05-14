@@ -32,6 +32,8 @@ export class FontPickerComponent implements OnInit {
   private directiveInstance: any;
   private directiveElementRef: ElementRef;
 
+  public font: Font;
+
   public open: boolean;
   public loading: boolean;
 
@@ -39,13 +41,11 @@ export class FontPickerComponent implements OnInit {
   public left: number;
   public position: string;
 
-  public font: Font;
-
+  public arrowTop: number;
   public listLabel: string;
   public selectedFont: boolean;
   public presetVisible: boolean;
 
-  public arrowTop: number = null;
   public fontAmount: number = 10;
   public loadedFonts: number = 0;
 
@@ -163,11 +163,9 @@ export class FontPickerComponent implements OnInit {
       if (fonts.items) {
         this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
           return new Font({
-            family: font.family,
-            styles: font.variants,
             files: font.files,
-            style: null,
-            size: null
+            family: font.family,
+            styles: font.variants
           });
         });
       }
@@ -185,11 +183,13 @@ export class FontPickerComponent implements OnInit {
       // Load Open Sans if available
       const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
 
-      this.loadGoogleFonts([openSans]);
+      if (openSans) {
+        this.loadGoogleFonts([openSans]);
+      }
 
       this.setDisplayedFontSource();
     },
-    (error: any) => console.log(error));
+    (error: any) => console.error(error));
   }
 
   public updateDialog(font: FontInterface, fpPosition: string, fpPositionOffset: string,
@@ -275,17 +275,15 @@ export class FontPickerComponent implements OnInit {
   }
 
   private getPresetFonts(): Font[] {
-    const presetFonts = [];
+    const presetFonts: Font[] = [];
 
     if (this.googleFonts && this.fpPresetFonts && this.fpPresetFonts.length) {
       this.fpPresetFonts.forEach((font: string) => {
         let fontClass = this.findFont(font, true);
 
         if (!fontClass) {
-          fontClass = new Font( {
+          fontClass = new Font({
             family: font,
-            size: null,
-            style: null,
             styles: ['regular', 'italic']
           });
         }
@@ -294,9 +292,9 @@ export class FontPickerComponent implements OnInit {
       });
 
       this.presetFonts = presetFonts;
-
-      return presetFonts;
     }
+
+    return presetFonts;
   }
 
   private setDisplayedFontSource(): void {
@@ -329,8 +327,8 @@ export class FontPickerComponent implements OnInit {
   }
 
   private findFonts(searchVal, exactMatch: boolean = false): Font[] {
-    const fullmatchFonts = [];
-    const candidateFonts = [];
+    const fullmatchFonts: Font[] = [];
+    const candidateFonts: Font[] = [];
 
     searchVal = searchVal.toLowerCase();
 
@@ -413,7 +411,7 @@ export class FontPickerComponent implements OnInit {
     return false;
   }
 
-  private createDialogBox(element, offset): any {
+  private createDialogBox(element, offset): {top: number, left: number, width: number, height: number} {
     return {
       top: element.getBoundingClientRect().top + (offset ? window.pageYOffset : 0),
       left: element.getBoundingClientRect().left + (offset ? window.pageXOffset : 0),
@@ -423,10 +421,10 @@ export class FontPickerComponent implements OnInit {
   }
 
   private setDialogPosition(): void {
-    let position = 'static';
+    let parentNode;
+    let boxDirective;
 
-    let parentNode = null;
-    let boxDirective = null;
+    let position = 'static';
 
     let node = this.directiveElementRef.nativeElement;
 
@@ -449,7 +447,7 @@ export class FontPickerComponent implements OnInit {
     if (position !== 'fixed') {
       boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, true);
 
-      if (parentNode === null) {
+      if (parentNode == null) {
         parentNode = node;
       }
 
@@ -535,6 +533,9 @@ export class FontPickerComponent implements OnInit {
       'regular' : font.styles[0];
 
     this.directiveInstance.fontChanged(this.font);
+
+    this.cdRef.markForCheck();
+    this.cdRef.detectChanges();
   }
 
   public onSearchReset(event: any): void {
