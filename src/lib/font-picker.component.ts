@@ -26,11 +26,15 @@ export class FontPickerComponent implements OnInit {
   private testWidth: number;
   private testContainer: any;
 
+  private autoWidth: boolean;
+
   private listenerResize: any;
   private listenerMouseDown: any;
 
   private directiveInstance: any;
   private directiveElementRef: ElementRef;
+
+  private useRootViewContainer: boolean = false;
 
   public font: Font;
 
@@ -72,6 +76,8 @@ export class FontPickerComponent implements OnInit {
   public fpUploadButton: boolean;
   public fpUploadButtonText: string;
   public fpUploadButtonClass: string;
+
+  public fpDialogDisplay: string;
 
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
@@ -141,21 +147,24 @@ export class FontPickerComponent implements OnInit {
   }
 
   public setDialog(instance: any, elementRef: ElementRef, defaultFont: FontInterface,
-    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
-    fpPresetLabel: string, fpPresetFonts: string[], fpUploadButton: boolean,
-    fpUploadButtonClass: string, fpUploadButtonText: string, fpStyleSelect: boolean,
-    fpSizeSelect: boolean, fpCancelButton: boolean, fpCancelButtonClass: string,
-    fpCancelButtonText: string, fpHeight: string, fpWidth: string): void
+    fpUseRootViewContainer: boolean, fpPosition: string, fpPositionOffset: string,
+    fpPositionRelativeToArrow: boolean, fpPresetLabel: string, fpPresetFonts: string[],
+    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
+    fpStyleSelect: boolean, fpSizeSelect: boolean, fpCancelButton: boolean,
+    fpCancelButtonClass: string, fpCancelButtonText: string, fpDialogDisplay: string,
+    fpHeight: string, fpWidth: string): void
   {
     this.listLabel = 'Loading fonts...';
 
     this.directiveInstance = instance;
     this.directiveElementRef = elementRef;
 
+    this.useRootViewContainer = fpUseRootViewContainer;
+
     this.updateDialog(defaultFont, fpPosition, fpPositionOffset, fpPositionRelativeToArrow,
       fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText,
       fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText,
-      fpHeight, fpWidth);
+      fpDialogDisplay, fpHeight, fpWidth);
 
     this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
@@ -196,7 +205,8 @@ export class FontPickerComponent implements OnInit {
     fpPositionRelativeToArrow: boolean, fpPresetLabel: string, fpPresetFonts: string[],
     fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
     fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean,
-    fpCancelButtonClass: string, fpCancelButtonText: string, fpHeight: string, fpWidth: string): void
+    fpCancelButtonClass: string, fpCancelButtonText: string, fpDialogDisplay: string,
+    fpHeight: string, fpWidth: string): void
   {
     this.font = new Font(font);
     this.initialFont = new Font(font);
@@ -205,6 +215,11 @@ export class FontPickerComponent implements OnInit {
     this.fpPositionOffset = parseInt(fpPositionOffset, 10);
 
     if (!fpPositionRelativeToArrow) {
+      this.dialogArrowOffset = 0;
+    }
+
+    if (fpDialogDisplay === 'inline') {
+      this.dialogArrowSize = 0;
       this.dialogArrowOffset = 0;
     }
 
@@ -222,8 +237,12 @@ export class FontPickerComponent implements OnInit {
     this.fpUploadButtonText = fpUploadButtonText;
     this.fpUploadButtonClass = fpUploadButtonClass;
 
+    this.autoWidth = fpWidth === 'auto';
+
     this.fpWidth = parseInt(fpWidth, 10);
     this.fpHeight = parseInt(fpHeight, 10);
+
+    this.fpDialogDisplay = fpDialogDisplay;
 
     this.setDisplayedFontSource();
 
@@ -421,84 +440,93 @@ export class FontPickerComponent implements OnInit {
   }
 
   private setDialogPosition(): void {
-    let parentNode;
-    let boxDirective;
+    if (this.fpDialogDisplay === 'inline') {
+      this.position = 'relative';
+    } else {
+      let position = 'static', transform = '', style;
 
-    let position = 'static';
+      let parentNode: any = null, transformNode: any = null;
 
-    let node = this.directiveElementRef.nativeElement;
+      let node = this.directiveElementRef.nativeElement.parentNode;
 
-    const dialogHeight = this.dialogElement.nativeElement.offsetHeight;
+      const dialogHeight = this.dialogElement.nativeElement.offsetHeight;
 
-    while (node !== null && node.tagName !== 'HTML') {
-      position = window.getComputedStyle(node).getPropertyValue('position');
+      while (node !== null && node.tagName !== 'HTML') {
+        style = window.getComputedStyle(node);
+        position = style.getPropertyValue('position');
+        transform = style.getPropertyValue('transform');
 
-      if (position !== 'static' && parentNode === null) {
-        parentNode = node;
+        if (position !== 'static' && parentNode === null) {
+          parentNode = node;
+        }
+
+        if (transform && transform !== 'none' && transformNode === null) {
+          transformNode = node;
+        }
+
+        if (position === 'fixed') {
+          parentNode = transformNode;
+
+          break;
+        }
+
+        node = node.parentNode;
+      }
+
+      const boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, (position !== 'fixed'));
+
+      if (this.autoWidth) {
+        this.fpWidth = this.directiveElementRef.nativeElement.offsetWidth;
+      }
+
+      if (this.useRootViewContainer || (position === 'fixed' && !parentNode)) {
+        this.top = boxDirective.top;
+        this.left = boxDirective.left;
+      } else {
+        if (parentNode === null) {
+          parentNode = node;
+        }
+
+        const boxParent = this.createDialogBox(parentNode, (position !== 'fixed'));
+
+        this.top = boxDirective.top - boxParent.top;
+        this.left = boxDirective.left - boxParent.left;
       }
 
       if (position === 'fixed') {
-        break;
+        this.position = 'fixed';
       }
 
-      node = node.parentNode;
-    }
+      if (this.fpPosition === 'left') {
+        this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
+        this.left -= this.fpWidth + this.dialogArrowSize - 2;
+      } else if (this.fpPosition === 'top') {
+        this.arrowTop = dialogHeight - 1;
 
-    if (position !== 'fixed') {
-      boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, true);
-
-      if (parentNode == null) {
-        parentNode = node;
+        this.top -= dialogHeight + this.dialogArrowSize;
+        this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+      } else if (this.fpPosition === 'bottom') {
+        this.top += boxDirective.height + this.dialogArrowSize;
+        this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+      } else {
+        this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
+        this.left += boxDirective.width + this.dialogArrowSize - 2;
       }
-
-      const boxParent = this.createDialogBox(parentNode, true);
-
-      this.top = boxDirective.top - boxParent.top;
-      this.left = boxDirective.left - boxParent.left;
-    } else {
-      boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, false);
-
-      this.position = 'fixed';
-
-      this.top = boxDirective.top;
-      this.left = boxDirective.left;
-    }
-
-    if (!this.fpWidth) {
-      this.fpWidth = boxDirective.width;
-    }
-
-    if (!this.fpHeight) {
-      this.fpHeight = boxDirective.height;
-    }
-
-    if (this.fpPosition === 'left') {
-      this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
-      this.left -= this.fpWidth + this.dialogArrowSize;
-    } else if (this.fpPosition === 'top') {
-      this.top -= dialogHeight + this.dialogArrowSize;
-      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset - 1;
-      this.arrowTop = dialogHeight - 1;
-    } else if (this.fpPosition === 'bottom') {
-      this.top += boxDirective.height + this.dialogArrowSize;
-      this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset - 1;
-    } else {
-      this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
-      this.left += boxDirective.width + this.dialogArrowSize;
     }
   }
 
   private onResize(event: any): void {
     if (this.position === 'fixed') {
       this.setDialogPosition();
-    } else {
+    } else if (this.fpDialogDisplay !== 'inline') {
       this.closeFontPicker();
     }
   }
 
   private onMouseDown(event: any): void {
-    if (!this.isDescendant(this.elRef.nativeElement, event.target) &&
-        event.target !== this.directiveElementRef.nativeElement)
+    if (this.fpDialogDisplay === 'popup' &&
+        event.target !== this.directiveElementRef.nativeElement &&
+        !this.isDescendant(this.elRef.nativeElement, event.target))
     {
       this.closeFontPicker();
     }
@@ -519,7 +547,9 @@ export class FontPickerComponent implements OnInit {
 
     this.directiveInstance.fontChanged(this.font);
 
-    this.closeFontPicker();
+    if (this.fpDialogDisplay === 'popup') {
+      this.closeFontPicker();
+    }
   }
 
   public onSelectFont(font: any): void {

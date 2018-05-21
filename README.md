@@ -80,53 +80,60 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 ```
 
 ```javascript
-[(fontPicker)]          // Selected font ({family, size, style, styles, files}).
+[(fontPicker)]               // Selected font ({family, size, style, styles, files}).
 
-[fpWidth]               // Width of the font picker (Default: '280px').
-[fpHeight]              // Height of the font picker (Default: '320px').
+[fpWidth]                    // Width of the font picker (Default: '280px').
+[fpHeight]                   // Height of the font picker (Default: '320px').
 
-[fpPosition]            // Position of the font picker (Default: 'bottom').
+[fpPosition]                 // Position of the font picker (Default: 'bottom').
 
-[fpAutoLoad]            // Auto loads font on change (fontPicker input change).
+[fpAutoLoad]                 // Auto loads font on change (fontPicker input change).
 
-[fpSizeSelect]          // Show size selector in the font picker (Default: false).
+[fpSizeSelect]               // Show size selector in the font picker (Default: false).
 
-[fpStyleSelect]         // Show style selector in the font picker (Default: false).
+[fpStyleSelect]              // Show style selector in the font picker (Default: false).
 
-[fpPresetLabel]         // Label for the preset fonts list (Default: undefined).
-[fpPresetFonts]         // Listing of preset fonts to show (Default: undefined).
+[fpPresetLabel]              // Label for the preset fonts list (Default: undefined).
+[fpPresetFonts]              // Listing of preset fonts to show (Default: undefined).
 
-[fpFallbackFont]        // Fallback font (Default: {family: 'Roboto', size: 14}).
+[fpFallbackFont]             // Fallback font (Default: {family: 'Roboto', size: 14}).
 
-[fpCancelButton]        // Show cancel button in the font picker (Default: false).
+[fpCancelButton]             // Show cancel button in the font picker (Default: false).
 
-[fpUploadButton]        // Show upload button in the font picker (Default: false).
+[fpUploadButton]             // Show upload button in the font picker (Default: false).
 
-(fontPickerChange)      // Event handler for the font / size / style change.
+[fpDialogDisplay]            // Dialog positioning mode: 'popup', 'inline' ('popup').
+                             //   popup: dialog is shown as popup (fixed positioning).
+                             //   inline: dialog is shown permanently (static positioning).
 
-(fontPickerUpload)      // Event handler for the font upload button click event.
+[fpUseRootViewContainer]     // Create dialog component in the root view container (false).
+                             // Note: The root component needs to have public viewContainerRef.
+
+(fontPickerChange)           // Event handler for the font / size / style change.
+
+(fontPickerUpload)           // Event handler for the font upload button click event.
 ```
 
 ##### Available configuration options (for the global configuration):
 
 ```javascript
-apiKey                  // Your Google API key for the Google Web Fonts API.
+apiKey                       // Your Google API key for the Google Web Fonts API.
 ```
 
 ##### Available control / helper functions (provided by the service):
 
-loadFont(font)          // Loads the given font (family:style) from Web Fonts.
+loadFont(font)               // Loads the given font (family:style) from Web Fonts.
 
-getAllFonts(sort)       // Returns list of Google Fonts with given sort option:
-                        // 'alpha' | 'date' | 'popularity' | 'style' | 'trending'
+getAllFonts(sort)            // Returns list of Google Fonts with given sort option:
+                             // 'alpha' | 'date' | 'popularity' | 'style' | 'trending'
 
 ##### Available control / helper functions (provided by the directive):
 
 ```javascript
-loadFont(font)          // Loads the (font.family:font.style) form Web Fonts.
+loadFont(font)               // Loads the (font.family:font.style) form Web Fonts.
 
-openDialog()            // Opens the font picker dialog if not already open.
-closeDialog()           // Closes the font picker dialog if not already closed.
+openDialog()                 // Opens the font picker dialog if not already open.
+closeDialog()                // Closes the font picker dialog if not already closed.
 
-toggleDialog()          // Toggles the open state of the font picker dialog.
+toggleDialog()               // Toggles the open state of the font picker dialog.
 ```
