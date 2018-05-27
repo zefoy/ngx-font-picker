@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild,
+import { Component, OnInit, ElementRef, ViewChild, HostListener,
   ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -94,6 +94,14 @@ export class FontPickerComponent implements OnInit {
   @ViewChild('dialogPopup') dialogElement: ElementRef;
 
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
+
+  @HostListener('document:keyup.esc', ['$event']) handleEsc(event: any): void {
+    this.onCancelSelect(event);
+  }
+
+  @HostListener('document:keyup.enter', ['$event']) handleEnter(event: any): void {
+    this.onAcceptSelect(event);
+  }
 
   constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef,
     public service: FontPickerService)
@@ -532,11 +540,25 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  public onUploadFont(): void {
+  public onUploadFont(event: any): void {
+    event.stopPropagation();
+
     this.directiveInstance.uploadFont();
   }
 
-  public onCancelSelect(): void {
+  public onAcceptSelect(event: any): void {
+    event.stopPropagation();
+
+    this.directiveInstance.fontChanged(this.font);
+
+    if (this.fpDialogDisplay === 'popup') {
+      this.closeFontPicker();
+    }
+  }
+
+  public onCancelSelect(event: any): void {
+    event.stopPropagation();
+
     this.selectedFont = false;
 
     this.font.size = this.initialFont.size;

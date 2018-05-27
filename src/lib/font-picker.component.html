@@ -52,8 +52,8 @@
   </div>
 
   <div *ngIf="fpUploadButton || fpCancelButton" class="button-area">
-    <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFont()">{{fpUploadButtonText}}</button>
+    <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFont($event)">{{fpUploadButtonText}}</button>
 
-    <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect()">{{fpCancelButtonText}}</button>
+    <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect($event)">{{fpCancelButtonText}}</button>
   </div>
 </div>
