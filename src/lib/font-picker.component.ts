@@ -96,11 +96,15 @@ export class FontPickerComponent implements OnInit {
   @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
 
   @HostListener('document:keyup.esc', ['$event']) handleEsc(event: any): void {
-    this.onCancelSelect(event);
+    if (this.open && this.fpDialogDisplay === 'popup') {
+      this.onCancelSelect(event);
+    }
   }
 
   @HostListener('document:keyup.enter', ['$event']) handleEnter(event: any): void {
-    this.onAcceptSelect(event);
+    if (this.open && this.fpDialogDisplay === 'popup') {
+      this.onAcceptSelect(event);
+    }
   }
 
   constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef,
