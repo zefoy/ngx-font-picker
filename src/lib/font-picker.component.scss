@@ -103,7 +103,7 @@
   .search-field {
     box-sizing: border-box;
 
-    padding: 12px 48px 12px 16px;
+    padding: 10px 48px 10px 16px;
 
     &:disabled {
       opacity: 0.5;
@@ -118,7 +118,7 @@
     top: 0;
     right: 0;
 
-    padding: 0 16px;
+    padding: 1px 12px;
 
     cursor: pointer;
     font-size: 31px;
