@@ -103,7 +103,7 @@
   .search-field {
     box-sizing: border-box;
 
-    padding: 12px 48px 12px 16px;
+    padding: 10px 48px 10px 16px;
 
     &:disabled {
       opacity: 0.5;
@@ -118,7 +118,7 @@
     top: 0;
     right: 0;
 
-    padding: 0 16px;
+    padding: 1px 12px;
 
     cursor: pointer;
     font-size: 31px;
@@ -185,7 +185,7 @@
           color: lighten(#e74c3c, 15%);
 
           &::after {
-            content: 'This font is not from Google Fonts. If you select it, you might have to inject it manually.';
+            content: 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.';
 
             position: absolute;
             z-index: 10;

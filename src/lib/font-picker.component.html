@@ -1,5 +1,5 @@
 <div #dialogPopup [hidden]="!open" class="font-picker" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
-  <div class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
+  <div *ngIf="fpDialogDisplay=='popup'" class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
 
   <div class="search-box">
     <input class="search-field" placeholder="Search from Google Web Fonts..." [formControl]="searchTerm" />
@@ -52,8 +52,8 @@
   </div>
 
   <div *ngIf="fpUploadButton || fpCancelButton" class="button-area">
-    <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFont()">{{fpUploadButtonText}}</button>
+    <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFont($event)">{{fpUploadButtonText}}</button>
 
-    <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect()">{{fpCancelButtonText}}</button>
+    <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect($event)">{{fpCancelButtonText}}</button>
   </div>
 </div>

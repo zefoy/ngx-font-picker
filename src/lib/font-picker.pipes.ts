@@ -47,9 +47,9 @@ export class FontStylesPipe implements PipeTransform {
   pure: false
 })
 export class StatefulSlicePipe implements PipeTransform {
-  private slicedArray = [];
-  private previousArrayRef = [];
-  private previousEndValue = null;
+  private slicedArray: any[] = [];
+  private previousArrayRef: any[] = [];
+  private previousEndValue: number = 0;
 
   transform(arr: any[], start: number, end: number): any[] {
     if (arr && (this.previousEndValue !== end || this.previousArrayRef !== arr)) {

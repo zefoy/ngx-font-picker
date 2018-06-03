@@ -1,6 +1,6 @@
 import { Directive, OnInit, OnChanges, Input, Output, EventEmitter,
-  HostListener, ElementRef, ViewContainerRef, SimpleChanges,
-  ComponentFactoryResolver, ReflectiveInjector } from '@angular/core';
+  HostListener, ApplicationRef, ElementRef, ViewContainerRef, SimpleChanges,
+  ComponentFactoryResolver, Injector, ReflectiveInjector } from '@angular/core';
 
 import { FontInterface } from './font-picker.interfaces';
 
@@ -35,6 +35,10 @@ export class FontPickerDirective implements OnInit, OnChanges {
   @Input('fpSizeSelect') fpSizeSelect: boolean = true;
   @Input('fpStyleSelect') fpStyleSelect: boolean = true;
 
+  @Input('fpDialogDisplay') fpDialogDisplay: string = 'popup';
+
+  @Input('fpUseRootViewContainer') fpUseRootViewContainer: boolean = false;
+
   @Input('fpPosition') fpPosition: string = 'bottom';
   @Input('fpPositionOffset') fpPositionOffset: string = '0%';
   @Input('fpPositionRelativeToArrow') fpPositionRelativeToArrow: boolean = false;
@@ -54,8 +58,9 @@ export class FontPickerDirective implements OnInit, OnChanges {
     this.toggleDialog();
   }
 
-  constructor(private resolver: ComponentFactoryResolver, private el: ElementRef,
-    private vc: ViewContainerRef, private service: FontPickerService) {}
+  constructor(private injector: Injector, private resolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
+    private service: FontPickerService) {}
 
   ngOnInit(): void {
     this.fontPicker = this.fontPicker || this.fpFallbackFont;
@@ -93,20 +98,37 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   public toggleDialog(): void {
     if (!this.dialog) {
+      let vcRef = this.vcRef;
+
+      if (this.fpUseRootViewContainer && this.fpDialogDisplay !== 'inline') {
+        const classOfRootComponent = this.appRef.componentTypes[0];
+        const appInstance = this.injector.get(classOfRootComponent);
+
+        vcRef = appInstance.vcRef || appInstance.viewContainerRef || this.vcRef;
+
+        if (vcRef === this.vcRef) {
+          console.warn('You are using fpUseRootViewContainer, ' +
+            'but the root component is not exposing viewContainerRef!' +
+            'Please expose it by adding \'public vcRef: ViewContainerRef\' to the constructor.');
+        }
+      }
+
       const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
-      const injector = ReflectiveInjector.fromResolvedProviders([], this.vc.parentInjector);
+      const injector = ReflectiveInjector.fromResolvedProviders([], vcRef.parentInjector);
 
-      this.dialog = this.vc.createComponent(compFactory, 0, injector, []).instance;
+      this.dialog = vcRef.createComponent(compFactory, 0, injector, []).instance;
 
-      this.dialog.setDialog(this, this.el, this.fontPicker, this.fpPosition, this.fpPositionOffset,
-        this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton,
-        this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect,
-        this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
+      this.dialog.setDialog(this, this.elRef, this.fontPicker, this.fpUseRootViewContainer,
+        this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
+        this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText,
+        this.fpStyleSelect, this.fpSizeSelect, this.fpCancelButton, this.fpCancelButtonClass,
+        this.fpCancelButtonText, this.fpDialogDisplay, this.fpHeight, this.fpWidth);
     } else if (!this.dialog.open) {
       this.dialog.updateDialog(this.fontPicker, this.fpPosition, this.fpPositionOffset,
         this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton,
         this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect,
-        this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText, this.fpHeight, this.fpWidth);
+        this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText,
+        this.fpDialogDisplay, this.fpHeight, this.fpWidth);
 
       this.dialog.openFontPicker();
     } else {
