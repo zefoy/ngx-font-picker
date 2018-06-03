@@ -350,7 +350,9 @@ export class FontPickerComponent implements OnInit {
       this.cdRef.markForCheck();
 
       setTimeout(() => {
-        this.scrollbar.directiveRef.scrollToY(0);
+        if (this.scrollbar && this.scrollbar.directiveRef) {
+          this.scrollbar.directiveRef.scrollToY(0);
+        }
       }, 0);
     }
   }
@@ -391,7 +393,9 @@ export class FontPickerComponent implements OnInit {
       this.loadedFonts += moreFonts.length;
 
       setTimeout(() => {
-        this.scrollbar.directiveRef.update();
+        if (this.scrollbar && this.scrollbar.directiveRef) {
+          this.scrollbar.directiveRef.scrollToY(0);
+        }
       }, 0);
 
       this.cdRef.markForCheck();
