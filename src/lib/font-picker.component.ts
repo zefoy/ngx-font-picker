@@ -269,7 +269,6 @@ export class FontPickerComponent implements OnInit {
 
       window.addEventListener('resize', this.listenerResize);
 
-      document.addEventListener('click', this.listenerMouseDown);
       document.addEventListener('mousedown', this.listenerMouseDown);
 
       this.open = true;
@@ -281,7 +280,6 @@ export class FontPickerComponent implements OnInit {
 
     window.removeEventListener('resize', this.listenerResize);
 
-    document.removeEventListener('click', this.listenerMouseDown);
     document.removeEventListener('mousedown', this.listenerMouseDown);
   }
 
