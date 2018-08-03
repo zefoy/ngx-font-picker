@@ -1,0 +1,319 @@
+.font-picker {
+  position: absolute;
+  z-index: 1000;
+  top: 250px;
+  left: 30px;
+
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 320px;
+  min-width: 200px;
+  min-height: 240px;
+  border: #777 solid 1px;
+
+  cursor: default;
+  user-select: none;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+}
+
+.font-picker[hidden] {
+  display: none;
+}
+
+.font-picker input,
+.font-picker select {
+  width: 100%;
+  padding: 4px;
+  border: none;
+  border-bottom: 2px solid #cfcfcf;
+  outline: none;
+
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+  background: none;
+
+  transition: border 300ms ease;
+}
+
+.font-picker input:hover,
+.font-picker input:focus,
+.font-picker input:active,
+.font-picker select:hover,
+.font-picker select:focus,
+.font-picker select:active {
+  border-bottom: 2px solid #999;
+}
+
+.font-picker input:invalid,
+.font-picker select:invalid {
+  border-bottom: 2px solid #e74c3c;
+
+  box-shadow: none;
+}
+
+.font-picker input::-webkit-inner-spin-button,
+.font-picker input::-webkit-outer-spin-button {
+  margin: 0;
+
+  -webkit-appearance: none;
+}
+
+.font-picker .arrow {
+  position: absolute;
+  z-index: 999999;
+
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.font-picker .arrow.arrow-left {
+  top: 10px;
+  left: 231px;
+
+  border-width: 5px 10px;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #777;
+}
+
+.font-picker .arrow.arrow-right {
+  top: 10px;
+  left: -20px;
+
+  border-width: 5px 10px;
+  border-color: rgba(0, 0, 0, 0) #777 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+}
+
+.font-picker .arrow.arrow-top {
+  top: 0;
+  left: 10px;
+
+  border-width: 10px 5px;
+  border-color: #777 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+}
+
+.font-picker .arrow.arrow-bottom {
+  top: -20px;
+  left: 10px;
+
+  border-width: 10px 5px;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #777 rgba(0, 0, 0, 0);
+}
+
+.font-picker .search-box {
+  position: relative;
+}
+
+.font-picker .search-field {
+  box-sizing: border-box;
+
+  padding: 10px 48px 10px 16px;
+
+  &:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+    background-color: #888;
+  }
+}
+
+.font-picker .search-reset {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 1px 12px;
+
+  cursor: pointer;
+  font-size: 31px;
+  color: #777;
+
+  transition: color 300ms ease;
+}
+
+.font-picker .search-reset:hover {
+  color: #555;
+}
+
+.font-picker .load-text {
+  padding: 16px;
+
+  font-size: 12px;
+  text-align: center;
+  color: #000;
+}
+
+.font-picker .font-list {
+  position: relative;
+
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+.font-picker .font-list .font-item {
+  position: relative;
+
+  padding: 8px 16px;
+
+  cursor: pointer;
+}
+
+.font-picker .font-list .font-item.active {
+  font-weight: bold;
+}
+
+.font-picker .font-list .font-item.active.selected {
+  cursor: default;
+  font-weight: normal;
+  background: #d9d9d9;
+}
+
+.font-picker .font-list .font-item .font-info {
+  margin: 4px 0;
+}
+
+.font-picker .font-list .font-item .font-info .font-name {
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #555;
+}
+
+.font-picker .font-list .font-item .font-info .not-available {
+  float: right;
+
+  width: 24px;
+  margin: -8px -8px 0 0;
+
+  font-size: 24px;
+  font-weight: 900;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  text-transform: none;
+  color: #ef8b80;
+}
+
+.font-picker .font-list .font-item .font-info .not-available::after {
+  content: 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.';
+
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 12px;
+  left: 12px;
+
+  opacity: 0;
+  padding: 12px 16px;
+  margin: 0 auto;
+  border-radius: 2px;
+
+  pointer-events: none;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: left;
+  color: #fff;
+  background: rgba(60, 60, 60, 0.8);
+
+  transition: opacity 150ms ease;
+}
+
+.font-picker .font-list .font-item .font-info .not-available:hover {
+  color: #ea6153;
+}
+
+.font-picker .font-list .font-item .font-info .not-available:hover::after {
+  opacity: 1;
+}
+
+.font-picker .font-list .font-item .font-text {
+  padding: 4px 0;
+
+  font-size: 16px;
+  text-align: right;
+  color: #999;
+}
+
+.font-picker .font-list .font-group {
+  display: flex;
+  flex: none;
+}
+
+.font-picker .font-list .font-group .group-line {
+  flex: 1 1 auto;
+  height: 2px;
+  margin-top: 14px;
+  margin-right: 12px;
+
+  background: #e74c3c;
+}
+
+.font-picker .font-list .font-group .group-line.black {
+  background: #000;
+}
+
+.font-picker .font-list .font-group .group-text {
+  overflow: hidden;
+  box-sizing: border-box;
+
+  max-width: 75%;
+  padding: 8px 12px;
+
+  font-size: 11px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  color: #e74c3c;
+}
+
+.font-picker .font-list .font-group .group-text.black {
+  color: #000;
+}
+
+.font-picker .font-options {
+  display: flex;
+  box-sizing: border-box;
+
+  padding: 8px;
+  border-top: 2px solid #cfcfcf;
+}
+
+.font-picker .font-options .left {
+  flex: 1 1 auto;
+  padding: 0 2px;
+}
+
+.font-picker .font-options .left .style-select {
+  text-transform: capitalize;
+}
+
+.font-picker .font-options .left .style-select:disabled {
+  background-color: #777;
+}
+
+.font-picker .font-options .right {
+  padding: 0 2px;
+}
+
+.font-picker .font-options .right .size-select {
+  width: 48px;
+
+  text-align: center;
+}
+
+.font-picker .button-area {
+  padding: 0 4px 4px;
+  border-top: 1px solid #aaa;
+
+  text-align: right;
+}
+
+.font-picker .button-area .fp-cancel-button-class,
+.font-picker .button-area .fp-upload-button-class {
+  display: inline-block;
+  margin: 8px;
+
+  text-align: center;
+  text-transform: uppercase;
+}
