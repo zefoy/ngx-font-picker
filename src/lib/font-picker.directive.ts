@@ -31,6 +31,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   @Input('fpPresetLabel') fpPresetLabel: string = '';
   @Input('fpPresetFonts') fpPresetFonts: string[] = [];
+  @Input('fpPresetNotice') fpPresetNotice: string = '';
 
   @Input('fpSizeSelect') fpSizeSelect: boolean = true;
   @Input('fpStyleSelect') fpStyleSelect: boolean = true;
@@ -42,6 +43,12 @@ export class FontPickerDirective implements OnInit, OnChanges {
   @Input('fpPosition') fpPosition: string = 'bottom';
   @Input('fpPositionOffset') fpPositionOffset: string = '0%';
   @Input('fpPositionRelativeToArrow') fpPositionRelativeToArrow: boolean = false;
+
+  @Input('fpSearchText') fpSearchText: string = 'Search fonts...';
+  @Input('fpLoadingText') fpLoadingText: string = 'Loading fonts...';
+
+  @Input('fpPopularLabel') fpPopularLabel: string = 'Popular fonts';
+  @Input('fpResultsLabel') fpResultsLabel: string = 'Search results';
 
   @Input('fpCancelButton') fpCancelButton: boolean = false;
   @Input('fpCancelButtonText') fpCancelButtonText: string = 'Cancel';
@@ -118,17 +125,22 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
       this.dialog = vcRef.createComponent(compFactory, 0, injector, []).instance;
 
-      this.dialog.setDialog(this, this.elRef, this.fontPicker, this.fpUseRootViewContainer,
-        this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow, this.fpPresetLabel,
-        this.fpPresetFonts, this.fpUploadButton, this.fpUploadButtonClass, this.fpUploadButtonText,
-        this.fpStyleSelect, this.fpSizeSelect, this.fpCancelButton, this.fpCancelButtonClass,
-        this.fpCancelButtonText, this.fpDialogDisplay, this.fpHeight, this.fpWidth);
+      this.dialog.setDialog(this, this.elRef, this.fpUseRootViewContainer,
+        this.fontPicker, this.fpWidth, this.fpHeight,
+        this.fpDialogDisplay, this.fpSizeSelect, this.fpStyleSelect,
+        this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow,
+        this.fpSearchText, this.fpLoadingText, this.fpPopularLabel, this.fpResultsLabel,
+        this.fpPresetLabel, this.fpPresetFonts, this.fpPresetNotice,
+        this.fpCancelButton, this.fpCancelButtonText, this.fpCancelButtonClass,
+        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass);
     } else if (!this.dialog.open) {
-      this.dialog.updateDialog(this.fontPicker, this.fpPosition, this.fpPositionOffset,
-        this.fpPositionRelativeToArrow, this.fpPresetLabel, this.fpPresetFonts, this.fpUploadButton,
-        this.fpUploadButtonClass, this.fpUploadButtonText, this.fpStyleSelect, this.fpSizeSelect,
-        this.fpCancelButton, this.fpCancelButtonClass, this.fpCancelButtonText,
-        this.fpDialogDisplay, this.fpHeight, this.fpWidth);
+      this.dialog.updateDialog(this.fontPicker, this.fpWidth, this.fpHeight,
+        this.fpDialogDisplay, this.fpSizeSelect, this.fpStyleSelect,
+        this.fpPosition, this.fpPositionOffset, this.fpPositionRelativeToArrow,
+        this.fpSearchText, this.fpLoadingText, this.fpPopularLabel, this.fpResultsLabel,
+        this.fpPresetLabel, this.fpPresetFonts, this.fpPresetNotice,
+        this.fpCancelButton, this.fpCancelButtonText, this.fpCancelButtonClass,
+        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass);
 
       this.dialog.openFontPicker();
     } else {

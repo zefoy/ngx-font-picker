@@ -63,8 +63,15 @@ export class FontPickerComponent implements OnInit {
   public fpPosition: string;
   public fpPositionOffset: number;
 
+  public fpSearchText: string;
+  public fpLoadingText: string;
+
+  public fpPopularLabel: string;
+  public fpResultsLabel: string;
+
   public fpPresetLabel: string;
   public fpPresetFonts: string[];
+  public fpPresetNotice: string;
 
   public fpSizeSelect: boolean;
   public fpStyleSelect: boolean;
@@ -127,10 +134,10 @@ export class FontPickerComponent implements OnInit {
     ).subscribe((text) => {
       if (!text) {
         this.presetVisible = true;
-        this.listLabel = 'Popular fonts';
+        this.listLabel = this.fpPopularLabel;
       } else {
         this.presetVisible = false;
-        this.listLabel = 'Search results';
+        this.listLabel = this.fpResultsLabel;
       }
 
       this.searchGoogleFonts(text);
@@ -158,25 +165,26 @@ export class FontPickerComponent implements OnInit {
     return font.family;
   }
 
-  public setDialog(instance: any, elementRef: ElementRef, defaultFont: FontInterface,
-    fpUseRootViewContainer: boolean, fpPosition: string, fpPositionOffset: string,
-    fpPositionRelativeToArrow: boolean, fpPresetLabel: string, fpPresetFonts: string[],
-    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
-    fpStyleSelect: boolean, fpSizeSelect: boolean, fpCancelButton: boolean,
-    fpCancelButtonClass: string, fpCancelButtonText: string, fpDialogDisplay: string,
-    fpHeight: string, fpWidth: string): void
+  public setDialog(instance: any, elementRef: ElementRef, fpUseRootViewContainer: boolean,
+    defaultFont: FontInterface, fpWidth: string, fpHeight: string,
+    fpDialogDisplay: string, fpSizeSelect: boolean, fpStyleSelect: boolean,
+    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
+    fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
+    fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
+    fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
+    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
   {
-    this.listLabel = 'Loading fonts...';
+    this.listLabel = fpLoadingText;
 
     this.directiveInstance = instance;
     this.directiveElementRef = elementRef;
 
     this.useRootViewContainer = fpUseRootViewContainer;
 
-    this.updateDialog(defaultFont, fpPosition, fpPositionOffset, fpPositionRelativeToArrow,
-      fpPresetLabel, fpPresetFonts, fpUploadButton, fpUploadButtonClass, fpUploadButtonText,
-      fpStyleSelect, fpSizeSelect,  fpCancelButton, fpCancelButtonClass, fpCancelButtonText,
-      fpDialogDisplay, fpHeight, fpWidth);
+    this.updateDialog(defaultFont, fpWidth, fpHeight, fpDialogDisplay, fpSizeSelect, fpStyleSelect,
+      fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpSearchText, fpLoadingText,
+      fpPopularLabel, fpResultsLabel, fpPresetLabel, fpPresetFonts, fpPresetNotice, fpCancelButton,
+      fpCancelButtonText, fpCancelButtonClass, fpUploadButton, fpUploadButtonText, fpUploadButtonClass);
 
     this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
@@ -213,12 +221,13 @@ export class FontPickerComponent implements OnInit {
     (error: any) => console.error(error));
   }
 
-  public updateDialog(font: FontInterface, fpPosition: string, fpPositionOffset: string,
-    fpPositionRelativeToArrow: boolean, fpPresetLabel: string, fpPresetFonts: string[],
-    fpUploadButton: boolean, fpUploadButtonClass: string, fpUploadButtonText: string,
-    fpStyleSelect: boolean, fpSizeSelect: boolean,  fpCancelButton: boolean,
-    fpCancelButtonClass: string, fpCancelButtonText: string, fpDialogDisplay: string,
-    fpHeight: string, fpWidth: string): void
+  public updateDialog(font: FontInterface, fpWidth: string, fpHeight: string,
+    fpDialogDisplay: string, fpSizeSelect: boolean, fpStyleSelect: boolean,
+    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
+    fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
+    fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
+    fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
+    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
   {
     this.font = new Font(font);
     this.initialFont = new Font(font);
@@ -235,11 +244,18 @@ export class FontPickerComponent implements OnInit {
       this.dialogArrowOffset = 0;
     }
 
+    this.fpSearchText = fpSearchText;
+    this.fpLoadingText = fpLoadingText;
+
+    this.fpPopularLabel = fpPopularLabel;
+    this.fpResultsLabel = fpResultsLabel;
+
+    this.fpSizeSelect = fpSizeSelect;
+    this.fpStyleSelect = fpStyleSelect;
+
     this.fpPresetLabel = fpPresetLabel;
     this.fpPresetFonts = fpPresetFonts;
-
-    this.fpStyleSelect = fpStyleSelect;
-    this.fpSizeSelect = fpSizeSelect;
+    this.fpPresetNotice = fpPresetNotice;
 
     this.fpCancelButton = fpCancelButton;
     this.fpCancelButtonText = fpCancelButtonText;

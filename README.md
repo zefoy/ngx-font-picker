@@ -89,18 +89,28 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 
 [fpAutoLoad]                 // Auto loads font on change (fontPicker input change).
 
-[fpSizeSelect]               // Show size selector in the font picker (Default: false).
+[fpSearchText]               // Search hint text (Default: 'Search fonts...').
+[fpLoadingText]              // Fonts loading text (Default: 'Loading fonts...').
 
+[fpPopularLabel]             // Popular fonts label (Default: 'Popular fonts').
+[fpResultsLabel]             // Search results label (Default: 'Search results').
+
+[fpSizeSelect]               // Show size selector in the font picker (Default: false).
 [fpStyleSelect]              // Show style selector in the font picker (Default: false).
 
 [fpPresetLabel]              // Label for the preset fonts list (Default: undefined).
 [fpPresetFonts]              // Listing of preset fonts to show (Default: undefined).
+[fpPresetNotice]             // Notice to show for custom fonts (Default: undefined).
 
 [fpFallbackFont]             // Fallback font (Default: {family: 'Roboto', size: 14}).
 
 [fpCancelButton]             // Show cancel button in the font picker (Default: false).
+[fpCancelButtonText]         // Text label for the cancel button (Default: 'Cancel').
+[fpCancelButtonClass]        // Class name for the cancel button (Replaces default).
 
 [fpUploadButton]             // Show upload button in the font picker (Default: false).
+[fbUploadButtonText]         // Text label for the upload button (Default: 'Upload').
+[fpUploadButtonClass]        // Class name for the upload button (Replaces default).
 
 [fpDialogDisplay]            // Dialog positioning mode: 'popup', 'inline' ('popup').
                              //   popup: dialog is shown as popup (fixed positioning).

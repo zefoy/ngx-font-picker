@@ -194,7 +194,7 @@
   color: #ef8b80;
 }
 
-.font-picker .font-list .font-item .font-info .not-available::after {
+.font-picker .font-list .font-item .font-info .not-available .notice-text {
   content: 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.';
 
   position: absolute;
@@ -222,7 +222,7 @@
   color: #ea6153;
 }
 
-.font-picker .font-list .font-item .font-info .not-available:hover::after {
+.font-picker .font-list .font-item .font-info .not-available:hover .notice-text {
   opacity: 1;
 }
 
