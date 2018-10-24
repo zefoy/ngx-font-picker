@@ -154,7 +154,7 @@ export class FontPickerComponent implements OnInit {
       'font-size: 128px'
     ].join(' !important;');
 
-    this.listenerResize = (event: any) => this.onResize(event);
+    this.listenerResize = (event: any) => this.onResize();
 
     this.listenerMouseDown = (event: any) => this.onMouseDown(event);
 
@@ -162,7 +162,7 @@ export class FontPickerComponent implements OnInit {
   }
 
   public trackFont(index: number, font: FontInterface): string {
-    return font.family;
+    return font.family || index.toString();
   }
 
   public setDialog(instance: any, elementRef: ElementRef, fpUseRootViewContainer: boolean,
@@ -547,7 +547,7 @@ export class FontPickerComponent implements OnInit {
     }
   }
 
-  private onResize(event: any): void {
+  private onResize(): void {
     if (this.position === 'fixed') {
       this.setDialogPosition();
     } else if (this.fpDialogDisplay !== 'inline') {
@@ -618,12 +618,14 @@ export class FontPickerComponent implements OnInit {
   }
 
   public onSearchReset(event: any): void {
+    event.stopPropagation();
+
     this.searchTerm.setValue('');
 
     this.setCurrentFonts(this.googleFonts);
   }
 
-  public onFontSizeChange(event: any, font: Font): void {
+  public onFontSizeChange(event: any): void {
     this.font.size = event.target.value + 'px';
 
     this.directiveInstance.fontChanged(this.font);

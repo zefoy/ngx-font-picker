@@ -50,7 +50,7 @@
       </div>
 
       <div *ngIf="fpSizeSelect" class="right">
-        <input type="number" pattern="[0-9]*" min="1" max="100" (change)="onFontSizeChange($event, font)" [ngClass]="{'size-select': fpStyleSelect}" [ngModel]="font.size | FontSize" />
+        <input type="number" pattern="[0-9]*" min="1" max="100" (change)="onFontSizeChange($event)" [ngClass]="{'size-select': fpStyleSelect}" [ngModel]="font.size | FontSize" />
       </div>
     </div>
   </div>
