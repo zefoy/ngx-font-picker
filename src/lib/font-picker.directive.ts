@@ -61,7 +61,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
   @Output('fontPickerUpload') fontPickerUpload = new EventEmitter<void>();
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<FontInterface>();
 
-  @HostListener('click', ['$event']) onClick(event: Event) {
+  @HostListener('click') onClick() {
     this.toggleDialog();
   }
 
