@@ -154,7 +154,7 @@ export class FontPickerComponent implements OnInit {
       'font-size: 128px'
     ].join(' !important;');
 
-    this.listenerResize = (event: any) => this.onResize();
+    this.listenerResize = () => this.onResize();
 
     this.listenerMouseDown = (event: any) => this.onMouseDown(event);
 
@@ -216,7 +216,7 @@ export class FontPickerComponent implements OnInit {
         this.loadGoogleFonts([openSans]);
       }
 
-      this.setDisplayedFontSource();
+      this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
     },
     (error: any) => console.error(error));
   }
@@ -272,7 +272,7 @@ export class FontPickerComponent implements OnInit {
 
     this.fpDialogDisplay = fpDialogDisplay;
 
-    this.setDisplayedFontSource();
+    this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
 
     this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
   }
@@ -342,14 +342,6 @@ export class FontPickerComponent implements OnInit {
     }
 
     return presetFonts;
-  }
-
-  private setDisplayedFontSource(): void {
-    if (this.fpPresetFonts && this.fpPresetFonts.length) {
-      this.setCurrentFonts(this.getPresetFonts());
-    } else {
-      this.setCurrentFonts(this.googleFonts);
-    }
   }
 
   private setCurrentFonts(target: Font[]): void {
