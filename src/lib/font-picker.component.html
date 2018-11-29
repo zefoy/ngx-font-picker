@@ -20,7 +20,7 @@
         <div class="font-info">
           <span class="font-name">{{fontItem.family || ''}}</span>
 
-          <div *ngIf="!fontItem.files" class="not-available">
+          <div *ngIf="!fontItem.files && safeFonts.indexOf(fontItem.family) === -1" class="not-available">
             <span>!</span>
 
             <div class="notice-text">{{fpPresetNotice || 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.'}}</div>

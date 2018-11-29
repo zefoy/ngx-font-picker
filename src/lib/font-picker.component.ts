@@ -50,6 +50,15 @@ export class FontPickerComponent implements OnInit {
   public selectedFont: boolean;
   public presetVisible: boolean;
 
+  public safeFonts: string[] = [
+    'Arial',
+    'sans-serif',
+    'Times',
+    'serif',
+    'Courier',
+    'monospace'
+  ];
+
   public fontAmount: number = 10;
   public loadedFonts: number = 0;
 

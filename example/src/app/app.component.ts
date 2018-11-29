@@ -9,7 +9,7 @@ import { Font } from 'ngx-font-picker';
   styleUrls: [ 'app.component.css' ]
 })
 export class AppComponent {
-  private _presetFonts = ['Arial', 'Serif', 'Helvetica', 'Sans-Serif', 'Open Sans', 'Roboto Slab'];
+  private _presetFonts = ['Arial', 'Times', 'Courier', 'Lato', 'Open Sans', 'Roboto Slab'];
 
   public font: Font = new Font({
     family: 'Roboto',
