@@ -512,7 +512,9 @@ export class FontPickerComponent implements OnInit {
         this.fpWidth = this.directiveElementRef.nativeElement.offsetWidth;
       }
 
-      if (this.useRootViewContainer || (position === 'fixed' && !parentNode)) {
+      if (this.useRootViewContainer || (position === 'fixed' &&
+        (!parentNode || parentNode instanceof HTMLUnknownElement)))
+      {
         this.top = boxDirective.top;
         this.left = boxDirective.left;
       } else {
