@@ -1,7 +1,6 @@
 import * as WebFont from 'webfontloader';
 
 import { Observable, of } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';

@@ -5,7 +5,6 @@ import { Directive, OnInit, OnChanges, Input, Output, EventEmitter,
 import { FontInterface } from './font-picker.interfaces';
 
 import { FontPickerService } from './font-picker.service';
-
 import { FontPickerComponent } from './font-picker.component';
 
 @Directive({
