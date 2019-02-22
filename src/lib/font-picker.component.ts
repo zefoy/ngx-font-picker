@@ -237,6 +237,8 @@ export class FontPickerComponent implements OnInit {
     fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
     fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
   {
+    this.selectedFont = !!font;
+
     this.font = new Font(font);
     this.initialFont = new Font(font);
 

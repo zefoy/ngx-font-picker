@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FontSizePipe implements PipeTransform {
   transform(value: string): number {
-    return parseInt(value.replace(/[^-\d\.]/g, '') || '16', 10);
+    return value ? parseInt(value.replace(/[^-\d\.]/g, '') || '16', 10) : 0;
   }
 }
 
@@ -29,9 +29,9 @@ export class FontStylesPipe implements PipeTransform {
     };
 
     for (const style in lookup) {
-      const found = value.search(style);
+      const found = value && value.search(style);
 
-      if (found >= 0) {
+      if (found >= 0 && value != null) {
         value = value.replace(style, lookup[style] + ' ');
 
         break;
