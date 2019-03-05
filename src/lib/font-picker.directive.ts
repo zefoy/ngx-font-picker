@@ -1,6 +1,6 @@
 import { Directive, OnInit, OnChanges, Input, Output, EventEmitter,
-  HostListener, ApplicationRef, ElementRef, ViewContainerRef, SimpleChanges,
-  ComponentFactoryResolver, Injector, ReflectiveInjector } from '@angular/core';
+  HostListener, ApplicationRef, ElementRef, ChangeDetectorRef, ViewContainerRef,
+  SimpleChanges, ComponentFactoryResolver, Injector, ReflectiveInjector } from '@angular/core';
 
 import { FontInterface } from './font-picker.interfaces';
 
@@ -66,7 +66,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   constructor(private injector: Injector, private resolver: ComponentFactoryResolver,
     private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
-    private service: FontPickerService) {}
+    private cdRef: ChangeDetectorRef, private service: FontPickerService) {}
 
   ngOnInit(): void {
     this.fontPicker = this.fontPicker || this.fpFallbackFont;
@@ -149,5 +149,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   public fontChanged(font: FontInterface): void {
     this.fontPickerChange.emit(font);
+
+    this.cdRef.markForCheck();
+    this.cdRef.detectChanges();
   }
 }
