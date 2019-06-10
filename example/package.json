@@ -41,7 +41,7 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "core-js": "^3.1.0",
-    "ngx-font-picker": "^7.3.0",
+    "ngx-font-picker": "^8.0.0",
     "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "^6.5.0",
     "webfontloader": "^1.6.0",
