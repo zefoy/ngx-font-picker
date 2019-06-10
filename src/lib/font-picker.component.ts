@@ -106,9 +106,9 @@ export class FontPickerComponent implements OnInit {
     wheelPropagation: false
   };
 
-  @ViewChild('dialogPopup') dialogElement: ElementRef;
+  @ViewChild('dialogPopup', { static: true }) dialogElement: ElementRef;
 
-  @ViewChild('dialogScrollbar') scrollbar: PerfectScrollbarComponent;
+  @ViewChild('dialogScrollbar', { static: true }) scrollbar: PerfectScrollbarComponent;
 
   @HostListener('document:keyup.esc', ['$event']) handleEsc(event: any): void {
     if (this.open && this.fpDialogDisplay === 'popup') {
