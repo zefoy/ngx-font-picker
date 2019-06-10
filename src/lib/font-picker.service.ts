@@ -20,7 +20,7 @@ export class FontPickerService {
   constructor(private http: HttpClient,
     @Inject(FONT_PICKER_CONFIG) private _config: FontPickerConfigInterface)
   {
-    this.apiKey = _config.apiKey;
+    this.apiKey = _config.apiKey || '';
   }
 
   /**
@@ -43,16 +43,20 @@ export class FontPickerService {
    * date || alpha || style || trending || popularity
    */
 
-  public getAllFonts(sort: string): Observable<GoogleFontsInterface> {
-    let requestUrl = this.baseUrl + '?key=' + this.apiKey;
+  public getAllFonts(sort: string): Observable<GoogleFontsInterface | null> {
+    if (!this.apiKey) {
+      return of(null);
+    } else {
+      let requestUrl = this.baseUrl + '?key=' + this.apiKey;
 
-    if (sort) {
-      requestUrl = requestUrl.concat('&sort=' + sort);
+      if (sort) {
+        requestUrl = requestUrl.concat('&sort=' + sort);
+      }
+
+      return <Observable<GoogleFontsInterface>> this.http.get(requestUrl).pipe(
+        catchError(this.handleHttpError)
+      );
     }
-
-    return <Observable<GoogleFontsInterface>> this.http.get(requestUrl).pipe(
-      catchError(this.handleHttpError)
-    );
   }
 
   /**

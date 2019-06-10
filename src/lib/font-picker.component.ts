@@ -197,34 +197,38 @@ export class FontPickerComponent implements OnInit {
     this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
 
-      if (fonts.items) {
-        this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
-          return new Font({
-            files: font.files,
-            family: font.family,
-            styles: font.variants
+      if (fonts) {
+        if (fonts.items) {
+          this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
+            return new Font({
+              files: font.files,
+              family: font.family,
+              styles: font.variants
+            });
           });
-        });
+        }
+
+        // Find styles for initial font
+        const searchFont = this.findFont(this.initialFont.family, true);
+
+        if (searchFont) {
+          this.font.files = searchFont.files;
+          this.font.styles = searchFont.styles;
+
+          this.loadGoogleFonts([this.font]);
+        }
+
+        // Load Open Sans if available
+        const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
+
+        if (openSans) {
+          this.loadGoogleFonts([openSans]);
+        }
+
+        this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
+      } else {
+        this.setCurrentFonts(this.getPresetFonts());
       }
-
-      // Find styles for initial font
-      const searchFont = this.findFont(this.initialFont.family, true);
-
-      if (searchFont) {
-        this.font.files = searchFont.files;
-        this.font.styles = searchFont.styles;
-
-        this.loadGoogleFonts([this.font]);
-      }
-
-      // Load Open Sans if available
-      const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
-
-      if (openSans) {
-        this.loadGoogleFonts([openSans]);
-      }
-
-      this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
     },
     (error: any) => console.error(error));
   }

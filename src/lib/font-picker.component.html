@@ -1,7 +1,7 @@
 <div #dialogPopup class="font-picker" [style.visibility]="!open ? 'hidden' : 'visible'" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
   <div *ngIf="fpDialogDisplay=='popup'" class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
 
-  <div class="search-box">
+  <div *ngIf="googleFonts.length" class="search-box">
     <input class="search-field" placeholder="{{fpSearchText || ''}}" [formControl]="searchTerm" />
 
     <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
@@ -20,7 +20,7 @@
         <div class="font-info">
           <span class="font-name">{{fontItem.family || ''}}</span>
 
-          <div *ngIf="!fontItem.files && safeFonts.indexOf(fontItem.family) === -1" class="not-available">
+          <div *ngIf="!fontItem.files && safeFonts.indexOf(fontItem.family) === -1 && googleFonts.length" class="not-available">
             <span>!</span>
 
             <div class="notice-text">{{fpPresetNotice || 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.'}}</div>
@@ -29,16 +29,18 @@
       </div>
     </div>
 
-    <div class="font-group">
-      <div class="group-text black">{{listLabel || ''}}</div>
-      <div class="group-line black"></div>
-    </div>
-
-    <div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
-      <div class="font-info">
-        <span class="font-name">{{fontItem.family || ''}}</span>
+    <ng-container *ngIf="googleFonts.length">
+      <div class="font-group">
+        <div class="group-text black">{{listLabel || ''}}</div>
+        <div class="group-line black"></div>
       </div>
-    </div>
+
+      <div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
+        <div class="font-info">
+          <span class="font-name">{{fontItem.family || ''}}</span>
+        </div>
+      </div>
+    </ng-container>
   </perfect-scrollbar>
 
   <div *ngIf="selectedFont && (fpStyleSelect || fpSizeSelect)">

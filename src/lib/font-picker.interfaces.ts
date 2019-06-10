@@ -57,11 +57,11 @@ export class Font implements FontInterface {
 }
 
 export interface FontPickerConfigInterface {
-  apiKey: string;
+  apiKey?: string;
 }
 
 export class FontPickerConfig implements FontPickerConfigInterface {
-  public apiKey: string = '';
+  public apiKey?: string = '';
 
   constructor(config: Partial<FontPickerConfigInterface> = {}) {
     this.assign(config);
