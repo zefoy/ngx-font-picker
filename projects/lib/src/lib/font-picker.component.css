@@ -110,13 +110,13 @@
   box-sizing: border-box;
 
   padding: 10px 48px 10px 16px;
+}
 
-  &:disabled {
-    opacity: 0.5;
+.font-picker .search-field:disabled {
+  opacity: 0.5;
 
-    cursor: not-allowed;
-    background-color: #888;
-  }
+  cursor: not-allowed;
+  background-color: #888;
 }
 
 .font-picker .search-reset {
