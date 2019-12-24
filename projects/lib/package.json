@@ -4,6 +4,10 @@
   "bugs": "https://github.com/zefoy/ngx-font-picker/issues",
   "version": "9.0.0-2",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zefoy/ngx-font-picker.git"
+  },
   "dependencies": {
     "ngx-perfect-scrollbar": "^9.0.0-1",
     "webfontloader": "^1.6.0"

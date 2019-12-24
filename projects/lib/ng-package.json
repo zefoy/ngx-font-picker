@@ -8,5 +8,10 @@
       "resize-observer-polyfill": "ResizeObserver",
       "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "webfontloader",
+    "resize-observer-polyfill",
+    "ngx-perfect-scrollbar"
+  ]
 }
