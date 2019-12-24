@@ -15,8 +15,8 @@ import { FontPickerService } from './font-picker.service';
 
 @Component({
   selector: 'font-picker',
-  templateUrl: '../../dist/lib/font-picker.component.html',
-  styleUrls: [ '../../dist/lib/font-picker.component.css' ],
+  templateUrl: './font-picker.component.html',
+  styleUrls: [ './font-picker.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
 export class FontPickerComponent implements OnInit {
