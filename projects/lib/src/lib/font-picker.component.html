@@ -9,7 +9,7 @@
 
   <div *ngIf="loading" class="load-text">{{fpLoadingText || ''}}</div>
 
-  <perfect-scrollbar #dialogScrollbar class="font-list" [config]="config" [attr.fxFlex]="'auto'" (psYReachEnd)="renderMore.next($event)">
+  <ng-scrollbar #dialogScrollbar class="font-list" [attr.fxFlex]="'auto'" (reachedBottom)="renderMore.next($event)">
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
         <div class="group-text">{{fpPresetLabel || ''}}</div>
@@ -41,7 +41,7 @@
         </div>
       </div>
     </ng-container>
-  </perfect-scrollbar>
+  </ng-scrollbar>
 
   <div *ngIf="selectedFont && (fpStyleSelect || fpSizeSelect)">
     <div  class="font-options">

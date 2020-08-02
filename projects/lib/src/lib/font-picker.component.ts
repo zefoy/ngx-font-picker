@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild, HostListener,
   ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
-import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 import { Font, FontInterface, GoogleFontInterface, GoogleFontsInterface } from './font-picker.interfaces';
 
@@ -101,14 +101,9 @@ export class FontPickerComponent implements OnInit {
 
   public renderMore: Subject<any> = new Subject();
 
-  public config: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true,
-    wheelPropagation: false
-  };
-
   @ViewChild('dialogPopup', { static: true }) dialogElement: ElementRef;
 
-  @ViewChild('dialogScrollbar', { static: true }) scrollbar: PerfectScrollbarComponent;
+  @ViewChild('dialogScrollbar', { static: true }) scrollbar: NgScrollbar;
 
   @HostListener('document:keyup.esc', ['$event']) handleEsc(event: any): void {
     if (this.open && this.fpDialogDisplay === 'popup') {
@@ -370,8 +365,8 @@ export class FontPickerComponent implements OnInit {
       this.cdRef.markForCheck();
 
       setTimeout(() => {
-        if (this.scrollbar && this.scrollbar.directiveRef) {
-          this.scrollbar.directiveRef.scrollToY(0);
+        if (this.scrollbar) {
+          this.scrollbar.scrollTo({ top: 0 });
         }
       }, 0);
     }
@@ -411,12 +406,6 @@ export class FontPickerComponent implements OnInit {
       this.loadGoogleFonts(moreFonts);
 
       this.loadedFonts += moreFonts.length;
-
-      setTimeout(() => {
-        if (this.scrollbar && this.scrollbar.directiveRef) {
-          this.scrollbar.directiveRef.update();
-        }
-      }, 0);
 
       this.cdRef.markForCheck();
       this.cdRef.detectChanges();
