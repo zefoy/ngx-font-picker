@@ -9,6 +9,8 @@ export interface FontInterface {
 
   files?: any;
   styles?: string[];
+
+  getStyles?: () => any;
 }
 
 export interface GoogleFontInterface {
