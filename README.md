@@ -64,7 +64,7 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 ##### Use it in your HTML template (for example in div element):
 
 ```html
-<div [(fontPicker)]="font" [fpWidth]="'320px'" [fpPosition]="'bottom'">
+<div #fontPickerElement=ngxFontPicker [(fontPicker)]="font" [fpWidth]="'320px'" [fpPosition]="'bottom'">
   Click to open the font picker
 </div>
 ```
@@ -122,10 +122,12 @@ apiKey                       // Your Google API key for the Google Web Fonts API
 
 ##### Available control / helper functions (provided by the service):
 
+```javascript
 loadFont(font)               // Loads the given font (family:style) from Web Fonts.
 
 getAllFonts(sort)            // Returns list of Google Fonts with given sort option:
                              // 'alpha' | 'date' | 'popularity' | 'style' | 'trending'
+```
 
 ##### Available control / helper functions (provided by the directive):
 
@@ -136,4 +138,15 @@ openDialog()                 // Opens the font picker dialog if not already open
 closeDialog()                // Closes the font picker dialog if not already closed.
 
 toggleDialog()               // Toggles the open state of the font picker dialog.
+```
+
+Access the Font Picker directive by using a ViewChild:
+
+```javascript
+@ViewChild('fontPickerElement', {static: true})
+fontPicker: FontPickerDirective;
+  
+closeFontPicker(field: string): void {
+  this.fontPicker.closeDialog();
+}  
 ```
