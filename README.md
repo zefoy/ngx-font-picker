@@ -84,6 +84,7 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 
 [fpPopularLabel]             // Popular fonts label (Default: 'Popular fonts').
 [fpResultsLabel]             // Search results label (Default: 'Search results').
+[fpShowPopularLabel]         // Shows or hides popular fonts label (Default: true)
 
 [fpSizeSelect]               // Show size selector in the font picker (Default: false).
 [fpStyleSelect]              // Show style selector in the font picker (Default: false).
@@ -108,6 +109,13 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 
 [fpUseRootViewContainer]     // Create dialog component in the root view container (false).
                              // Note: The root component needs to have public viewContainerRef.
+
+[fpFilterByFamilies]         // Provides a list of font families that are allowed to be used (Default: [])
+                             // Note: Might not work correctly after loading more fonts
+
+[fpSortByFamilies]           // Sort fonts by family (Default: false)
+                             // Note: Might not work correctly after loading more fonts
+
 
 (fontPickerChange)           // Event handler for the font / size / style change.
 
