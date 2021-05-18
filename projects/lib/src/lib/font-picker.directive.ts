@@ -13,7 +13,6 @@ import {
   SimpleChanges,
   ComponentFactoryResolver,
   Injector,
-  ReflectiveInjector,
 } from "@angular/core";
 
 import { FontInterface } from "./font-picker.interfaces";
@@ -63,6 +62,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
 
   @Input("fpPopularLabel") fpPopularLabel: string = "Popular fonts";
   @Input("fpResultsLabel") fpResultsLabel: string = "Search results";
+  @Input("fpShowPopularLabel") fpShowPopularLabel = true;
 
   @Input("fpCancelButton") fpCancelButton: boolean = false;
   @Input("fpCancelButtonText") fpCancelButtonText: string = "Cancel";
@@ -189,7 +189,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
         this.fpUploadButtonText,
         this.fpUploadButtonClass,
         this.fpFilterByFamilies,
-        this.fpSortByFamilies
+        this.fpSortByFamilies,
+        this.fpShowPopularLabel
       );
     } else if (!this.dialog.open) {
       this.dialog.updateDialog(
@@ -214,7 +215,10 @@ export class FontPickerDirective implements OnInit, OnChanges {
         this.fpCancelButtonClass,
         this.fpUploadButton,
         this.fpUploadButtonText,
-        this.fpUploadButtonClass
+        this.fpUploadButtonClass,
+        this.fpFilterByFamilies,
+        this.fpSortByFamilies,
+        this.fpShowPopularLabel
       );
 
       this.dialog.openFontPicker();

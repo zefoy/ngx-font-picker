@@ -89,6 +89,7 @@ export class FontPickerComponent implements OnInit {
 
   public fpPopularLabel: string;
   public fpResultsLabel: string;
+  public fpShowPopularLabel: boolean;
 
   public fpPresetLabel: string;
   public fpPresetFonts: string[];
@@ -106,6 +107,9 @@ export class FontPickerComponent implements OnInit {
   public fpUploadButtonClass: string;
 
   public fpDialogDisplay: string;
+
+  public fpFilterByFamilies: string[] = [];
+  public fpSortByFamilies = false;
 
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
@@ -211,7 +215,8 @@ export class FontPickerComponent implements OnInit {
     fpUploadButtonText: string,
     fpUploadButtonClass: string,
     fpFilterByFamilies: string[],
-    fpSortByFamilies: boolean
+    fpSortByFamilies: boolean,
+    fpShowPopularLabel: boolean
   ): void {
     this.listLabel = fpLoadingText;
 
@@ -242,7 +247,10 @@ export class FontPickerComponent implements OnInit {
       fpCancelButtonClass,
       fpUploadButton,
       fpUploadButtonText,
-      fpUploadButtonClass
+      fpUploadButtonClass,
+      fpFilterByFamilies,
+      fpSortByFamilies,
+      fpShowPopularLabel
     );
 
     this.service.getAllFonts("popularity").subscribe(
@@ -320,7 +328,10 @@ export class FontPickerComponent implements OnInit {
     fpCancelButtonClass: string,
     fpUploadButton: boolean,
     fpUploadButtonText: string,
-    fpUploadButtonClass: string
+    fpUploadButtonClass: string,
+    fpFilterByFamilies: string[],
+    fpSortByFamilies: boolean,
+    fpShowPopularLabel: boolean
   ): void {
     this.selectedFont = !!font;
 
@@ -344,6 +355,7 @@ export class FontPickerComponent implements OnInit {
 
     this.fpPopularLabel = fpPopularLabel;
     this.fpResultsLabel = fpResultsLabel;
+    this.fpShowPopularLabel = fpShowPopularLabel;
 
     this.fpSizeSelect = fpSizeSelect;
     this.fpStyleSelect = fpStyleSelect;
@@ -359,6 +371,9 @@ export class FontPickerComponent implements OnInit {
     this.fpUploadButton = fpUploadButton;
     this.fpUploadButtonText = fpUploadButtonText;
     this.fpUploadButtonClass = fpUploadButtonClass;
+
+    this.fpFilterByFamilies = fpFilterByFamilies;
+    this.fpSortByFamilies = fpSortByFamilies;
 
     this.autoWidth = fpWidth === "auto";
 

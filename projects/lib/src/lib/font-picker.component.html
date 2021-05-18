@@ -1,65 +1,155 @@
-<div #dialogPopup class="font-picker" [style.visibility]="!open ? 'hidden' : 'visible'" [style.height.px]="fpHeight" [style.width.px]="fpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position">
-  <div *ngIf="fpDialogDisplay=='popup'" class="arrow arrow-{{fpPosition}}" [style.top.px]="arrowTop"></div>
+<div
+  #dialogPopup
+  class="font-picker"
+  [style.visibility]="!open ? 'hidden' : 'visible'"
+  [style.height.px]="fpHeight"
+  [style.width.px]="fpWidth"
+  [style.top.px]="top"
+  [style.left.px]="left"
+  [style.position]="position"
+>
+  <div
+    *ngIf="fpDialogDisplay == 'popup'"
+    class="arrow arrow-{{ fpPosition }}"
+    [style.top.px]="arrowTop"
+  ></div>
 
   <div *ngIf="googleFonts.length" class="search-box">
-    <input class="search-field" placeholder="{{fpSearchText || ''}}" [formControl]="searchTerm" />
+    <input
+      class="search-field"
+      placeholder="{{ fpSearchText || '' }}"
+      [formControl]="searchTerm"
+    />
 
-    <div class="search-reset" [hidden]="!searchTerm.value" (click)="onSearchReset($event)">×</div>
+    <div
+      class="search-reset"
+      [hidden]="!searchTerm.value"
+      (click)="onSearchReset($event)"
+    >
+      ×
+    </div>
   </div>
 
-  <div *ngIf="loading" class="load-text">{{fpLoadingText || ''}}</div>
+  <div *ngIf="loading" class="load-text">{{ fpLoadingText || "" }}</div>
 
-  <ng-scrollbar #dialogScrollbar class="font-list" [attr.fxFlex]="'auto'" (reachedBottom)="renderMore.next($event)">
+  <ng-scrollbar
+    #dialogScrollbar
+    class="font-list"
+    [attr.fxFlex]="'auto'"
+    (reachedBottom)="renderMore.next($event)"
+  >
     <div *ngIf="presetVisible && fpPresetFonts.length">
       <div class="font-group">
-        <div class="group-text">{{fpPresetLabel || ''}}</div>
+        <div class="group-text">{{ fpPresetLabel || "" }}</div>
         <div class="group-line"></div>
       </div>
 
-      <div *ngFor="let fontItem of presetFonts | StatefulSlice:0:loadedFonts; trackBy:trackFont" class="font-item" [ngClass]="{active: fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
+      <div
+        *ngFor="
+          let fontItem of presetFonts | StatefulSlice: 0:loadedFonts;
+          trackBy: trackFont
+        "
+        class="font-item"
+        [ngClass]="{
+          active: fontItem.family.toLowerCase() == font.family.toLowerCase(),
+          selected: selectedFont
+        }"
+        [ngStyle]="{ 'font-family': fontItem.family }"
+        (click)="onSelectFont(fontItem)"
+      >
         <div class="font-info">
-          <span class="font-name">{{fontItem.family || ''}}</span>
+          <span class="font-name">{{ fontItem.family || "" }}</span>
 
-          <div *ngIf="!fontItem.files && safeFonts.indexOf(fontItem.family) === -1 && googleFonts.length" class="not-available">
+          <div
+            *ngIf="
+              !fontItem.files &&
+              safeFonts.indexOf(fontItem.family) === -1 &&
+              googleFonts.length
+            "
+            class="not-available"
+          >
             <span>!</span>
 
-            <div class="notice-text">{{fpPresetNotice || 'This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules.'}}</div>
+            <div class="notice-text">
+              {{
+                fpPresetNotice ||
+                  "This font is not from Google Fonts. If you select it, you might have to import it manually in your CSS rules."
+              }}
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <ng-container *ngIf="googleFonts.length">
-      <div class="font-group">
-        <div class="group-text black">{{listLabel || ''}}</div>
+      <div class="font-group" *ngIf="fpShowPopularLabel">
+        <div class="group-text black">{{ listLabel || "" }}</div>
         <div class="group-line black"></div>
       </div>
 
-      <div *ngFor="let fontItem of (currentFonts | StatefulSlice:0:loadedFonts)" class="font-item" [ngClass]="{'active': fontItem.family.toLowerCase() == font.family.toLowerCase(), selected: selectedFont}" [ngStyle]="{'font-family': fontItem.family}" (click)="onSelectFont(fontItem)">
+      <div
+        *ngFor="let fontItem of currentFonts | StatefulSlice: 0:loadedFonts"
+        class="font-item"
+        [ngClass]="{
+          active: fontItem.family.toLowerCase() == font.family.toLowerCase(),
+          selected: selectedFont
+        }"
+        [ngStyle]="{ 'font-family': fontItem.family }"
+        (click)="onSelectFont(fontItem)"
+      >
         <div class="font-info">
-          <span class="font-name">{{fontItem.family || ''}}</span>
+          <span class="font-name">{{ fontItem.family || "" }}</span>
         </div>
       </div>
     </ng-container>
   </ng-scrollbar>
 
   <div *ngIf="selectedFont && (fpStyleSelect || fpSizeSelect)">
-    <div  class="font-options">
+    <div class="font-options">
       <div *ngIf="fpStyleSelect" class="left">
-        <select class="style-select" [disabled]="!font.styles" (change)="onFontStyleChange($event, font)" [(ngModel)]="font.style">
-          <option *ngFor="let style of font.styles" [value]="style">{{style | FontStyles}}</option>
+        <select
+          class="style-select"
+          [disabled]="!font.styles"
+          (change)="onFontStyleChange($event, font)"
+          [(ngModel)]="font.style"
+        >
+          <option *ngFor="let style of font.styles" [value]="style">
+            {{ style | FontStyles }}
+          </option>
         </select>
       </div>
 
       <div *ngIf="fpSizeSelect" class="right">
-        <input type="number" pattern="[0-9]*" min="1" max="100" (change)="onFontSizeChange($event)" [ngClass]="{'size-select': fpStyleSelect}" [ngModel]="font.size | FontSize" />
+        <input
+          type="number"
+          pattern="[0-9]*"
+          min="1"
+          max="100"
+          (change)="onFontSizeChange($event)"
+          [ngClass]="{ 'size-select': fpStyleSelect }"
+          [ngModel]="font.size | FontSize"
+        />
       </div>
     </div>
   </div>
 
   <div *ngIf="fpUploadButton || fpCancelButton" class="button-area">
-    <button *ngIf="fpUploadButton" type="button" class="{{fpUploadButtonClass}}" (click)="onUploadFont($event)">{{fpUploadButtonText || 'Upload'}}</button>
+    <button
+      *ngIf="fpUploadButton"
+      type="button"
+      class="{{ fpUploadButtonClass }}"
+      (click)="onUploadFont($event)"
+    >
+      {{ fpUploadButtonText || "Upload" }}
+    </button>
 
-    <button *ngIf="fpCancelButton" type="button" class="{{fpCancelButtonClass}}" (click)="onCancelSelect($event)">{{fpCancelButtonText || 'Cancel'}}</button>
+    <button
+      *ngIf="fpCancelButton"
+      type="button"
+      class="{{ fpCancelButtonClass }}"
+      (click)="onCancelSelect($event)"
+    >
+      {{ fpCancelButtonText || "Cancel" }}
+    </button>
   </div>
 </div>
