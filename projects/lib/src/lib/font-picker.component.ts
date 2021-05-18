@@ -1,23 +1,36 @@
-import * as WebFont from 'webfontloader';
+import * as WebFont from "webfontloader";
 
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
-import { FormControl } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild, HostListener,
-  ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  HostListener,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+} from "@angular/core";
 
-import { NgScrollbar } from 'ngx-scrollbar';
+import { NgScrollbar } from "ngx-scrollbar";
 
-import { Font, FontInterface, GoogleFontInterface, GoogleFontsInterface } from './font-picker.interfaces';
+import {
+  Font,
+  FontInterface,
+  GoogleFontInterface,
+  GoogleFontsInterface,
+} from "./font-picker.interfaces";
 
-import { FontPickerService } from './font-picker.service';
+import { FontPickerService } from "./font-picker.service";
+import { FontPickerDirective } from "./font-picker.directive";
 
 @Component({
-  selector: 'font-picker',
-  templateUrl: './font-picker.component.html',
-  styleUrls: [ './font-picker.component.css' ],
-  encapsulation: ViewEncapsulation.None
+  selector: "font-picker",
+  templateUrl: "./font-picker.component.html",
+  styleUrls: ["./font-picker.component.css"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FontPickerComponent implements OnInit {
   private initialFont: Font;
@@ -30,7 +43,7 @@ export class FontPickerComponent implements OnInit {
   private listenerResize: any;
   private listenerMouseDown: any;
 
-  private directiveInstance: any;
+  private directiveInstance: FontPickerDirective;
   private directiveElementRef: ElementRef;
 
   private useRootViewContainer: boolean = false;
@@ -50,12 +63,12 @@ export class FontPickerComponent implements OnInit {
   public presetVisible: boolean;
 
   public safeFonts: string[] = [
-    'Arial',
-    'sans-serif',
-    'Times',
-    'serif',
-    'Courier',
-    'monospace'
+    "Arial",
+    "sans-serif",
+    "Times",
+    "serif",
+    "Courier",
+    "monospace",
   ];
 
   public fontAmount: number = 10;
@@ -97,29 +110,33 @@ export class FontPickerComponent implements OnInit {
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
 
-  public searchTerm = new FormControl('');
+  public searchTerm = new FormControl("");
 
   public renderMore: Subject<any> = new Subject();
 
-  @ViewChild('dialogPopup', { static: true }) dialogElement: ElementRef;
+  @ViewChild("dialogPopup", { static: true }) dialogElement: ElementRef;
 
-  @ViewChild('dialogScrollbar', { static: true }) scrollbar: NgScrollbar;
+  @ViewChild("dialogScrollbar", { static: true }) scrollbar: NgScrollbar;
 
-  @HostListener('document:keyup.esc', ['$event']) handleEsc(event: any): void {
-    if (this.open && this.fpDialogDisplay === 'popup') {
+  @HostListener("document:keyup.esc", ["$event"]) handleEsc(event: any): void {
+    if (this.open && this.fpDialogDisplay === "popup") {
       this.onCancelSelect(event);
     }
   }
 
-  @HostListener('document:keyup.enter', ['$event']) handleEnter(event: any): void {
-    if (this.open && this.fpDialogDisplay === 'popup') {
+  @HostListener("document:keyup.enter", ["$event"]) handleEnter(
+    event: any
+  ): void {
+    if (this.open && this.fpDialogDisplay === "popup") {
       this.onAcceptSelect(event);
     }
   }
 
-  constructor(private cdRef: ChangeDetectorRef, public elRef: ElementRef,
-    public service: FontPickerService)
-  {
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    public elRef: ElementRef,
+    public service: FontPickerService
+  ) {
     this.loading = true;
 
     this.selectedFont = false;
@@ -127,35 +144,34 @@ export class FontPickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.renderMore.pipe(
-      debounceTime(150)
-    ).subscribe(() => this.loadMoreFonts());
+    this.renderMore
+      .pipe(debounceTime(150))
+      .subscribe(() => this.loadMoreFonts());
 
-    this.searchTerm.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged()
-    ).subscribe((text) => {
-      if (!text) {
-        this.presetVisible = true;
-        this.listLabel = this.fpPopularLabel;
-      } else {
-        this.presetVisible = false;
-        this.listLabel = this.fpResultsLabel;
-      }
+    this.searchTerm.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((text) => {
+        if (!text) {
+          this.presetVisible = true;
+          this.listLabel = this.fpPopularLabel;
+        } else {
+          this.presetVisible = false;
+          this.listLabel = this.fpResultsLabel;
+        }
 
-      this.searchGoogleFonts(text);
-    });
+        this.searchGoogleFonts(text);
+      });
 
-    this.testContainer = document.createElement('span');
+    this.testContainer = document.createElement("span");
 
-    this.testContainer.innerHTML = Array(100).join('wi');
+    this.testContainer.innerHTML = Array(100).join("wi");
 
     this.testContainer.style.cssText = [
-      'position: absolute',
-      'left: -99999px',
-      'width: auto',
-      'font-size: 128px'
-    ].join(' !important;');
+      "position: absolute",
+      "left: -99999px",
+      "width: auto",
+      "font-size: 128px",
+    ].join(" !important;");
 
     this.listenerResize = () => this.onResize();
 
@@ -168,15 +184,35 @@ export class FontPickerComponent implements OnInit {
     return font.family || index.toString();
   }
 
-  public setDialog(instance: any, elementRef: ElementRef, fpUseRootViewContainer: boolean,
-    defaultFont: FontInterface, fpWidth: string, fpHeight: string,
-    fpDialogDisplay: string, fpSizeSelect: boolean, fpStyleSelect: boolean,
-    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
-    fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
-    fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
-    fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
-    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
-  {
+  public setDialog(
+    instance: FontPickerDirective,
+    elementRef: ElementRef,
+    fpUseRootViewContainer: boolean,
+    defaultFont: FontInterface,
+    fpWidth: string,
+    fpHeight: string,
+    fpDialogDisplay: string,
+    fpSizeSelect: boolean,
+    fpStyleSelect: boolean,
+    fpPosition: string,
+    fpPositionOffset: string,
+    fpPositionRelativeToArrow: boolean,
+    fpSearchText: string,
+    fpLoadingText: string,
+    fpPopularLabel: string,
+    fpResultsLabel: string,
+    fpPresetLabel: string,
+    fpPresetFonts: string[],
+    fpPresetNotice: string,
+    fpCancelButton: boolean,
+    fpCancelButtonText: string,
+    fpCancelButtonClass: string,
+    fpUploadButton: boolean,
+    fpUploadButtonText: string,
+    fpUploadButtonClass: string,
+    fpFilterByFamilies: string[],
+    fpSortByFamilies: boolean
+  ): void {
     this.listLabel = fpLoadingText;
 
     this.directiveInstance = instance;
@@ -184,58 +220,108 @@ export class FontPickerComponent implements OnInit {
 
     this.useRootViewContainer = fpUseRootViewContainer;
 
-    this.updateDialog(defaultFont, fpWidth, fpHeight, fpDialogDisplay, fpSizeSelect, fpStyleSelect,
-      fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpSearchText, fpLoadingText,
-      fpPopularLabel, fpResultsLabel, fpPresetLabel, fpPresetFonts, fpPresetNotice, fpCancelButton,
-      fpCancelButtonText, fpCancelButtonClass, fpUploadButton, fpUploadButtonText, fpUploadButtonClass);
+    this.updateDialog(
+      defaultFont,
+      fpWidth,
+      fpHeight,
+      fpDialogDisplay,
+      fpSizeSelect,
+      fpStyleSelect,
+      fpPosition,
+      fpPositionOffset,
+      fpPositionRelativeToArrow,
+      fpSearchText,
+      fpLoadingText,
+      fpPopularLabel,
+      fpResultsLabel,
+      fpPresetLabel,
+      fpPresetFonts,
+      fpPresetNotice,
+      fpCancelButton,
+      fpCancelButtonText,
+      fpCancelButtonClass,
+      fpUploadButton,
+      fpUploadButtonText,
+      fpUploadButtonClass
+    );
 
-    this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
-      this.loading = false;
+    this.service.getAllFonts("popularity").subscribe(
+      (fonts: GoogleFontsInterface) => {
+        this.loading = false;
 
-      if (fonts) {
-        if (fonts.items) {
-          this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
-            return new Font({
-              files: font.files,
-              family: font.family,
-              styles: font.variants
+        if (fonts) {
+          if (fonts.items) {
+            this.googleFonts = fonts.items.map((font: GoogleFontInterface) => {
+              return new Font({
+                files: font.files,
+                family: font.family,
+                styles: font.variants,
+              });
             });
-          });
+            if (fpFilterByFamilies?.length) {
+              this.googleFonts = this.googleFonts.filter((font: Font) =>
+                fpFilterByFamilies.includes(font.family)
+              );
+            }
+            if (fpSortByFamilies) {
+              this.googleFonts = this.googleFonts.sort((a, b) =>
+                a.family < b.family ? -1 : 1
+              );
+            }
+          }
+
+          // Find styles for initial font
+          const searchFont = this.findFont(this.initialFont.family, true);
+
+          if (searchFont) {
+            this.font.files = searchFont.files;
+            this.font.styles = searchFont.styles;
+
+            this.loadGoogleFonts([this.font]);
+          }
+
+          // Load Open Sans if available
+          const openSans = this.googleFonts.find(
+            (font) => font.family === "Open sans"
+          );
+
+          if (openSans) {
+            this.loadGoogleFonts([openSans]);
+          }
+
+          this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
+        } else {
+          this.setCurrentFonts(this.getPresetFonts());
         }
-
-        // Find styles for initial font
-        const searchFont = this.findFont(this.initialFont.family, true);
-
-        if (searchFont) {
-          this.font.files = searchFont.files;
-          this.font.styles = searchFont.styles;
-
-          this.loadGoogleFonts([this.font]);
-        }
-
-        // Load Open Sans if available
-        const openSans = this.googleFonts.find((font) => font.family === 'Open sans');
-
-        if (openSans) {
-          this.loadGoogleFonts([openSans]);
-        }
-
-        this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
-      } else {
-        this.setCurrentFonts(this.getPresetFonts());
-      }
-    },
-    (error: any) => console.error(error));
+      },
+      (error: any) => console.error(error)
+    );
   }
 
-  public updateDialog(font: FontInterface, fpWidth: string, fpHeight: string,
-    fpDialogDisplay: string, fpSizeSelect: boolean, fpStyleSelect: boolean,
-    fpPosition: string, fpPositionOffset: string, fpPositionRelativeToArrow: boolean,
-    fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
-    fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
-    fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
-    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
-  {
+  public updateDialog(
+    font: FontInterface,
+    fpWidth: string,
+    fpHeight: string,
+    fpDialogDisplay: string,
+    fpSizeSelect: boolean,
+    fpStyleSelect: boolean,
+    fpPosition: string,
+    fpPositionOffset: string,
+    fpPositionRelativeToArrow: boolean,
+    fpSearchText: string,
+    fpLoadingText: string,
+    fpPopularLabel: string,
+    fpResultsLabel: string,
+    fpPresetLabel: string,
+    fpPresetFonts: string[],
+    fpPresetNotice: string,
+    fpCancelButton: boolean,
+    fpCancelButtonText: string,
+    fpCancelButtonClass: string,
+    fpUploadButton: boolean,
+    fpUploadButtonText: string,
+    fpUploadButtonClass: string
+  ): void {
     this.selectedFont = !!font;
 
     this.font = new Font(font);
@@ -248,7 +334,7 @@ export class FontPickerComponent implements OnInit {
       this.dialogArrowOffset = 0;
     }
 
-    if (fpDialogDisplay === 'inline') {
+    if (fpDialogDisplay === "inline") {
       this.dialogArrowSize = 0;
       this.dialogArrowOffset = 0;
     }
@@ -274,7 +360,7 @@ export class FontPickerComponent implements OnInit {
     this.fpUploadButtonText = fpUploadButtonText;
     this.fpUploadButtonClass = fpUploadButtonClass;
 
-    this.autoWidth = fpWidth === 'auto';
+    this.autoWidth = fpWidth === "auto";
 
     this.fpWidth = parseInt(fpWidth, 10);
     this.fpHeight = parseInt(fpHeight, 10);
@@ -283,18 +369,18 @@ export class FontPickerComponent implements OnInit {
 
     this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
 
-    this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
+    this.searchTerm.reset({ disabled: this.fpPresetFonts.length > 0 });
   }
 
   public openFontPicker(): void {
     if (!this.open) {
       this.setDialogPosition();
 
-      this.searchTerm.setValue('');
+      this.searchTerm.setValue("");
 
-      window.addEventListener('resize', this.listenerResize);
+      window.addEventListener("resize", this.listenerResize);
 
-      document.addEventListener('mousedown', this.listenerMouseDown);
+      document.addEventListener("mousedown", this.listenerMouseDown);
 
       this.open = true;
     }
@@ -303,14 +389,14 @@ export class FontPickerComponent implements OnInit {
   public closeFontPicker(): void {
     this.open = false;
 
-    window.removeEventListener('resize', this.listenerResize);
+    window.removeEventListener("resize", this.listenerResize);
 
-    document.removeEventListener('mousedown', this.listenerMouseDown);
+    document.removeEventListener("mousedown", this.listenerMouseDown);
   }
 
   private isFontAvailable(font: Font): boolean {
     if (!this.testWidth) {
-      this.testContainer.style.fontFamily = 'monospace';
+      this.testContainer.style.fontFamily = "monospace";
 
       document.body.appendChild(this.testContainer);
 
@@ -319,7 +405,7 @@ export class FontPickerComponent implements OnInit {
       document.body.removeChild(this.testContainer);
     }
 
-    this.testContainer.style.fontFamily = font.family + ', monospace';
+    this.testContainer.style.fontFamily = font.family + ", monospace";
 
     document.body.appendChild(this.testContainer);
 
@@ -340,7 +426,7 @@ export class FontPickerComponent implements OnInit {
         if (!fontClass) {
           fontClass = new Font({
             family: font,
-            styles: ['regular', 'italic']
+            styles: ["regular", "italic"],
           });
         }
 
@@ -400,8 +486,15 @@ export class FontPickerComponent implements OnInit {
   }
 
   private loadMoreFonts(): void {
-    if (this.open && !this.loading && this.loadedFonts < this.currentFonts.length) {
-      const moreFonts = this.currentFonts.slice(this.loadedFonts, this.loadedFonts + this.fontAmount);
+    if (
+      this.open &&
+      !this.loading &&
+      this.loadedFonts < this.currentFonts.length
+    ) {
+      const moreFonts = this.currentFonts.slice(
+        this.loadedFonts,
+        this.loadedFonts + this.fontAmount
+      );
 
       this.loadGoogleFonts(moreFonts);
 
@@ -415,17 +508,23 @@ export class FontPickerComponent implements OnInit {
   private loadGoogleFonts(fonts: Font[]): void {
     fonts.slice(0, this.fontAmount).forEach((font: any) => {
       if (font && font.files && !this.isFontAvailable(font)) {
-        const style = (font.styles.indexOf('regular') > -1) ?
-          '' : ':'  + font.styles.find((x: any) => !isNaN(x));
+        const style =
+          font.styles.indexOf("regular") > -1
+            ? ""
+            : ":" + font.styles.find((x: any) => !isNaN(x));
 
-        this.service.loadFont({ family: font.family, style: style, size: font.size });
+        this.service.loadFont({
+          family: font.family,
+          style: style,
+          size: font.size,
+        });
       }
     });
   }
 
   private searchGoogleFonts(value: string): void {
     if (!value) {
-      this.searchTerm.setValue('');
+      this.searchTerm.setValue("");
 
       this.setCurrentFonts(this.googleFonts);
     } else {
@@ -457,41 +556,50 @@ export class FontPickerComponent implements OnInit {
     return false;
   }
 
-  private createDialogBox(element, offset): {top: number, left: number, width: number, height: number} {
+  private createDialogBox(
+    element,
+    offset
+  ): { top: number; left: number; width: number; height: number } {
     return {
-      top: element.getBoundingClientRect().top + (offset ? window.pageYOffset : 0),
-      left: element.getBoundingClientRect().left + (offset ? window.pageXOffset : 0),
+      top:
+        element.getBoundingClientRect().top + (offset ? window.pageYOffset : 0),
+      left:
+        element.getBoundingClientRect().left +
+        (offset ? window.pageXOffset : 0),
       width: element.offsetWidth,
-      height: element.offsetHeight
+      height: element.offsetHeight,
     };
   }
 
   private setDialogPosition(): void {
-    if (this.fpDialogDisplay === 'inline') {
-      this.position = 'relative';
+    if (this.fpDialogDisplay === "inline") {
+      this.position = "relative";
     } else {
-      let position = 'static', transform = '', style;
+      let position = "static",
+        transform = "",
+        style;
 
-      let parentNode: any = null, transformNode: any = null;
+      let parentNode: any = null,
+        transformNode: any = null;
 
       let node = this.directiveElementRef.nativeElement.parentNode;
 
       const dialogHeight = this.dialogElement.nativeElement.offsetHeight;
 
-      while (node !== null && node.tagName !== 'HTML') {
+      while (node !== null && node.tagName !== "HTML") {
         style = window.getComputedStyle(node);
-        position = style.getPropertyValue('position');
-        transform = style.getPropertyValue('transform');
+        position = style.getPropertyValue("position");
+        transform = style.getPropertyValue("transform");
 
-        if (position !== 'static' && parentNode === null) {
+        if (position !== "static" && parentNode === null) {
           parentNode = node;
         }
 
-        if (transform && transform !== 'none' && transformNode === null) {
+        if (transform && transform !== "none" && transformNode === null) {
           transformNode = node;
         }
 
-        if (position === 'fixed') {
+        if (position === "fixed") {
           parentNode = transformNode;
 
           break;
@@ -500,15 +608,20 @@ export class FontPickerComponent implements OnInit {
         node = node.parentNode;
       }
 
-      const boxDirective = this.createDialogBox(this.directiveElementRef.nativeElement, (position !== 'fixed'));
+      const boxDirective = this.createDialogBox(
+        this.directiveElementRef.nativeElement,
+        position !== "fixed"
+      );
 
       if (this.autoWidth) {
         this.fpWidth = this.directiveElementRef.nativeElement.offsetWidth;
       }
 
-      if (this.useRootViewContainer || (position === 'fixed' &&
-        (!parentNode || parentNode instanceof HTMLUnknownElement)))
-      {
+      if (
+        this.useRootViewContainer ||
+        (position === "fixed" &&
+          (!parentNode || parentNode instanceof HTMLUnknownElement))
+      ) {
         this.top = boxDirective.top;
         this.left = boxDirective.left;
       } else {
@@ -516,48 +629,60 @@ export class FontPickerComponent implements OnInit {
           parentNode = node;
         }
 
-        const boxParent = this.createDialogBox(parentNode, (position !== 'fixed'));
+        const boxParent = this.createDialogBox(
+          parentNode,
+          position !== "fixed"
+        );
 
         this.top = boxDirective.top - boxParent.top;
         this.left = boxDirective.left - boxParent.left;
       }
 
-      if (position === 'fixed') {
-        this.position = 'fixed';
+      if (position === "fixed") {
+        this.position = "fixed";
       }
 
-      if (this.fpPosition === 'left') {
-        this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
+      if (this.fpPosition === "left") {
+        this.top +=
+          (boxDirective.height * this.fpPositionOffset) / 100 -
+          this.dialogArrowOffset;
         this.left -= this.fpWidth + this.dialogArrowSize - 2;
-      } else if (this.fpPosition === 'top') {
+      } else if (this.fpPosition === "top") {
         this.arrowTop = dialogHeight - 1;
 
         this.top -= dialogHeight + this.dialogArrowSize;
-        this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
-      } else if (this.fpPosition === 'bottom') {
+        this.left +=
+          (this.fpPositionOffset / 100) * boxDirective.width -
+          this.dialogArrowOffset;
+      } else if (this.fpPosition === "bottom") {
         this.top += boxDirective.height + this.dialogArrowSize;
-        this.left += this.fpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+        this.left +=
+          (this.fpPositionOffset / 100) * boxDirective.width -
+          this.dialogArrowOffset;
       } else {
-        this.top += boxDirective.height * this.fpPositionOffset / 100 - this.dialogArrowOffset;
+        this.top +=
+          (boxDirective.height * this.fpPositionOffset) / 100 -
+          this.dialogArrowOffset;
         this.left += boxDirective.width + this.dialogArrowSize - 2;
       }
     }
   }
 
   private onResize(): void {
-    if (this.position === 'fixed') {
+    if (this.position === "fixed") {
       this.setDialogPosition();
-    } else if (this.fpDialogDisplay !== 'inline') {
+    } else if (this.fpDialogDisplay !== "inline") {
       this.closeFontPicker();
     }
   }
 
   private onMouseDown(event: any): void {
-    if (this.fpDialogDisplay === 'popup' &&
-        event.target !== this.directiveElementRef.nativeElement &&
-        !this.isDescendant(this.elRef.nativeElement, event.target) &&
-        !this.isDescendant(this.directiveElementRef.nativeElement, event.target))
-    {
+    if (
+      this.fpDialogDisplay === "popup" &&
+      event.target !== this.directiveElementRef.nativeElement &&
+      !this.isDescendant(this.elRef.nativeElement, event.target) &&
+      !this.isDescendant(this.directiveElementRef.nativeElement, event.target)
+    ) {
       this.closeFontPicker();
 
       this.cdRef.markForCheck();
@@ -575,7 +700,7 @@ export class FontPickerComponent implements OnInit {
 
     this.directiveInstance.fontChanged(this.font);
 
-    if (this.fpDialogDisplay === 'popup') {
+    if (this.fpDialogDisplay === "popup") {
       this.closeFontPicker();
     }
   }
@@ -593,7 +718,7 @@ export class FontPickerComponent implements OnInit {
 
     this.directiveInstance.fontChanged(this.font);
 
-    if (this.fpDialogDisplay === 'popup') {
+    if (this.fpDialogDisplay === "popup") {
       this.closeFontPicker();
     }
   }
@@ -605,8 +730,8 @@ export class FontPickerComponent implements OnInit {
     this.font.family = font.family;
     this.font.styles = font.styles;
 
-    this.font.style = (font.styles.indexOf('regular') !== -1) ?
-      'regular' : font.styles[0];
+    this.font.style =
+      font.styles.indexOf("regular") !== -1 ? "regular" : font.styles[0];
 
     this.directiveInstance.fontChanged(this.font);
 
@@ -617,25 +742,25 @@ export class FontPickerComponent implements OnInit {
   public onSearchReset(event: any): void {
     event.stopPropagation();
 
-    this.searchTerm.setValue('');
+    this.searchTerm.setValue("");
 
     this.setCurrentFonts(this.googleFonts);
   }
 
   public onFontSizeChange(event: any): void {
-    this.font.size = event.target.value + 'px';
+    this.font.size = event.target.value + "px";
 
     this.directiveInstance.fontChanged(this.font);
   }
 
   public onFontStyleChange(event: any, font: Font): void {
-    const str = this.font.family + ':' +  event.target.value;
+    const str = this.font.family + ":" + event.target.value;
 
     if (font.files) {
       WebFont.load({
         google: {
-          families: [ str ]
-        }
+          families: [str],
+        },
       });
     }
 
