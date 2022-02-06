@@ -1,5 +1,6 @@
 dist/
 bundles/
+.angular/
 
 package/
 npm-debug.log
