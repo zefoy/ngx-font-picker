@@ -283,7 +283,7 @@ export class FontPickerComponent implements OnInit {
 
     this.setCurrentFonts(this.getPresetFonts().concat(this.googleFonts));
 
-    this.searchTerm.reset({disabled: (this.fpPresetFonts.length > 0)});
+    this.searchTerm.reset({value: '', disabled: (this.fpPresetFonts.length > 0)});
   }
 
   public openFontPicker(): void {
