@@ -9,6 +9,7 @@ import { Font } from 'ngx-font-picker';
   styleUrls: [ 'app.component.css' ]
 })
 export class AppComponent {
+  private _filteredFonts = ['Open Sans', 'Oswald', 'Courier', 'Nunito Sans', 'Quicksand', 'Karla', 'Oxygen', 'Dosis', 'Bitter', 'Noto Sans SC', 'Assistant', 'Domine'];
   private _presetFonts = ['Arial', 'Times', 'Courier', 'Lato', 'Open Sans', 'Roboto Slab'];
 
   public font: Font = new Font({
@@ -19,8 +20,10 @@ export class AppComponent {
   });
 
   public sizeSelect: boolean = true;
+  public sortFonts: boolean = false;
   public styleSelect: boolean = true;
 
+  public filteredFonts = [];
   public presetFonts = this._presetFonts;
 
   constructor() {}
@@ -32,5 +35,13 @@ export class AppComponent {
   public toggleExtraOptions(): void {
     this.sizeSelect = !this.sizeSelect;
     this.styleSelect = !this.styleSelect;
+  }
+
+  public toggleFilterFonts(): void {
+    this.filteredFonts = this.filteredFonts.length ? [] : this._filteredFonts;
+  }
+
+  public toggleSortOptions(): void {
+    this.sortFonts = !this.sortFonts;
   }
 }

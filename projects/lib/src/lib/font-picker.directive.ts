@@ -57,6 +57,9 @@ export class FontPickerDirective implements OnInit, OnChanges {
   @Input('fpUploadButtonText') fpUploadButtonText: string = 'Upload';
   @Input('fpUploadButtonClass') fpUploadButtonClass: string = 'fp-upload-button-class';
 
+  @Input("fpFilterByFamilies") fpFilterByFamilies: string[] = [];
+  @Input("fpSortByFamilies") fpSortByFamilies = false;
+
   @Output('fontPickerUpload') fontPickerUpload = new EventEmitter<void>();
   @Output('fontPickerChange') fontPickerChange = new EventEmitter<FontInterface>();
 
@@ -79,6 +82,9 @@ export class FontPickerDirective implements OnInit, OnChanges {
       if (this.fpAutoLoad) {
         this.loadFont(this.fontPicker);
       }
+    }
+    if (changes.fpSortByFamilies || changes.fpFilterByFamilies) {
+      this.dialog = undefined;
     }
   }
 
@@ -131,7 +137,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
         this.fpSearchText, this.fpLoadingText, this.fpPopularLabel, this.fpResultsLabel,
         this.fpPresetLabel, this.fpPresetFonts, this.fpPresetNotice,
         this.fpCancelButton, this.fpCancelButtonText, this.fpCancelButtonClass,
-        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass);
+        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass,
+        this.fpFilterByFamilies, this.fpSortByFamilies);
     } else if (!this.dialog.open) {
       this.dialog.updateDialog(this.fontPicker, this.fpWidth, this.fpHeight,
         this.fpDialogDisplay, this.fpSizeSelect, this.fpStyleSelect,
@@ -139,7 +146,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
         this.fpSearchText, this.fpLoadingText, this.fpPopularLabel, this.fpResultsLabel,
         this.fpPresetLabel, this.fpPresetFonts, this.fpPresetNotice,
         this.fpCancelButton, this.fpCancelButtonText, this.fpCancelButtonClass,
-        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass);
+        this.fpUploadButton, this.fpUploadButtonText, this.fpUploadButtonClass,
+        this.fpFilterByFamilies, this.fpSortByFamilies);
 
       this.dialog.openFontPicker();
     } else {

@@ -30,7 +30,7 @@
     </div>
 
     <ng-container *ngIf="googleFonts.length">
-      <div class="font-group">
+      <div class="font-group" *ngIf="!fpFilterByFamilies.length || fpPresetFonts.length">
         <div class="group-text black">{{listLabel || ''}}</div>
         <div class="group-line black"></div>
       </div>
