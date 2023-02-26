@@ -10,13 +10,17 @@
       <div class="box-title">Settings</div>
 
       <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect">
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect" [fpPopularLabel]="" [fpFilterByFamilies]="filteredFonts" [fpSortByFamilies]="sortFonts">
           {{font?.family}} {{font?.style | FontStyles}} {{font?.size}}
         </div>
 
         <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
 
         <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleExtraOptions()">Style & size: {{(sizeSelect || styleSelect) ? "ON" : "OFF"}}</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleFilterFonts()">Filter fonts: {{filteredFonts.length ? "ON" : "OFF"}}</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleSortOptions()">Sort by name: {{sortFonts ? "ON" : "OFF"}}</div>
       </div>
     </div>
 

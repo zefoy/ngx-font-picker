@@ -94,6 +94,9 @@ export class FontPickerComponent implements OnInit {
 
   public fpDialogDisplay: string;
 
+  public fpFilterByFamilies: string[] = [];
+  public fpSortByFamilies = false;
+
   public dialogArrowSize: number = 10;
   public dialogArrowOffset: number = 15;
 
@@ -175,7 +178,8 @@ export class FontPickerComponent implements OnInit {
     fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
     fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
     fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
-    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
+    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string,
+    fpFilterByFamilies: string[], fpSortByFamilies: boolean): void
   {
     this.listLabel = fpLoadingText;
 
@@ -187,7 +191,8 @@ export class FontPickerComponent implements OnInit {
     this.updateDialog(defaultFont, fpWidth, fpHeight, fpDialogDisplay, fpSizeSelect, fpStyleSelect,
       fpPosition, fpPositionOffset, fpPositionRelativeToArrow, fpSearchText, fpLoadingText,
       fpPopularLabel, fpResultsLabel, fpPresetLabel, fpPresetFonts, fpPresetNotice, fpCancelButton,
-      fpCancelButtonText, fpCancelButtonClass, fpUploadButton, fpUploadButtonText, fpUploadButtonClass);
+      fpCancelButtonText, fpCancelButtonClass, fpUploadButton, fpUploadButtonText, fpUploadButtonClass,
+      fpFilterByFamilies, fpSortByFamilies);
 
     this.service.getAllFonts('popularity').subscribe((fonts: GoogleFontsInterface) => {
       this.loading = false;
@@ -201,6 +206,17 @@ export class FontPickerComponent implements OnInit {
               styles: font.variants
             });
           });
+        }
+
+        if (fpFilterByFamilies?.length) {
+          this.googleFonts = this.googleFonts.filter((font: Font) =>
+            fpFilterByFamilies.includes(font.family)
+          );
+        }
+        if (fpSortByFamilies) {
+          this.googleFonts = this.googleFonts.sort((a, b) =>
+            a.family < b.family ? -1 : 1
+          );
         }
 
         // Find styles for initial font
@@ -234,7 +250,8 @@ export class FontPickerComponent implements OnInit {
     fpSearchText: string, fpLoadingText: string, fpPopularLabel: string, fpResultsLabel: string,
     fpPresetLabel: string, fpPresetFonts: string[], fpPresetNotice: string,
     fpCancelButton: boolean, fpCancelButtonText: string, fpCancelButtonClass: string,
-    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string): void
+    fpUploadButton: boolean, fpUploadButtonText: string, fpUploadButtonClass: string,
+    fpFilterByFamilies: string[], fpSortByFamilies: boolean): void
   {
     this.selectedFont = !!font;
 
@@ -273,6 +290,9 @@ export class FontPickerComponent implements OnInit {
     this.fpUploadButton = fpUploadButton;
     this.fpUploadButtonText = fpUploadButtonText;
     this.fpUploadButtonClass = fpUploadButtonClass;
+
+    this.fpFilterByFamilies = fpFilterByFamilies;
+    this.fpSortByFamilies = fpSortByFamilies;
 
     this.autoWidth = fpWidth === 'auto';
 
