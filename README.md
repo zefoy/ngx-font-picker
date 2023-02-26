@@ -109,6 +109,9 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
 [fpUseRootViewContainer]     // Create dialog component in the root view container (false).
                              // Note: The root component needs to have public viewContainerRef.
 
+[fpFilterByFamilies]         // Provides a list of font families that are allowed to be used (Default: [])
+[fpSortByFamilies]           // Sort fonts by family (Default: false)
+
 (fontPickerChange)           // Event handler for the font / size / style change.
 
 (fontPickerUpload)           // Event handler for the font upload button click event.

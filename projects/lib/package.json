@@ -2,14 +2,14 @@
   "name": "ngx-font-picker",
   "description": "Google fonts font picker widget for Angular",
   "bugs": "https://github.com/zefoy/ngx-font-picker/issues",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/zefoy/ngx-font-picker.git"
   },
   "dependencies": {
-    "ngx-scrollbar": "^10.0.0",
+    "ngx-scrollbar": "^11.0.0",
     "webfontloader": "^1.6.0"
   },
   "peerDependencies": {
