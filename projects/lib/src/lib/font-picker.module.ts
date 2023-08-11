@@ -13,7 +13,6 @@ import { FontPickerDirective } from './font-picker.directive';
 import { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './font-picker.pipes';
 
 @NgModule({
-  entryComponents: [ FontPickerComponent ],
   declarations: [ FontPickerComponent, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   imports: [ CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     NgScrollbarModule, NgScrollbarReachedModule ],
