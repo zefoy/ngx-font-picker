@@ -3,8 +3,8 @@
   "description": "Google fonts font picker widget for Angular",
   "bugs": "https://github.com/zefoy/ngx-font-picker/issues",
   "version": "16.0.2",
-  "private": true,
   "license": "MIT",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "lint": "ng lint",
