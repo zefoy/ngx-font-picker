@@ -1,6 +1,8 @@
-import { Directive, OnInit, OnChanges, Input, Output, EventEmitter,
+import {
+  Directive, OnInit, OnChanges, Input, Output, EventEmitter,
   HostListener, ApplicationRef, ElementRef, ChangeDetectorRef, ViewContainerRef,
-  SimpleChanges, ComponentFactoryResolver, Injector, ReflectiveInjector } from '@angular/core';
+  SimpleChanges, ComponentFactoryResolver, Injector, StaticProvider
+} from '@angular/core';
 
 import { FontInterface } from './font-picker.interfaces';
 
@@ -68,8 +70,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
   }
 
   constructor(private injector: Injector, private resolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
-    private cdRef: ChangeDetectorRef, private service: FontPickerService) {}
+              private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
+              private cdRef: ChangeDetectorRef, private service: FontPickerService) {}
 
   ngOnInit(): void {
     this.fontPicker = this.fontPicker || this.fpFallbackFont;
@@ -126,7 +128,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
       }
 
       const compFactory = this.resolver.resolveComponentFactory(FontPickerComponent);
-      const injector = ReflectiveInjector.fromResolvedProviders([], vcRef.parentInjector);
+      const injector = Injector.create({ providers: [], parent: vcRef.parentInjector });
 
       this.dialog = vcRef.createComponent(compFactory, 0, injector, []).instance;
 
