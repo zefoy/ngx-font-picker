@@ -1,33 +1,33 @@
-<div class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+<div class="box-container flex-col">
   <div class="app-title">Simple example app for the ngx-font-picker</div>
 
   <div class="info-container">
     You can select a font by clicking the first button and toggle the config options from the two other buttons.
   </div>
 
-  <div class="horizontal-container" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="stretch" fxFlex>
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+  <div class="horizontal-container flex content-stretch flex-col md:flex-row">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Settings</div>
 
-      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect" [fpPopularLabel]="" [fpFilterByFamilies]="filteredFonts" [fpSortByFamilies]="sortFonts">
+      <div class="action-container flex-col content-stretch">
+        <div class="action-button flex items-center justify-center" [(fontPicker)]="font" [fpWidth]="'auto'" [fpPosition]="'bottom'" [fpPositionOffset]="'0%'" [fpPositionRelativeToArrow]="false" [fpPresetLabel]="'Preset fonts'" [fpPresetFonts]="presetFonts" [fpSizeSelect]="sizeSelect" [fpStyleSelect]="styleSelect" [fpPopularLabel]="" [fpFilterByFamilies]="filteredFonts" [fpSortByFamilies]="sortFonts">
           {{font?.family}} {{font?.style | FontStyles}} {{font?.size}}
         </div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
+        <div class="action-button flex items-center justify-center" (click)="togglePresetFonts()">Preset fonts: {{presetFonts.length ? "ON" : "OFF"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleExtraOptions()">Style & size: {{(sizeSelect || styleSelect) ? "ON" : "OFF"}}</div>
+        <div class="action-button flex items-center justify-center" (click)="toggleExtraOptions()">Style & size: {{(sizeSelect || styleSelect) ? "ON" : "OFF"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleFilterFonts()">Filter fonts: {{filteredFonts.length ? "ON" : "OFF"}}</div>
+        <div class="action-button flex items-center justify-center" (click)="toggleFilterFonts()">Filter fonts: {{filteredFonts.length ? "ON" : "OFF"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center center" fxFlex (click)="toggleSortOptions()">Sort by name: {{sortFonts ? "ON" : "OFF"}}</div>
+        <div class="action-button flex items-center justify-center" (click)="toggleSortOptions()">Sort by name: {{sortFonts ? "ON" : "OFF"}}</div>
       </div>
     </div>
 
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Preview</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
+      <div class="content-container flex flex-col content-stretch">
         <div [ngStyle]="font?.getStyles()">
           <div class="preview-content">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor.

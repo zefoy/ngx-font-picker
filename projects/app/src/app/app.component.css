@@ -9,7 +9,6 @@
 .box-container {
   box-sizing: border-box;
   width: 800px;
-  height: 535px;
   max-width: 90%;
   max-height: 90%;
   padding: 24px;
@@ -43,15 +42,17 @@
 
 .action-button {
   box-sizing: border-box;
-  width: 100%;
-  padding: 16px;
-  margin: 8px 0;
+  width: calc(100% - 16px);
+  min-height: 35px;
+  padding: 14px;
+  margin: 8px;
   border: 1px solid #555;
   border-radius: 4px;
 
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  line-height: 14px;
   text-align: center;
 }
 

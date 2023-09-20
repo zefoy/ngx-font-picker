@@ -10,7 +10,7 @@
   height: 320px;
   min-width: 200px;
   min-height: 240px;
-  border: #777 solid 1px;
+  border: #aaa solid 1px;
 
   cursor: default;
   user-select: none;
@@ -113,10 +113,10 @@
 }
 
 .font-picker .search-field:disabled {
-  opacity: 0.5;
+  opacity: 0.8;
 
   cursor: not-allowed;
-  background-color: #888;
+  background-color: #eee;
 }
 
 .font-picker .search-reset {
@@ -124,10 +124,11 @@
   top: 0;
   right: 0;
 
-  padding: 1px 12px;
+  padding: 0 12px;
 
   cursor: pointer;
-  font-size: 31px;
+  font-size: 30px;
+  line-height: 36px;
   color: #777;
 
   transition: color 300ms ease;
@@ -293,7 +294,7 @@
 }
 
 .font-picker .font-options .right {
-  padding: 0 2px;
+  padding: 3px 2px;
 }
 
 .font-picker .font-options .right .size-select {

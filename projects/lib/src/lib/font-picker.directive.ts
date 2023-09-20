@@ -70,8 +70,8 @@ export class FontPickerDirective implements OnInit, OnChanges {
   }
 
   constructor(private injector: Injector, private resolver: ComponentFactoryResolver,
-              private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
-              private cdRef: ChangeDetectorRef, private service: FontPickerService) {}
+    private appRef: ApplicationRef, private vcRef: ViewContainerRef, private elRef: ElementRef,
+    private cdRef: ChangeDetectorRef, private service: FontPickerService) {}
 
   ngOnInit(): void {
     this.fontPicker = this.fontPicker || this.fpFallbackFont;
@@ -85,6 +85,7 @@ export class FontPickerDirective implements OnInit, OnChanges {
         this.loadFont(this.fontPicker);
       }
     }
+    
     if (changes.fpSortByFamilies || changes.fpFilterByFamilies) {
       this.dialog = undefined;
     }
