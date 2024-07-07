@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { NgScrollbarReachedModule } from 'ngx-scrollbar/reached-event';
+import { NgScrollReached } from 'ngx-scrollbar/reached-event';
 
 import { FontPickerService } from './font-picker.service';
 import { FontPickerComponent } from './font-picker.component';
@@ -15,7 +15,7 @@ import { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './font-picker.p
 @NgModule({
   declarations: [ FontPickerComponent, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   imports: [ CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule,
-    NgScrollbarModule, NgScrollbarReachedModule ],
+    NgScrollbarModule, NgScrollReached ],
   exports: [ FormsModule, ReactiveFormsModule, FontPickerDirective, FontSizePipe, FontStylesPipe, StatefulSlicePipe ],
   providers: [ FontPickerService ]
 })
