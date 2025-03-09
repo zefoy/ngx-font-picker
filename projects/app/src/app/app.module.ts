@@ -21,8 +21,8 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
       AppComponent
     ],
     imports: [
-      BrowserModule,
       FormsModule,
+      BrowserModule,
       ReactiveFormsModule,
       FontPickerComponent,
       FontPickerDirective,
@@ -31,7 +31,6 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
     exports: [
     ],
     providers: [
-      FontStylesPipe,
       FontPickerService,
       {
         provide: FONT_PICKER_CONFIG,
