@@ -51,10 +51,10 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
   imports: [
     ...
     FontPickerComponent,
-    FontPickerDirective,
-    FontPickerService
+    FontPickerDirective
   ],
   providers: [
+    FontPickerService,
     {
       provide: FONT_PICKER_CONFIG,
       useValue: DEFAULT_FONT_PICKER_CONFIG
