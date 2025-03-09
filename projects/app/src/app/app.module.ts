@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FONT_PICKER_CONFIG } from 'ngx-font-picker';
-import { FontPickerModule, FontPickerConfigInterface } from 'ngx-font-picker';
+import { FontStylesPipe, FontPickerComponent, FontPickerDirective, FontPickerService,
+  FontPickerConfigInterface } from 'ngx-font-picker';
 
 import { AppComponent } from './app.component';
 
@@ -23,11 +24,15 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
       BrowserModule,
       FormsModule,
       ReactiveFormsModule,
-      FontPickerModule
+      FontPickerComponent,
+      FontPickerDirective,
+      FontStylesPipe
     ],
     exports: [
     ],
     providers: [
+      FontStylesPipe,
+      FontPickerService,
       {
         provide: FONT_PICKER_CONFIG,
         useValue: DEFAULT_FONT_PICKER_CONFIG

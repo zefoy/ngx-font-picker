@@ -10,8 +10,6 @@ export {
   FontPickerConfig, FontPickerConfigInterface
 } from './lib/font-picker.interfaces';
 
-export { FontPickerModule } from './lib/font-picker.module';
-
 export { FontPickerService } from './lib/font-picker.service';
 
 export { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './lib/font-picker.pipes';

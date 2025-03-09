@@ -32,14 +32,14 @@ npm run start
 npm install ngx-font-picker --save
 ```
 
-##### Load the module for your app (with global configuration):
+##### Import the library into your project:
 
 Global configuration should be provided only once (this is usually done in the root module).
 
 ```javascript
-import { FontPickerModule } from 'ngx-font-picker';
 import { FONT_PICKER_CONFIG } from 'ngx-font-picker';
 import { FontPickerConfigInterface } from 'ngx-font-picker';
+import { FontPickerComponent, FontPickerDirective, FontPickerService } from 'ngx-font-picker';
 
 const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
   // Change this to your Google API key
@@ -50,7 +50,9 @@ const DEFAULT_FONT_PICKER_CONFIG: FontPickerConfigInterface = {
   ...
   imports: [
     ...
-    FontPickerModule
+    FontPickerComponent,
+    FontPickerDirective,
+    FontPickerService
   ],
   providers: [
     {

@@ -3,12 +3,16 @@ import * as WebFont from 'webfontloader';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewChild, HostListener,
   ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
-import { NgScrollbar } from 'ngx-scrollbar';
+import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollReached } from 'ngx-scrollbar/reached-event';
 
+import { FontSizePipe, FontStylesPipe, StatefulSlicePipe } from './font-picker.pipes';
 import { Font, FontInterface, GoogleFontInterface, GoogleFontsInterface } from './font-picker.interfaces';
 
 import { FontPickerService } from './font-picker.service';
@@ -17,7 +21,18 @@ import { FontPickerService } from './font-picker.service';
   selector: 'font-picker',
   templateUrl: './font-picker.component.html',
   styleUrls: [ './font-picker.component.css' ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgScrollbarModule,
+    NgScrollReached,
+    FontSizePipe,
+    FontStylesPipe,
+    StatefulSlicePipe
+  ]
 })
 export class FontPickerComponent implements OnInit {
   private initialFont: Font;

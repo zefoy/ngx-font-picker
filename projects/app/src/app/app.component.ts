@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Font } from 'ngx-font-picker';
 
 @Component({
-  selector: 'my-app',
-  moduleId: 'src/app/app.component',
+  selector: 'app',
+  standalone: false,
   templateUrl: 'app.component.html',
   styleUrls: [ 'app.component.css' ]
 })
