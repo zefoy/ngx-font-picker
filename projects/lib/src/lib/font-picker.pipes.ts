@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'FontSize',
@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FontSizePipe implements PipeTransform {
   transform(value: string): number {
-    return value ? parseInt(value.replace(/[^-\d\.]/g, '') || '16', 10) : 0;
+    return value ? parseInt(value.replace(/[^-\d\.]/g, '') || '16', 10) : 0
   }
 }
 
@@ -26,19 +26,19 @@ export class FontStylesPipe implements PipeTransform {
       '700': 'Bold',
       '800': 'Extra-bold',
       '900': 'Black'
-    };
+    }
 
     for (const style in lookup) {
-      const found = value && value.search(style);
+      const found = value && value.search(style)
 
       if (found >= 0 && value != null) {
-        value = value.replace(style, lookup[style] + ' ');
+        value = value.replace(style, lookup[style] + ' ')
 
-        break;
+        break
       }
     }
 
-    return value;
+    return value
   }
 }
 
@@ -47,18 +47,21 @@ export class FontStylesPipe implements PipeTransform {
   pure: false
 })
 export class StatefulSlicePipe implements PipeTransform {
-  private slicedArray: any[] = [];
-  private previousArrayRef: any[] = [];
-  private previousEndValue: number = 0;
+  private slicedArray: any[] = []
+  private previousArrayRef: any[] = []
+  private previousEndValue: number = 0
 
   transform(arr: any[], start: number, end: number): any[] {
-    if (arr && (this.previousEndValue !== end || this.previousArrayRef !== arr)) {
-      this.slicedArray = arr.slice(start, end);
+    if (
+      arr &&
+      (this.previousEndValue !== end || this.previousArrayRef !== arr)
+    ) {
+      this.slicedArray = arr.slice(start, end)
 
-      this.previousArrayRef = arr;
-      this.previousEndValue = end;
+      this.previousArrayRef = arr
+      this.previousEndValue = end
     }
 
-    return this.slicedArray || arr;
+    return this.slicedArray || arr
   }
 }

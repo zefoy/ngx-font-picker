@@ -1,26 +1,34 @@
-import * as WebFont from 'webfontloader';
+import * as WebFont from 'webfontloader'
 
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Injectable, inject } from '@angular/core'
 
-import { FONT_PICKER_CONFIG  } from './font-picker.interfaces';
+import { FONT_PICKER_CONFIG } from './font-picker.interfaces'
 
-import { FontInterface, GoogleFontsInterface,
-  FontPickerConfigInterface  } from './font-picker.interfaces';
+import {
+  FontInterface,
+  GoogleFontsInterface,
+  FontPickerConfigInterface
+} from './font-picker.interfaces'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FontPickerService {
-  private apiKey: string = '';
+  private http = inject(HttpClient)
+  private _config = inject<FontPickerConfigInterface>(FONT_PICKER_CONFIG)
 
-  private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts';
+  private apiKey: string = ''
 
-  constructor(private http: HttpClient,
-    @Inject(FONT_PICKER_CONFIG) private _config: FontPickerConfigInterface)
-  {
-    this.apiKey = _config.apiKey || '';
+  private baseUrl: string = 'https://www.googleapis.com/webfonts/v1/webfonts'
+
+  constructor() {
+    const _config = this._config
+
+    this.apiKey = _config.apiKey || ''
   }
 
   /**
@@ -32,9 +40,9 @@ export class FontPickerService {
         google: {
           families: [font.family + ':' + font.style]
         }
-      });
+      })
     } catch (e) {
-      console.warn('Failed to load the font:', font);
+      console.warn('Failed to load the font:', font)
     }
   }
 
@@ -45,17 +53,17 @@ export class FontPickerService {
 
   public getAllFonts(sort: string): Observable<GoogleFontsInterface | null> {
     if (!this.apiKey) {
-      return of(null);
+      return of(null)
     } else {
-      let requestUrl = this.baseUrl + '?key=' + this.apiKey;
+      let requestUrl = this.baseUrl + '?key=' + this.apiKey
 
       if (sort) {
-        requestUrl = requestUrl.concat('&sort=' + sort);
+        requestUrl = requestUrl.concat('&sort=' + sort)
       }
 
-      return <Observable<GoogleFontsInterface>> this.http.get(requestUrl).pipe(
-        catchError(this.handleHttpError)
-      );
+      return <Observable<GoogleFontsInterface>>(
+        this.http.get(requestUrl).pipe(catchError(this.handleHttpError))
+      )
     }
   }
 
@@ -64,11 +72,11 @@ export class FontPickerService {
    */
 
   public getRequestedFont(family: string): Observable<FontInterface> {
-    const requestUrl = 'https://fonts.googleapis.com/css?family=' + family;
+    const requestUrl = 'https://fonts.googleapis.com/css?family=' + family
 
-    return <Observable<FontInterface>> this.http.get(requestUrl).pipe(
-      catchError(this.handleHttpError)
-    );
+    return <Observable<FontInterface>>(
+      this.http.get(requestUrl).pipe(catchError(this.handleHttpError))
+    )
   }
 
   /**
@@ -76,11 +84,13 @@ export class FontPickerService {
    */
 
   private handleHttpError(error: any): Observable<string> {
-    console.error(error);
+    console.error(error)
 
-    const errMsg = (error.error instanceof Error) ?
-      error.error.message : (error.status || 'Unknown error');
+    const errMsg =
+      error.error instanceof Error
+        ? error.error.message
+        : error.status || 'Unknown error'
 
-    return of(errMsg);
+    return of(errMsg)
   }
 }
