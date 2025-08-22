@@ -763,7 +763,6 @@ export class FontPickerComponent implements OnInit {
 
   public onSelectFont(font: any): void {
     this.selectedFont = true
-    console.log(font)
 
     this.font.files = font.files
     this.font.family = font.family
